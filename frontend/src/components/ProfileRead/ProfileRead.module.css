@@ -1,0 +1,24 @@
+.container {
+  @apply flex flex-col  py-16 items-start w-80
+  md:w-[420px];
+}
+
+.fields {
+  @apply flex flex-col w-full mt-8
+  md:mt-14;
+}
+
+.field {
+  @apply flex w-full justify-between border-zinc-400 border-b
+  md:text-xl;
+}
+
+.field_name {
+  @apply font-medium;
+}
+
+.link_edit {
+  @apply text-sm text-center w-full mt-10 cursor-pointer
+  md:mt-20 md:text-xl
+  ;
+}
