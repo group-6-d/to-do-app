@@ -5,7 +5,7 @@ const MainSection = () => {
     <div className='flex h-full bg-slate-200'>
       {/* TODO: move side-menu to separate component */}
       <aside className='bg-indigo-300'>
-        <button className='mb-4 bg-indigo-700 px-8 py-4 text-white'>
+        <button className='mb-4 whitespace-nowrap bg-indigo-700 px-8 py-4 text-white hover:bg-indigo-900'>
           New Task
         </button>
         <ul className='pl-5'>
@@ -22,7 +22,7 @@ const MainSection = () => {
       </aside>
 
       {/* TODO: move task-board to separate component */}
-      <div className='flex w-full justify-between gap-2 overflow-scroll p-2'>
+      <div className='flex w-full justify-between gap-2 overflow-scroll'>
         {/* TODO: move 'ul' to separate component */}
         <TaskList />
         <TaskList />

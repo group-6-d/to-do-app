@@ -32,8 +32,8 @@ const data: dataType[] = [
 const TaskList = () => {
   return (
     <ul className=''>
-      <div className=' w-full border-2 border-stone-300 bg-indigo-100 px-1 py-2'>
-        <h4 className='mx-auto'>Wed: The 6th of March</h4>
+      <div className='relative mb-[2rem] w-full border-x-2 border-stone-300'>
+        <h4 className='fixed w-full bg-indigo-100 p-2'>Wed: March, 6</h4>
       </div>
 
       {data.map((task) => (
