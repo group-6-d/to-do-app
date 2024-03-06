@@ -3,9 +3,9 @@ import Header from '../Header/Header';
 
 const PageContainer = () => {
   return (
-    <div className='flex min-h-screen w-screen flex-col'>
+    <div className='h-screen w-screen'>
       <Header />
-      <main>
+      <main className='h-full overflow-scroll'>
         <Outlet />
       </main>
     </div>
