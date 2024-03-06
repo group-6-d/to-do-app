@@ -2,8 +2,8 @@ import styles from './Header.module.css';
 
 const Header = () => {
   return (
-    <header className='w-full flex justify-between px-8 py-4'>
-      <h2 className='hover:text-red-500 uppercase p-5'>
+    <header className='flex w-full justify-between px-8 py-4'>
+      <h2 className='p-5 uppercase hover:text-red-500'>
         TODO App [change to fancy name]
       </h2>
       <nav>
