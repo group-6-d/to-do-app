@@ -1,0 +1,53 @@
+.container {
+  @apply flex flex-col  py-16 items-start;
+}
+
+.form {
+  @apply grid grid-cols-1 gap-4 w-72 items-start
+  md:w-[436px] md:gap-5
+  ;
+}
+
+.title {
+  @apply text-xl
+  md:text-2xl;
+}
+
+.input_container {
+  @apply flex flex-col relative items-start;
+}
+
+.input {
+  @apply w-[272px] border-none px-2 py-3 text-sm bg-zinc-200 rounded-lg
+  md:w-[420px] md:text-lg
+  ;
+}
+
+.input_label {
+    @apply text-[12px] text-zinc-500 mb-1
+    md:text-sm md:mb-2
+}
+
+.error_message {
+  @apply text-[10px] text-red-500 px-1.5 py-2.5 absolute top-14 -left-1
+  md:top-[70px]
+}
+
+.button {
+  @apply bg-black text-white flex justify-center items-center w-full rounded-sm mt-10 border-none
+  cursor-pointer hover:scale-125 transition-transform duration-300 transform hover:bg-opacity-80
+  md:p-4
+  ;
+}
+
+.link_container {
+    @apply flex items-center justify-center w-full text-sm
+}
+
+.link_question {
+    @apply mr-3 text-zinc-600
+}
+
+.link_item {
+    @apply text-blue-700 cursor-pointer hover:text-blue-900
+}
