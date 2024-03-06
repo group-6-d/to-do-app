@@ -1,19 +1,17 @@
-import './App.css';
+import Header from './components/Header/Header.tsx';
+import MainSection from './components/MainSection/MainSection.tsx';
+
 // import Register from './components/Authentication/Register';
 // import Login from './components/Authentication/Login';
-// import ProfileEdit from './components/ProfileEdit/ProfileEdit';
-import ProfileRead from './components/ProfileRead/ProfileRead';
 
 function App() {
-  // const [count, setCount] = useState(0);
-
   return (
-    <>
+    <div className='h-screen'>
+      <Header />
+      <MainSection />
       {/* <Register /> */}
       {/* <Login /> */}
-      {/* <ProfileEdit /> */}
-      <ProfileRead />
-    </>
+    </div>
   );
 }
 
