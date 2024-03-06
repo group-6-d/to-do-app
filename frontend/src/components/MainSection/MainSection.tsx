@@ -4,7 +4,7 @@ const MainSection = () => {
   return (
     <div className='flex h-full bg-slate-200'>
       {/* TODO: move side-menu to separate component */}
-      <aside className=' bg-indigo-300'>
+      <aside className='bg-indigo-300'>
         <button className='mb-4 bg-indigo-700 px-8 py-4 text-white'>
           New Task
         </button>
