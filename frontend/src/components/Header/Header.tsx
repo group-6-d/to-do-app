@@ -1,4 +1,14 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styles from './Header.module.css';
+
+type NavLinkWithStyleProps = {
+  isActive: boolean;
+  label: string;
+};
+
+const NavLinkWithStyle = ({ isActive, label }: NavLinkWithStyleProps) => (
+  <span className={isActive ? styles.active : ''}>{label}</span>
+);
 
 const Header = () => {
   return (
@@ -7,10 +17,18 @@ const Header = () => {
       <nav>
         <ul className='flex justify-between gap-4'>
           <li>
-            <Link to='/'>Dashboard</Link>
+            <NavLink to='/' end>
+              {({ isActive }) => (
+                <NavLinkWithStyle isActive={isActive} label='Dashboard' />
+              )}
+            </NavLink>
           </li>
           <li>
-            <Link to='profile'>Profile</Link>
+            <NavLink to='/profile'>
+              {({ isActive }) => (
+                <NavLinkWithStyle isActive={isActive} label='Profile' />
+              )}
+            </NavLink>
           </li>
         </ul>
       </nav>
