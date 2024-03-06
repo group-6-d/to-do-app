@@ -1,29 +1,32 @@
-type dataType = {
+import TaskListItem from '../TaskListItem/TaskListItem';
+
+export type dataType = {
   title: string;
-  category: 'Personal' | 'Work' | 'Shopping' | 'Hobbies' | 'Movies';
+  category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies';
   id: number;
 };
+
 const data: dataType[] = [
-  { title: 'Go for a run', category: 'Personal', id: 1 },
-  { title: 'Finish report for meeting', category: 'Work', id: 2 },
-  { title: 'Buy groceries', category: 'Shopping', id: 3 },
-  { title: 'Practice guitar for 30 minutes', category: 'Hobbies', id: 4 },
-  { title: 'Watch "The Godfather"', category: 'Movies', id: 5 },
-  { title: 'Call mom', category: 'Personal', id: 6 },
-  { title: 'Send follow-up emails', category: 'Work', id: 7 },
-  { title: 'Purchase birthday gift for friend', category: 'Shopping', id: 8 },
-  { title: 'Paint a picture', category: 'Hobbies', id: 9 },
-  { title: 'Watch "Inception"', category: 'Movies', id: 10 },
-  { title: 'Schedule dentist appointment', category: 'Personal', id: 11 },
-  { title: 'Prepare presentation slides', category: 'Work', id: 12 },
-  { title: 'Buy new running shoes', category: 'Shopping', id: 13 },
-  { title: 'Read a book for an hour', category: 'Hobbies', id: 14 },
-  { title: 'Watch "The Shawshank Redemption"', category: 'Movies', id: 15 },
-  { title: 'Clean out closet', category: 'Personal', id: 16 },
-  { title: 'Attend team meeting', category: 'Work', id: 17 },
-  { title: 'Grocery shopping for the week', category: 'Shopping', id: 18 },
-  { title: 'Practice photography skills', category: 'Hobbies', id: 19 },
-  { title: 'Watch "Pulp Fiction"', category: 'Movies', id: 20 },
+  { title: 'Go for a run', category: 'personal', id: 1 },
+  { title: 'Finish report for meeting', category: 'work', id: 2 },
+  { title: 'Buy groceries', category: 'shopping', id: 3 },
+  { title: 'Practice guitar for 30 minutes', category: 'hobbies', id: 4 },
+  { title: 'Watch "The Godfather"', category: 'movies', id: 5 },
+  { title: 'Call mom', category: 'personal', id: 6 },
+  { title: 'Send follow-up emails', category: 'work', id: 7 },
+  { title: 'Purchase birthday gift for friend', category: 'shopping', id: 8 },
+  { title: 'Paint a picture', category: 'hobbies', id: 9 },
+  { title: 'Watch "Inception"', category: 'movies', id: 10 },
+  { title: 'Schedule dentist appointment', category: 'personal', id: 11 },
+  { title: 'Prepare presentation slides', category: 'work', id: 12 },
+  { title: 'Buy new running shoes', category: 'shopping', id: 13 },
+  { title: 'Read a book for an hour', category: 'hobbies', id: 14 },
+  { title: 'Watch "The Shawshank Redemption"', category: 'movies', id: 15 },
+  { title: 'Clean out closet', category: 'personal', id: 16 },
+  { title: 'Attend team meeting', category: 'work', id: 17 },
+  { title: 'Grocery shopping for the week', category: 'shopping', id: 18 },
+  { title: 'Practice photography skills', category: 'hobbies', id: 19 },
+  { title: 'Watch "Pulp Fiction"', category: 'movies', id: 20 },
 ];
 
 const TaskList = () => {
@@ -34,16 +37,7 @@ const TaskList = () => {
       </div>
 
       {data.map((task) => (
-        <li className='mb-2 flex min-h-[100px] flex-col justify-between bg-stone-50 p-2'>
-          <h3>{task.title}</h3>
-
-          <div className='flex justify-between'>
-            <div className='rounded-lg border-2 border-stone-300 px-2'>
-              {task.category}
-            </div>
-            <button className='border-2 border-gray-400 px-2'>Change</button>
-          </div>
-        </li>
+        <TaskListItem key={task.id} task={task} />
       ))}
     </ul>
   );
