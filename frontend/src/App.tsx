@@ -17,7 +17,6 @@ function App() {
           <Route path='*' element={<ErrorPage />} />
         </Route>
       </Routes>
-      <MainSection />
     </BrowserRouter>
   );
 }
