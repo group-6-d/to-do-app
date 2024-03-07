@@ -2,9 +2,9 @@ import TaskList from '../../components/TaskList/TaskList';
 
 const MainPage = () => {
   return (
-    <div className='flex h-full bg-slate-200'>
+    <div className='flex h-full bg-stone-100'>
       {/* TODO: move side-menu to separate component */}
-      <aside className='bg-indigo-300'>
+      <aside className='bg-white'>
         <button className='mb-4 whitespace-nowrap bg-indigo-700 px-8 py-4 text-white hover:bg-indigo-900'>
           New Task
         </button>
@@ -22,10 +22,8 @@ const MainPage = () => {
       </aside>
 
       {/* TODO: move task-board to separate component */}
-      <div className='flex w-full justify-between gap-2 overflow-scroll'>
+      <div className='flex w-full flex-col justify-around gap-6 p-4 md:flex-row'>
         {/* TODO: move 'ul' to separate component */}
-        <TaskList />
-        <TaskList />
         <TaskList />
         <TaskList />
         <TaskList />

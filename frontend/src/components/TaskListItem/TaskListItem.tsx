@@ -4,10 +4,7 @@ const TaskListItem = ({ task }: { task: dataType }) => {
   const { id, title, category } = task;
 
   return (
-    <li
-      key={id}
-      className='mb-2 flex min-h-[100px] flex-col justify-between bg-stone-50 p-2'
-    >
+    <li key={id} className='mb-2 flex  flex-col justify-between bg-white p-2'>
       <h3>{title}</h3>
 
       <div className='flex justify-between'>
