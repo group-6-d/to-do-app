@@ -4,7 +4,7 @@
 }
 
 .container {
-  @apply relative grid w-[300px] bg-white p-5 rounded-lg h-screen/80 overflow-auto content-start
+  @apply relative grid w-[300px] bg-white p-5 rounded-2xl h-screen/80 overflow-auto content-start
   md:w-[700px] md:p-10;
 }
 
@@ -14,12 +14,12 @@
 }
 
 .icons_list {
-  @apply grid grid-cols-3 gap-3 text-xl text-gray-600
+  @apply grid grid-cols-4 gap-3 text-xl text-gray-600
   md:text-2xl md:gap-6
 }
 
 .icon {
-  @apply cursor-pointer hover:text-blue-600 hover:font-bold
+  @apply cursor-pointer hover:text-accent hover:font-bold hover:scale-125 transition-transform duration-300
 }
 
 .title {
@@ -28,7 +28,7 @@
 }
 
 .priority {
-  @apply text-red-700 uppercase flex items-center text-sm font-medium mb-3
+  @apply text-orrange uppercase flex items-center text-sm font-medium mb-3
   md:text-xl md:mb-4
 }
 
@@ -52,12 +52,12 @@
 }
 
 .info_category {
-  @apply text-blue-800 font-medium
+  @apply text-accent font-medium
   md:text-xl
 }
 
 .info_stutus {
-  @apply rounded-full font-medium bg-red-700 text-white text-center w-24
+  @apply rounded-full font-medium bg-coral text-white text-center w-24 hover:bg-opacity-80
   md:text-xl md:w-32
 }
 

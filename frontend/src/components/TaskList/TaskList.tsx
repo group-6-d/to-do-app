@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import TaskListItem from '../TaskListItem/TaskListItem';
 
 export type dataType = {
@@ -33,17 +34,22 @@ type TaskListProps = string;
 
 const TaskList = ({ day }: TaskListProps) => {
   return (
-    <ul className='overflow-hidden rounded-2xl bg-white shadow-xl'>
-      <div className=''>
-        <h4 className='p-4 font-semibold'>{day}</h4>
-      </div>
+    <>
+      <ul className='overflow-hidden rounded-2xl bg-white shadow-xl'>
+        <div className=''>
+          <h4 className='p-4 font-semibold'>{day}</h4>
+        </div>
 
-      <div className='h-full overflow-scroll shadow-xl'>
-        {data.map((task) => (
-          <TaskListItem key={task.id} task={task} />
-        ))}
-      </div>
-    </ul>
+        <div className='h-full overflow-scroll shadow-xl'>
+          {data.map((task) => (
+            <TaskListItem
+              key={task.id}
+              task={task}
+            />
+          ))}
+        </div>
+      </ul>     
+    </>
   );
 };
 export default TaskList;
