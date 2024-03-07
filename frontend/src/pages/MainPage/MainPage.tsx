@@ -14,7 +14,7 @@ const MainPage = () => {
           <TaskList day={day} />
         ))}
       </div>
-      <TaskPopupRead />
+      {/* <TaskPopupRead /> */}
     </div>
   );
 };
