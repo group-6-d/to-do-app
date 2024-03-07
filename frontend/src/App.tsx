@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ErrorPage from './components/ErrorPage/ErrorPage.tsx';
 import ProfileRead from './components/ProfileRead';
+import TaskPopupRead from './components/TaskPopupRead';
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
           <Route index element={<MainSection />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/task' element={<TaskPopupRead />} />
 
           {/* // TODO: inside ProfileRead add ProfileRead - to get url: '/profile/edit' */}
           <Route path='/profile' element={<ProfileRead />} />

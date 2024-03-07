@@ -1,0 +1,68 @@
+.parent {
+  @apply fixed inset-0 w-full h-full flex justify-center 
+  items-center bg-black bg-opacity-40 animate-fade cursor-pointer;
+}
+
+.container {
+  @apply relative grid w-[300px] h-auto bg-white p-5 rounded-lg
+  md:w-[700px] md:px-10 md:pt-10 md:pb-16;
+}
+
+.section_top {
+  @apply flex w-full justify-end mb-6
+  md:mb-10
+}
+
+.icons_list {
+  @apply grid grid-cols-3 gap-3 text-xl text-gray-600
+  md:text-2xl md:gap-6
+}
+
+.icon {
+  @apply cursor-pointer hover:text-blue-600 hover:font-bold
+}
+
+.title {
+  @apply text-xl font-semibold mb-2
+  md:text-4xl md:mb-8
+}
+
+.priority {
+  @apply text-red-700 uppercase flex items-center text-sm font-medium mb-3
+  md:text-xl md:mb-7
+}
+
+.priority_point {
+  @apply text-4xl
+}
+
+.info {
+  @apply grid grid-cols-2 mt-6 mb-10 gap-y-4 items-end
+  md:mt-10 md:mb-20 md:w-96 md:gap-y-7
+}
+
+.info_field {
+  @apply text-gray-500 uppercase text-[12px]
+  md:text-lg
+}
+
+.info_date {
+  @apply font-medium
+  md:text-xl
+}
+
+.info_category {
+  @apply text-blue-800 font-medium
+  md:text-xl
+}
+
+.info_stutus {
+  @apply rounded-full font-medium bg-red-700 text-white text-center w-24
+  md:text-xl md:w-32
+}
+
+.description {
+  @apply my-2
+  md:text-2xl md:my-4
+}
+
