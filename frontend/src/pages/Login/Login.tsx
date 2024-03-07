@@ -88,8 +88,8 @@ const Login = () => {
         </div>
         <button
           disabled={!isValid}
-          type='submit'
-          className={styles.button}
+          // type='submit'
+          className={styles.button_form}
           aria-label='Send result'
         >
           Sign up
