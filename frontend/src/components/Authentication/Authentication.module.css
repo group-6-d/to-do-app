@@ -4,12 +4,12 @@
 
 .form {
   @apply grid w-72 grid-cols-1 gap-4
-  md:w-[436px] md:gap-5;
+  md:w-[436px] md:gap-6;
 }
 
 .title {
   @apply text-xl
-  md:text-2xl;
+  md:mb-10 md:text-4xl;
 }
 
 .input_container {
@@ -23,22 +23,23 @@
 
 .input_label {
   @apply mb-1 text-[12px] text-zinc-500
-    md:mb-2 md:text-sm;
+    md:mb-2 md:text-lg;
 }
 
 .error_message {
-  @apply absolute -left-1 top-14 px-1.5 py-2.5 text-[10px]
-  md:top-[70px];
+  @apply absolute -left-1 top-14 px-1.5 py-2.5 text-[10px] text-red-500
+  md:top-[80px] md:text-[14px];
 }
 
 .button_form {
-  @apply mb-5 mt-10 flex w-full cursor-pointer items-center justify-center rounded-sm border-none bg-black
+  @apply bg-accent mb-5 mt-10 flex w-full cursor-pointer items-center justify-center rounded-sm border-none
   text-white hover:bg-opacity-80
-  md:p-4;
+  md:p-4 md:text-lg;
 }
 
 .link_container {
-  @apply flex w-full items-center justify-center text-sm;
+  @apply flex w-full items-center justify-center text-sm
+    md:text-lg;
 }
 
 .link_question {
@@ -46,5 +47,5 @@
 }
 
 .link_item {
-  @apply cursor-pointer text-blue-700 hover:text-blue-900;
+  @apply text-accent hover:text-accentDark cursor-pointer;
 }

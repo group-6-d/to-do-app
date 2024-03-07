@@ -6,10 +6,10 @@ const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
 const MainPage = () => {
   return (
-    <div className='flex h-full bg-stone-100'>
+    <div className='flex h-full '>
       <SideBar />
 
-      <div className='flex w-full flex-col justify-around gap-6 p-4 md:flex-row'>
+      <div className='flex w-full flex-col gap-x-6 p-4 md:flex-row md:justify-around'>
         {daysData.map((day) => (
           <TaskList day={day} />
         ))}
