@@ -1,23 +1,24 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import MainSection from './components/MainSection/MainSection.tsx';
+import MainPage from './pages/MainPage/MainPage.tsx';
 import PageContainer from './components/PageContainer/PageContainer.tsx';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ErrorPage from './components/ErrorPage/ErrorPage.tsx';
-import ProfileRead from './components/ProfileRead';
+import ErrorPage from './pages/ErrorPage/ErrorPage.tsx';
+import ProfileRead from './pages/ProfileRead/index.ts';
+import ProfileEdit from './pages/ProfileEdit/ProfileEdit.tsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<PageContainer />}>
-          <Route index element={<MainSection />} />
+          <Route index element={<MainPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
 
-          {/* // TODO: inside ProfileRead add ProfileRead - to get url: '/profile/edit' */}
           <Route path='/profile' element={<ProfileRead />} />
+          <Route path='/profile/edit' element={<ProfileEdit />} />
 
           <Route path='*' element={<ErrorPage />} />
         </Route>

@@ -1,6 +1,6 @@
-import TaskList from '../TaskList/TaskList';
+import TaskList from '../../components/TaskList/TaskList';
 
-const MainSection = () => {
+const MainPage = () => {
   return (
     <div className='flex h-full bg-slate-200'>
       {/* TODO: move side-menu to separate component */}
@@ -33,4 +33,4 @@ const MainSection = () => {
     </div>
   );
 };
-export default MainSection;
+export default MainPage;
