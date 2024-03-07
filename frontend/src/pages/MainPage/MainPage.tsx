@@ -1,5 +1,7 @@
 import TaskList from '../../components/TaskList/TaskList';
 
+const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+
 const MainPage = () => {
   return (
     <div className='flex h-full bg-stone-100'>
@@ -24,9 +26,13 @@ const MainPage = () => {
       {/* TODO: move task-board to separate component */}
       <div className='flex w-full flex-col justify-around gap-6 p-4 md:flex-row'>
         {/* TODO: move 'ul' to separate component */}
+
+        {daysData.map((day) => (
+          <TaskList day={day} />
+        ))}
+        {/* <TaskList />
         <TaskList />
-        <TaskList />
-        <TaskList />
+        <TaskList /> */}
       </div>
     </div>
   );
