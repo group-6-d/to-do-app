@@ -14,7 +14,7 @@ const NavLinkWithStyle = ({ isActive, label }: NavLinkWithStyleProps) => (
 
 const Header = () => {
   return (
-    <header className='flex h-[10%] w-full items-center justify-between bg-stone-100 px-8'>
+    <header className='flex h-[10%] w-full items-center justify-between px-8'>
       <Link to='/'>
         <h2 className=''>TODO App</h2>
       </Link>
