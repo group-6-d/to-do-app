@@ -76,12 +76,9 @@ const Login = () => {
           />
           {errors?.password && <div className={styles.error_message}>{errors.password.message}</div>}
         </div>
-
-        <div className="authentication__button-container authentication__button-container_further">
-          <button disabled={!isValid} type="submit" className={styles.button} aria-label="Send result">
+             <button disabled={!isValid} type="submit" className={styles.button} aria-label="Send result">
             Sign up
           </button>
-        </div>
       </form>
 
        <div className={styles.link_container}>

@@ -1,9 +1,9 @@
 .container {
-  @apply flex flex-col  py-16 items-start;
+  @apply flex flex-col  py-16 items-center;
 }
 
 .form {
-  @apply grid grid-cols-1 gap-4 w-72 items-start
+  @apply grid grid-cols-1 gap-4 w-72
   md:w-[436px] md:gap-5
   ;
 }
