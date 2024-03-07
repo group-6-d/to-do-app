@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MainSection from './components/MainSection/MainSection.tsx';
 import PageContainer from './components/PageContainer/PageContainer.tsx';
-import Login from './components/Authentication/Login.tsx';
-import Register from './components/Authentication/Register.tsx';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import ErrorPage from './components/ErrorPage/ErrorPage.tsx';
 import ProfileRead from './components/ProfileRead/ProfileRead.tsx';
 
