@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.{css,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        fade: 'fadeIn 0.5s ease-in-out',
+      },
+    },
   },
   plugins: [],
   preflight: {

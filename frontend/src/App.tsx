@@ -16,6 +16,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/task' element={<TaskPopupRead />} />
 
           <Route path='/profile' element={<ProfileRead />} />
           <Route path='/profile/edit' element={<ProfileEdit />} />
