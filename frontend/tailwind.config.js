@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: ['@tailwindcss/typography'],
+  plugins: [],
   preflight: {
     reset: {
       margin: true,
