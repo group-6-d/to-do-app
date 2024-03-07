@@ -1,0 +1,23 @@
+.container {
+  @apply mx-auto flex w-80 flex-col items-center py-16
+  md:w-[420px];
+}
+
+.fields {
+  @apply mx-auto mt-8 flex w-full flex-col
+  md:mt-14;
+}
+
+.field {
+  @apply flex w-full justify-between border-b border-zinc-400
+  md:text-xl;
+}
+
+.field_name {
+  @apply font-medium;
+}
+
+.link_edit {
+  @apply mt-10 w-full cursor-pointer text-center text-sm
+  md:mt-20 md:text-xl;
+}
