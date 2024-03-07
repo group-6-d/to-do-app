@@ -9,7 +9,7 @@ import { LiaPlusSolid } from 'react-icons/lia';
 
 const SideBar = () => {
   return (
-    <aside className='rounded-tr-3xl bg-white pt-6'>
+    <aside className='h-fit rounded-br-3xl rounded-tr-3xl bg-white py-6'>
       <button className='bg-accent hover:bg-accentDark mx-auto mb-4 flex items-center whitespace-nowrap rounded-full px-8 py-4 text-white'>
         <div className='flex items-center justify-between gap-2'>
           <LiaPlusSolid />
