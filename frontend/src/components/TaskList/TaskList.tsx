@@ -29,16 +29,20 @@ const data: dataType[] = [
   { title: 'Watch "Pulp Fiction"', category: 'movies', id: 20 },
 ];
 
-const TaskList = () => {
+type TaskListProps = string;
+
+const TaskList = ({ day }: TaskListProps) => {
   return (
-    <ul className=''>
-      <div className='relative mb-[2rem] w-full border-x-2 border-stone-300'>
-        <h4 className='fixed w-full bg-indigo-100 p-2'>Wed: March, 6</h4>
+    <ul className='overflow-hidden rounded-2xl bg-white shadow-xl'>
+      <div className=''>
+        <h4 className='p-4 font-semibold'>{day}</h4>
       </div>
 
-      {data.map((task) => (
-        <TaskListItem key={task.id} task={task} />
-      ))}
+      <div className='h-full overflow-scroll shadow-xl'>
+        {data.map((task) => (
+          <TaskListItem key={task.id} task={task} />
+        ))}
+      </div>
     </ul>
   );
 };
