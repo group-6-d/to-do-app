@@ -5,7 +5,7 @@ const MainPage = () => {
     <div className='flex h-full bg-stone-100'>
       {/* TODO: move side-menu to separate component */}
       <aside className='bg-white'>
-        <button className='mb-4 whitespace-nowrap bg-indigo-700 px-8 py-4 text-white hover:bg-indigo-900'>
+        <button className='bg-accent hover:bg-accentDark mb-4 whitespace-nowrap px-8 py-4 text-white'>
           New Task
         </button>
         <ul className='pl-5'>

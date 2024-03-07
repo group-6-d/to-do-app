@@ -11,7 +11,7 @@ const TaskListItem = ({ task }: { task: dataType }) => {
         <div className='rounded-xl border-2 border-gray-200 px-2 italic'>
           {category}
         </div>
-        <button className=' bg-indigo-400 px-2 text-white'>Change</button>
+        <button className=' bg-accent px-2 text-white'>Change</button>
       </div>
     </li>
   );
