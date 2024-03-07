@@ -1,4 +1,5 @@
 import TaskList from '../../components/TaskList/TaskList';
+import TaskPopupRead from '../../components/TaskPopupRead';
 
 const MainPage = () => {
   return (
@@ -30,6 +31,7 @@ const MainPage = () => {
         <TaskList />
         <TaskList />
       </div>
+      <TaskPopupRead />
     </div>
   );
 };

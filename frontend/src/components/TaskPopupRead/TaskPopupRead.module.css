@@ -1,16 +1,16 @@
 .parent {
-  @apply fixed inset-0 w-full h-full flex justify-center 
-  items-center bg-black bg-opacity-40 animate-fade cursor-pointer;
+  @apply fixed inset-0 w-full h-full flex justify-center items-center 
+   bg-black bg-opacity-70 animate-fade cursor-pointer;
 }
 
 .container {
-  @apply relative grid w-[300px] h-auto bg-white p-5 rounded-lg
-  md:w-[700px] md:px-10 md:pt-10 md:pb-16;
+  @apply relative grid w-[300px] bg-white p-5 rounded-lg h-screen/80 overflow-auto content-start
+  md:w-[700px] md:p-10;
 }
 
 .section_top {
   @apply flex w-full justify-end mb-6
-  md:mb-10
+  md:mb-12
 }
 
 .icons_list {
@@ -24,12 +24,12 @@
 
 .title {
   @apply text-xl font-semibold mb-2
-  md:text-4xl md:mb-8
+  md:text-4xl md:mb-6
 }
 
 .priority {
   @apply text-red-700 uppercase flex items-center text-sm font-medium mb-3
-  md:text-xl md:mb-7
+  md:text-xl md:mb-4
 }
 
 .priority_point {
@@ -38,7 +38,7 @@
 
 .info {
   @apply grid grid-cols-2 mt-6 mb-10 gap-y-4 items-end
-  md:mt-10 md:mb-20 md:w-96 md:gap-y-7
+  md:mb-16 md:w-96 md:gap-y-5
 }
 
 .info_field {
@@ -63,6 +63,6 @@
 
 .description {
   @apply my-2
-  md:text-2xl md:my-4
+  md:text-2xl md:my-3
 }
 

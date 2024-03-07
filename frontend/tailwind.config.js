@@ -6,6 +6,9 @@ export default {
       animation: {
         fade: 'fadeIn 0.5s ease-in-out',
       },
+      height: theme => ({
+        "screen/80": "80vh",
+      }),
     },
   },
   plugins: [],
