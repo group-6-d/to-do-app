@@ -1,5 +1,6 @@
 import SideBar from '../../components/SideBar/SideBar';
 import TaskList from '../../components/TaskList/TaskList';
+import TaskPopupRead from '../../components/TaskPopupRead';
 
 const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
@@ -13,6 +14,7 @@ const MainPage = () => {
           <TaskList day={day} />
         ))}
       </div>
+      <TaskPopupRead />
     </div>
   );
 };
