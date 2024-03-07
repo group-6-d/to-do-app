@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ErrorPage from './components/ErrorPage/ErrorPage.tsx';
 import ProfileRead from './components/ProfileRead';
+import ProfileEdit from './components/ProfileEdit/ProfileEdit.tsx';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
           {/* // TODO: inside ProfileRead add ProfileRead - to get url: '/profile/edit' */}
           <Route path='/profile' element={<ProfileRead />} />
+          <Route path='/profile/edit' element={<ProfileEdit />} />
 
           <Route path='*' element={<ErrorPage />} />
         </Route>
