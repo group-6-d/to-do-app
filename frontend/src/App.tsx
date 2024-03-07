@@ -5,7 +5,7 @@ import PageContainer from './components/PageContainer/PageContainer.tsx';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ErrorPage from './components/ErrorPage/ErrorPage.tsx';
-import ProfileRead from './components/ProfileRead/ProfileRead.tsx';
+import ProfileRead from './components/ProfileRead';
 
 function App() {
   return (

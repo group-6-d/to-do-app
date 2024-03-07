@@ -18,8 +18,8 @@
 }
 
 .input {
-  @apply w-[272px] border-none px-2 py-3 text-sm bg-zinc-200 rounded-lg
-  md:w-[420px] md:text-lg
+  @apply w-full border-none px-2 py-3 text-sm bg-zinc-200 rounded-lg
+  md:text-lg
   ;
 }
 
@@ -33,9 +33,9 @@
   md:top-[70px]
 }
 
-.button {
-  @apply bg-black text-white flex justify-center items-center w-full rounded-sm mt-10 border-none
-  cursor-pointer hover:scale-125 transition-transform duration-300 transform hover:bg-opacity-80
+.button_form {
+  @apply bg-black text-white flex justify-center items-center w-full rounded-sm mt-10 mb-5 border-none
+  cursor-pointer hover:bg-opacity-80
   md:p-4
   ;
 }
