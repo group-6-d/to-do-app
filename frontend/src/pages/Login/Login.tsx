@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
-import styles from './Authentication.module.css';
+import styles from '../../components/Authentication/Authentication.module.css';
 
 type FormData = {
   email: string;
@@ -25,10 +25,14 @@ const Login = () => {
     <div className={styles.container}>
       {/* <Logo /> */}
       <h2 className={styles.title}>Glad to see you!</h2>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} name="loginForm" noValidate>
-        
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+        name='loginForm'
+        noValidate
+      >
         <div className={styles.input_container}>
-        <label className={styles.input_label}>email</label>
+          <label className={styles.input_label}>email</label>
           <input
             {...register('email', {
               required: {
@@ -48,14 +52,16 @@ const Login = () => {
                 message: 'Please enter a valid email',
               },
             })}
-            type="text"
+            type='text'
             className={styles.input}
           />
-          {errors?.email && <div className={styles.error_message}>{errors.email.message}</div>}
+          {errors?.email && (
+            <div className={styles.error_message}>{errors.email.message}</div>
+          )}
         </div>
-  
+
         <div className={styles.input_container}>
-        <label className={styles.input_label}>password</label>
+          <label className={styles.input_label}>password</label>
           <input
             {...register('password', {
               required: {
@@ -71,20 +77,29 @@ const Login = () => {
                 message: 'Maximum length is 200',
               },
             })}
-            type="password"
+            type='password'
             className={styles.input}
           />
-          {errors?.password && <div className={styles.error_message}>{errors.password.message}</div>}
+          {errors?.password && (
+            <div className={styles.error_message}>
+              {errors.password.message}
+            </div>
+          )}
         </div>
-             <button disabled={!isValid} type="submit" className={styles.button} aria-label="Send result">
-            Sign up
-          </button>
+        <button
+          disabled={!isValid}
+          type='submit'
+          className={styles.button}
+          aria-label='Send result'
+        >
+          Sign up
+        </button>
       </form>
 
-       <div className={styles.link_container}>
+      <div className={styles.link_container}>
         <p className={styles.link_question}>Not registered yet?</p>
         {/* <Link to="/signup"> */}
-          <span className={styles.link_item}>Sign up</span>
+        <span className={styles.link_item}>Sign up</span>
         {/* </Link> */}
       </div>
     </div>

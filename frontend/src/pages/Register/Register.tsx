@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
-import styles from './Authentication.module.css';
+import styles from '../../components/Authentication/Authentication.module.css';
 
 type FormData = {
   name: string;
@@ -26,10 +26,14 @@ const Register = () => {
     <div className={styles.container}>
       {/* <Logo /> */}
       <h2 className={styles.title}>Hi!</h2>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} name="registerForm" noValidate>
-        
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+        name='registerForm'
+        noValidate
+      >
         <div className={styles.input_container}>
-        <label className={styles.input_label}>name</label>
+          <label className={styles.input_label}>name</label>
           <input
             {...register('name', {
               required: {
@@ -49,14 +53,16 @@ const Register = () => {
                 message: 'Please enter a valid name',
               },
             })}
-            type="text"
+            type='text'
             className={styles.input}
           />
-          {errors?.name && <div className={styles.error_message}>{errors.name.message}</div>}
+          {errors?.name && (
+            <div className={styles.error_message}>{errors.name.message}</div>
+          )}
         </div>
-        
+
         <div className={styles.input_container}>
-        <label className={styles.input_label}>email</label>
+          <label className={styles.input_label}>email</label>
           <input
             {...register('email', {
               required: {
@@ -76,14 +82,16 @@ const Register = () => {
                 message: 'Please enter a valid email',
               },
             })}
-            type="text"
+            type='text'
             className={styles.input}
           />
-          {errors?.email && <div className={styles.error_message}>{errors.email.message}</div>}
+          {errors?.email && (
+            <div className={styles.error_message}>{errors.email.message}</div>
+          )}
         </div>
-  
+
         <div className={styles.input_container}>
-        <label className={styles.input_label}>password</label>
+          <label className={styles.input_label}>password</label>
           <input
             {...register('password', {
               required: {
@@ -99,23 +107,30 @@ const Register = () => {
                 message: 'Maximum length is 200',
               },
             })}
-            type="password"
+            type='password'
             className={styles.input}
           />
-          {errors?.password && <div className={styles.error_message}>{errors.password.message}</div>}
+          {errors?.password && (
+            <div className={styles.error_message}>
+              {errors.password.message}
+            </div>
+          )}
         </div>
 
-     
-          <button disabled={!isValid} type="submit" className={styles.button} aria-label="Send result">
-            Sign up
-          </button>
-
+        <button
+          disabled={!isValid}
+          type='submit'
+          className={styles.button}
+          aria-label='Send result'
+        >
+          Sign up
+        </button>
       </form>
 
-       <div className={styles.link_container}>
+      <div className={styles.link_container}>
         <p className={styles.link_question}>Already registered?</p>
         {/* <Link to="/signin"> */}
-          <span className={styles.link_item}>Sign in</span>
+        <span className={styles.link_item}>Sign in</span>
         {/* </Link> */}
       </div>
     </div>

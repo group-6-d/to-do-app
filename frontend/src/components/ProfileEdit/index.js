@@ -1,3 +1,3 @@
-import ProfileEdit from "./ProfileEdit.tsx";
+import ProfileEdit from './ProfileEdit';
 
 export default ProfileEdit;
