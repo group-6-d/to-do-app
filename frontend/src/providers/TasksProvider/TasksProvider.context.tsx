@@ -2,14 +2,16 @@ import { createContext } from 'react';
 import TaskCard from '../../models/TaskCard';
 
 interface ITasksProvider {
-  tasksList: TaskCard[];
+  taskListDate: TaskCard[];
+  getTasksList: () => void;
   createTask: (data: TaskCard) => void;
   deleteTask: (data: TaskCard) => void;
   editTask: () => void;
 }
 
 const TasksContext = createContext<ITasksProvider>({
-  tasksList: [],
+  taskListDate: [],
+  getTasksList: () => {},
   createTask: () => {},
   deleteTask: () => {},
   editTask: () => {},

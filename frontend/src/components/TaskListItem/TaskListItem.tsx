@@ -1,11 +1,18 @@
-import { type dataType } from '../TaskList/TaskList';
+import { FC } from 'react';
+import TaskCard from '../../models/TaskCard';
 
-const TaskListItem = ({ task }: { task: dataType }) => {
+interface TaskProps {
+  task: TaskCard;
+  onClick: (task: TaskCard) => void;
+}
+
+const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const { id, title, category } = task;
 
   return (
     <li
       key={id}
+      onClick={() => onClick(task)}
       className='mx-2 mb-3 flex flex-col justify-between rounded-lg border-[1px] border-stone-200 bg-white px-4 py-2'
     >
       <div className='font-thin text-stone-400'>&#8250;&#32;{category}</div>
