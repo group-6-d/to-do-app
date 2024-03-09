@@ -5,6 +5,7 @@ module.exports = {
   testEnvironment: 'node',
   clearMocks: true,
   collectCoverage: true,
+  detectOpenHandles: true,
   coverageDirectory: 'coverage',
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
 };
