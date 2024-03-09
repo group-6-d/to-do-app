@@ -1,5 +1,7 @@
 {
-  "watch": ["src"],
+  "watch": [
+    "src"
+  ],
   "ext": "js json",
-  "exec": "concurrently \"tsc --watch\" \"ts-node src/main.ts\""
+  "exec": "concurrently \"tsc --watch\" \"ts-node src/server.ts\""
 }
