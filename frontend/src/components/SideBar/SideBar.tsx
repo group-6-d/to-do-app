@@ -9,15 +9,15 @@ import { LiaPlusSolid } from 'react-icons/lia';
 
 const SideBar = () => {
   return (
-    <aside className='bg-white px-4'>
-      <button className='bg-accent hover:bg-accentDark mb-4 flex items-center whitespace-nowrap rounded-full px-8 py-4 text-white'>
+    <aside className='h-fit rounded-br-3xl rounded-tr-3xl bg-white py-6'>
+      <button className='bg-accent hover:bg-accentDark mx-auto mb-4 flex items-center whitespace-nowrap rounded-full px-8 py-4 text-white'>
         <div className='flex items-center justify-between gap-2'>
           <LiaPlusSolid />
           New Task
         </div>
       </button>
-      <ul className='pl-5'>
-        <li className='flex items-center justify-between py-2 hover:cursor-pointer hover:underline'>
+      <ul className=''>
+        <li className='flex items-center justify-between gap-10 gap-10  px-4 px-4 py-2  hover:cursor-pointer hover:bg-stone-100'>
           <div className='flex items-center justify-between gap-2'>
             <MdOutlinePerson /> Personal
           </div>
@@ -26,7 +26,7 @@ const SideBar = () => {
             5
           </div>
         </li>
-        <li className='flex  items-center justify-between py-2 hover:cursor-pointer hover:underline'>
+        <li className='flex  items-center justify-between  gap-10 px-4 py-2  hover:cursor-pointer hover:bg-stone-100'>
           <div className='flex items-center justify-between gap-2'>
             <MdWorkOutline /> Work
           </div>
@@ -35,7 +35,7 @@ const SideBar = () => {
             0
           </div>
         </li>
-        <li className='flex  items-center justify-between py-2 hover:cursor-pointer hover:underline'>
+        <li className='flex  items-center justify-between  gap-10 px-4 py-2  hover:cursor-pointer hover:bg-stone-100'>
           <div className='flex items-center justify-between gap-2'>
             <MdOutlineLocalGroceryStore /> Shopping
           </div>
@@ -44,7 +44,7 @@ const SideBar = () => {
             7
           </div>
         </li>
-        <li className='flex  items-center justify-between py-2 hover:cursor-pointer hover:underline'>
+        <li className='flex  items-center justify-between  gap-10 px-4 py-2  hover:cursor-pointer hover:bg-stone-100'>
           <div className='flex items-center justify-between gap-2'>
             <MdOutlineSportsTennis /> Hobbies
           </div>
@@ -53,7 +53,7 @@ const SideBar = () => {
             3
           </div>
         </li>
-        <li className='flex  items-center justify-between py-2 hover:cursor-pointer hover:underline'>
+        <li className='flex  items-center justify-between  gap-10 px-4 py-2  hover:cursor-pointer hover:bg-stone-100'>
           <div className='flex items-center justify-between gap-2'>
             <MdOutlineLocalMovies /> Movies
           </div>
