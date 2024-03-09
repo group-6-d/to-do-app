@@ -14,7 +14,8 @@ This is the REST Server for our ToDo app. In this page you'll learn:
 
 ## ENV
 
-1. Rename the `.env.local` file to `.env`
+1. Copy the `.env.local` file as `.env`;
+2. Get for the `DB_PASSWORD` from Jinjing;
 
 ## Architecture
 
