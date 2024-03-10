@@ -7,5 +7,5 @@ module.exports = {
   collectCoverage: true,
   detectOpenHandles: true,
   coverageDirectory: 'coverage',
-  modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/migrations/'],
 };

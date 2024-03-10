@@ -1,0 +1,46 @@
+{
+  "sql-file": true,
+  "log-level": "",
+  "dev": {
+    "driver": "pg",
+    "host": {
+      "ENV": "DB_HOST"
+    },
+    "port": {
+      "ENV": "DB_PORT"
+    },
+    "database": {
+      "ENV": "DB_NAME"
+    },
+    "user": {
+      "ENV": "DB_USERNAME"
+    },
+    "password": {
+      "ENV": "DB_PASSWORD"
+    },
+    "schema": {
+      "ENV": "DB_SCHEMA"
+    }
+  },
+  "prod": {
+    "driver": "pg",
+    "host": {
+      "ENV": "DB_HOST"
+    },
+    "port": {
+      "ENV": "DB_PORT"
+    },
+    "database": {
+      "ENV": "DB_NAME"
+    },
+    "user": {
+      "ENV": "DB_USERNAME"
+    },
+    "password": {
+      "ENV": "DB_USERNAME"
+    },
+    "schema": {
+      "ENV": "DB_SCHEMA"
+    }
+  }
+}
