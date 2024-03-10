@@ -1,12 +1,22 @@
-import React from 'react';
+import { FC } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
 import styles from './TaskPopupRead.module.css';
+import TaskCard from '../../models/TaskCard';
 
-const TaskPopupRead = () => {
+interface TaskPopupProps {
+  zoomedTask: TaskCard | null;
+  closeTaskPopup: () => void;
+}
+
+const TaskPopupRead: FC<TaskPopupProps> = ({ zoomedTask, closeTaskPopup }) => {
+  const closePopup = (event: React.MouseEvent) => {
+    if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
+  };
+
   return (
-    <div id='container' className={styles.parent}>
+    <div id='container' className={styles.parent} onClick={closePopup}>
       <div className={styles.container}>
         <section className={styles.section_top}>
           <ul className={styles.icons_list}>
@@ -17,7 +27,7 @@ const TaskPopupRead = () => {
               <AiOutlineDelete className={styles.icon} />
             </li>
             <li>
-              <IoMdClose className={styles.icon} />
+              <IoMdClose onClick={closeTaskPopup} className={styles.icon} />
             </li>
           </ul>
         </section>
@@ -25,11 +35,11 @@ const TaskPopupRead = () => {
           <TbPointFilled className={styles.priority_point} />
           <p className={styles.priority_name}>High priority</p>
         </div>
-        <h1 className={styles.title}>My task is My task is My task is....</h1>
+        <h1 className={styles.title}>{zoomedTask?.title}</h1>
         <div className={styles.info}>
           <p className={styles.info_field}>Due date</p>
           <p className={styles.info_date}>Apr 21, 2025</p>
-          <p className={styles.info_field}>Category</p>
+          <p className={styles.info_field}>{zoomedTask?.category}</p>
           <p className={styles.info_category}>Work</p>
           <p className={styles.info_field}>Status</p>
           <p className={styles.info_stutus}>To do</p>
