@@ -6,6 +6,8 @@ dotenv.config();
 
 const port = process.env.PORT;
 
+// test db connection
+
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });

@@ -43,7 +43,7 @@ const getConnectionConfig = () => {
  * {@link https://node-postgres.com/apis/pool pg.Pool}
  * @returns {Pool}
  */
-const getDBPool = async () => {
+const getDBPool = () => {
   if (pool) return pool;
 
   try {
@@ -80,6 +80,7 @@ const getTransactionClient = async () => {
   try {
     const config = getConnectionConfig();
     transactionClient = new Client(config);
+    await transactionClient.connect();
   } catch (error) {
     throw error;
   }
