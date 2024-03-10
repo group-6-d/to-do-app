@@ -25,9 +25,11 @@ const TaskList: FC<TaskListProps> = ({ taskListDate, day }) => {
   return (
     <>
       <ul className='md:overflow-hidden'>
-        <h4 className='rounded-t-2xl bg-white p-4 font-semibold '>{day}</h4>
+        <h4 className='rounded-t-2xl bg-white p-4 font-semibold dark:bg-stone-800 '>
+          {day}
+        </h4>
         <div className='h-full md:overflow-scroll'>
-          <div className='mb-6 rounded-b-2xl bg-white pb-2 shadow-xl md:mb-[5rem] '>
+          <div className='mb-6 rounded-b-2xl bg-white pb-2 shadow-xl md:mb-[5rem] dark:bg-stone-800 '>
             {taskListDate.map((task) => (
               <TaskListItem
                 key={task.id}
@@ -39,10 +41,7 @@ const TaskList: FC<TaskListProps> = ({ taskListDate, day }) => {
         </div>
       </ul>
       {isTaskPopupOpen && (
-        <TaskPopupRead
-          task={zoomedTask}
-          closeTaskPopup={closeTaskPopup}
-        />
+        <TaskPopupRead task={zoomedTask} closeTaskPopup={closeTaskPopup} />
       )}
     </>
   );

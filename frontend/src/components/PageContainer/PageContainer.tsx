@@ -7,7 +7,7 @@ const PageContainer = () => {
   const { isDarkMode } = useTheme();
 
   return (
-    <div className='h-screen w-screen dark:bg-black dark:text-white'>
+    <div className='h-screen w-screen dark:bg-stone-950 dark:text-stone-50'>
       <Header />
       <main className='h-[90%] overflow-scroll'>
         <Outlet />

@@ -33,7 +33,7 @@ const Header = () => {
           </button>
         </div>
         <nav>
-          <ul className='flex justify-between gap-4 rounded-full bg-white px-6 py-3 shadow-xl'>
+          <ul className='flex justify-between gap-4 rounded-full bg-white px-6 py-3 shadow-xl dark:bg-stone-800'>
             <li>
               <NavLink to='/' end>
                 {({ isActive }) => (
