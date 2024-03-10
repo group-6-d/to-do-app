@@ -25,8 +25,14 @@
   button {
     @apply bg-accent hover:bg-accentDark w-fit rounded-3xl border-none px-3 py-1 text-white;
   }
+
+  .icon {
+    @apply hover:text-accent cursor-pointer hover:font-bold;
+  }
 }
 
-.active {
-  @apply text-accent underline-offset-1;
+@layer utilities {
+  .nav-item--active {
+    @apply text-accent underline-offset-1;
+  }
 }

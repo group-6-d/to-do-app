@@ -10,7 +10,7 @@ export default {
       colors: {
         accent: '#2563eb',
         accentDark: '#1e40af',
-        orrange: '#fe7456',
+        orange: '#fe7456',
         yellow: '#fed24f',
         purple: '#8378ff',
         coral: '#fe6268',
