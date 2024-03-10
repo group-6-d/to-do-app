@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import TasksProvider from './providers/TasksProvider/TasksProvider';
-import { ThemeProvider } from './providers/ThemeContext.tsx';
+import { ThemeProvider } from './providers/ThemeProvider.tsx';
 
 import MainPage from './pages/MainPage/MainPage.tsx';
 import PageContainer from './components/PageContainer/PageContainer.tsx';
