@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import TasksProvider from './providers/TasksProvider/TasksProvider';
+import { ThemeProvider } from './providers/ThemeContext.tsx';
 
 import MainPage from './pages/MainPage/MainPage.tsx';
 import PageContainer from './components/PageContainer/PageContainer.tsx';
@@ -12,20 +13,22 @@ import ProfileEdit from './pages/ProfileEdit/ProfileEdit.tsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <TasksProvider>
-        <Routes>
-          <Route path='/' element={<PageContainer />}>
-            <Route index element={<MainPage />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/profile' element={<ProfileRead />} />
-            <Route path='/profile/edit' element={<ProfileEdit />} />
-            <Route path='*' element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      </TasksProvider>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <TasksProvider>
+          <Routes>
+            <Route path='/' element={<PageContainer />}>
+              <Route index element={<MainPage />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/profile' element={<ProfileRead />} />
+              <Route path='/profile/edit' element={<ProfileEdit />} />
+              <Route path='*' element={<ErrorPage />} />
+            </Route>
+          </Routes>
+        </TasksProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
