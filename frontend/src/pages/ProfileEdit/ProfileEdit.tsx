@@ -25,10 +25,14 @@ const ProfileEdit = () => {
     <div className={styles.container}>
       {/* <Logo /> */}
       <h2 className={styles.title}>Profile Editing</h2>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)} name="profileForm" noValidate>
-        
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+        name='profileForm'
+        noValidate
+      >
         <div className={styles.input_container}>
-        <label className={styles.input_label}>name</label>
+          <label className={styles.input_label}>name</label>
           <input
             {...register('name', {
               required: {
@@ -48,14 +52,16 @@ const ProfileEdit = () => {
                 message: 'Please enter a valid name',
               },
             })}
-            type="text"
-            className={styles.input}
+            type='text'
+            className={`${styles.input} dark:bg-stone-500`}
           />
-          {errors?.name && <div className={styles.error_message}>{errors.name.message}</div>}
+          {errors?.name && (
+            <div className={styles.error_message}>{errors.name.message}</div>
+          )}
         </div>
-        
+
         <div className={styles.input_container}>
-        <label className={styles.input_label}>email</label>
+          <label className={styles.input_label}>email</label>
           <input
             {...register('email', {
               required: {
@@ -75,13 +81,20 @@ const ProfileEdit = () => {
                 message: 'Please enter a valid email',
               },
             })}
-            type="text"
-            className={styles.input}
+            type='text'
+            className={`${styles.input} dark:bg-stone-500`}
           />
-          {errors?.email && <div className={styles.error_message}>{errors.email.message}</div>}
+          {errors?.email && (
+            <div className={styles.error_message}>{errors.email.message}</div>
+          )}
         </div>
-        <div className="authentication__button-container authentication__button-container_further">
-          <button disabled={!isValid} type="submit" className={styles.button} aria-label="Save result">
+        <div className='authentication__button-container authentication__button-container_further'>
+          <button
+            disabled={!isValid}
+            type='submit'
+            className={`${styles.button} bg-black dark:bg-stone-100 dark:text-stone-800`}
+            aria-label='Save result'
+          >
             Save
           </button>
         </div>

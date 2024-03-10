@@ -5,5 +5,10 @@
 @layer base {
   body {
     @apply font-serif;
+    @apply bg-stone-100;
+  }
+
+  li {
+    @apply cursor-pointer;
   }
 }
