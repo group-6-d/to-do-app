@@ -8,7 +8,25 @@
     @apply bg-stone-100;
   }
 
-  li {
+  li,
+  button {
     @apply cursor-pointer;
   }
+}
+
+@layer components {
+  label {
+    @apply mb-1 text-[12px] text-stone-500
+      md:mb-2 md:text-lg;
+  }
+  input {
+    @apply w-full rounded-lg border-none bg-white p-2 text-sm md:text-lg dark:bg-stone-800;
+  }
+  button {
+    @apply bg-accent hover:bg-accentDark w-fit rounded-3xl border-none px-3 py-1 text-white;
+  }
+}
+
+.active {
+  @apply text-accent underline-offset-1;
 }

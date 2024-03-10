@@ -117,14 +117,16 @@ const Register = () => {
           )}
         </div>
 
-        <button
-          disabled={!isValid}
-          // type='submit'
-          className={styles.button_form}
-          aria-label='Send result'
-        >
-          Sign up
-        </button>
+        <div className='mx-auto mb-5'>
+          <button
+            disabled={!isValid}
+            // type='submit'
+            className={`${styles.button_form} md:p-4 md:text-lg`}
+            aria-label='Send result'
+          >
+            Sign up
+          </button>
+        </div>
       </form>
 
       <div className={styles.link_container}>

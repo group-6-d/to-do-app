@@ -17,7 +17,7 @@
   @apply relative flex flex-col items-start;
 }
 
-.input {
+/* .input {
   @apply w-full rounded-lg border-none bg-zinc-200 px-2 py-3 text-sm
   md:text-lg;
 }
@@ -25,18 +25,18 @@
 .input_label {
   @apply mb-1 text-[12px] text-zinc-500
     md:mb-2 md:text-lg;
-}
+} */
 
 .error_message {
   @apply absolute -left-1 top-14 px-1.5 py-2.5 text-[10px] text-red-500
   md:top-[80px] md:text-[14px];
 }
 
-.button_form {
+/* .button_form {
   @apply bg-accent mb-5 mt-10 flex w-full cursor-pointer items-center justify-center rounded-sm border-none
   text-white hover:bg-opacity-80
   md:p-4 md:text-lg;
-}
+} */
 
 .link_container {
   @apply flex w-full items-center justify-center text-sm

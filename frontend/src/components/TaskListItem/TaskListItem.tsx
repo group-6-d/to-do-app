@@ -19,9 +19,8 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
       <div className='flex items-center justify-between'>
         <h3 className='py-4 pr-4'>{title}</h3>
 
-        <button className=' bg-accent hover:bg-accentDark h-8 rounded-2xl px-2 text-white'>
-          Done
-        </button>
+        {/* <button className=' bg-accent hover:bg-accentDark h-8 rounded-2xl px-2 text-white'> */}
+        <button>Done</button>
       </div>
     </li>
   );

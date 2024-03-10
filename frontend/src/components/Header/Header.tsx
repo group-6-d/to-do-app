@@ -2,15 +2,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import { useTheme } from '../../hooks/useTheme';
 
-import styles from './Header.module.css';
-
 type NavLinkWithStyleProps = {
   isActive: boolean;
   label: string;
 };
 
 const NavLinkWithStyle = ({ isActive, label }: NavLinkWithStyleProps) => (
-  <span className={isActive ? styles.active : ''}>{label}</span>
+  <span className={isActive ? 'active' : ''}>{label}</span>
 );
 
 const Header = () => {
