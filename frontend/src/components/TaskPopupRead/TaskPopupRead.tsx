@@ -17,7 +17,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
 
   return (
     <div id='container' className={styles.parent} onClick={closePopup}>
-      <div className={styles.container}>
+      <div className={`${styles.container} dark:bg-stone-800`}>
         <section className={styles.section_top}>
           <ul className={styles.icons_list}>
             <li>
@@ -48,9 +48,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           <p className={styles.info_stutus}>{task?.status}</p>
         </div>
         <p className={styles.info_field}>Description</p>
-        <p className={styles.description}>
-        {task?.description}
-        </p>
+        <p className={styles.description}>{task?.description}</p>
       </div>
     </div>
   );
