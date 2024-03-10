@@ -40,7 +40,7 @@ const TaskList: FC<TaskListProps> = ({ taskListDate, day }) => {
       </ul>
       {isTaskPopupOpen && (
         <TaskPopupRead
-          zoomedTask={zoomedTask}
+          task={zoomedTask}
           closeTaskPopup={closeTaskPopup}
         />
       )}

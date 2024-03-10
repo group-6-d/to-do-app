@@ -1,4 +1,4 @@
-.parent {
+/* .parent {
   @apply animate-fade fixed inset-0 flex h-full w-full cursor-pointer 
    items-center justify-center bg-black bg-opacity-30;
 }
@@ -64,4 +64,72 @@
 .description {
   @apply my-2
   md:my-3 md:text-2xl;
+} */
+
+.parent {
+  @apply fixed inset-0 w-full h-full flex justify-center items-center 
+   bg-black bg-opacity-70 animate-fade cursor-pointer;
+}
+
+.container {
+  @apply relative grid w-[300px] bg-white p-5 rounded-2xl h-screen/80 overflow-auto content-start
+  md:w-[700px] md:p-10;
+}
+
+.section_top {
+  @apply flex w-full justify-end mb-6
+  md:mb-12
+}
+
+.icons_list {
+  @apply grid grid-cols-4 gap-3 text-xl text-gray-600
+  md:text-2xl md:gap-6
+}
+
+.icon {
+  @apply cursor-pointer hover:text-accent hover:font-bold hover:scale-125 transition-transform duration-300
+}
+
+.title {
+  @apply text-xl font-semibold mb-2
+  md:text-4xl md:mb-6
+}
+
+.priority {
+  @apply text-orrange uppercase flex items-center text-sm font-medium mb-3
+  md:text-xl md:mb-4
+}
+
+.priority_point {
+  @apply text-4xl
+}
+
+.info {
+  @apply grid grid-cols-2 mt-6 mb-10 gap-y-4 items-end
+  md:mb-16 md:w-96 md:gap-y-5
+}
+
+.info_field {
+  @apply text-gray-500 uppercase text-[12px]
+  md:text-lg
+}
+
+.info_date {
+  @apply font-medium
+  md:text-xl
+}
+
+.info_category {
+  @apply text-accent font-medium
+  md:text-xl
+}
+
+.info_stutus {
+  @apply rounded-full font-medium bg-coral text-white text-center w-24 hover:bg-opacity-80
+  md:text-xl md:w-32
+}
+
+.description {
+  @apply my-2
+  md:text-2xl md:my-3
 }
