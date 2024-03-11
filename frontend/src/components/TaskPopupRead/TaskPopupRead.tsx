@@ -15,6 +15,15 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
 
+  let priorityColor: string;
+  if (task?.priority === 'high priority') {
+    priorityColor = 'text-orange';
+  } else if (task?.priority === 'middle priority') {
+    priorityColor = 'text-yellow';
+  } else {
+    priorityColor = 'text-purple';
+  }
+
   return (
     <div
       id='container'
@@ -41,16 +50,9 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
             </li>
           </ul>
         </section>
-        <div className='text-orange mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl'>
-          {/* <div
-          className={`${styles.priority} ${
-            task?.priority === 'high priority'
-              ? styles.priority_or
-              : task?.priority === 'middle priority'
-                ? styles.priority_ye
-                : styles.priority_pu
-          }`}
-        > */}
+        <div
+          className={`mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl ${priorityColor}`}
+        >
           <TbPointFilled className='text-4xl' />
           <p className=''>{task?.priority}</p>
         </div>
