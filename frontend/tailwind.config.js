@@ -15,6 +15,16 @@ export default {
         purple: '#8378ff',
         coral: '#fe6268',
       },
+      keyframes: {
+        fadeIn: {
+          from: {
+            opacity: 0,
+          },
+          to: {
+            opacity: 1,
+          },
+        },
+      },
       animation: {
         fade: 'fadeIn 0.5s ease-in-out',
       },
