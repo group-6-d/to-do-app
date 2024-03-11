@@ -4,6 +4,7 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
 // import styles from './TaskPopupRead.module.css';
 import TaskCard from '../../models/TaskCard';
+import { getPriorityColor } from '../../utils/utils';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -15,14 +16,15 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
 
-  let priorityColor: string;
-  if (task?.priority === 'high priority') {
-    priorityColor = 'text-orange';
-  } else if (task?.priority === 'middle priority') {
-    priorityColor = 'text-yellow';
-  } else {
-    priorityColor = 'text-purple';
-  }
+  const priorityColor = getPriorityColor(task?.priority);
+  const priorityTextColor = `text-${priorityColor}`;
+  // if ({`${task?.priority} priority`} === 'high') {
+  //   priorityColor = 'text-orange';
+  // } else if ({`${task?.priority} priority`} === 'middle') {
+  //   priorityColor = 'text-yellow';
+  // } else {
+  //   priorityColor = 'text-purple';
+  // }
 
   return (
     <div
@@ -51,10 +53,10 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           </ul>
         </section>
         <div
-          className={`mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl ${priorityColor}`}
+          className={`mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl ${priorityTextColor}`}
         >
           <TbPointFilled className='text-4xl' />
-          <p className=''>{task?.priority}</p>
+          <p className=''>{`${task?.priority} priority`}</p>
         </div>
         <h1 className='mb-2 text-xl font-semibold md:mb-6 md:text-4xl'>
           {task?.title}

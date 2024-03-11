@@ -11,6 +11,7 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const { id, title, category, priority, isDone } = task;
 
   const priorityColor = getPriorityColor(priority);
+  const priorityBgColor = `bg-${priorityColor}`;
 
   return (
     <li
@@ -20,7 +21,7 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
     >
       <div className='flex items-center justify-between'>
         <div className='font-thin text-stone-400'>&#8250;&#32;{category}</div>
-        <div className={`h-[1rem] w-[1rem] rounded-full ${priorityColor}`} />
+        <div className={`h-[1rem] w-[1rem] rounded-full ${priorityBgColor}`} />
       </div>
 
       <div className='flex items-center justify-between'>
