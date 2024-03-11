@@ -17,20 +17,50 @@ const SideBar = () => {
         </div>
       </button>
 
-      <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white dark:border-stone-700'>
+      <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700'>
         <div className='py-2 pl-4'>Priority:</div>
-        <div className='flex gap-2 px-3'>
-          <li className='flex items-center justify-between gap-2 rounded-xl p-1 hover:bg-stone-100 hover:dark:bg-stone-700'>
-            <span>High</span>
-            <div className='bg-coral h-[1rem] w-[1rem] rounded-full' />
+        <div className='flex px-3'>
+          <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+            <input
+              type='checkbox'
+              id='high'
+              name='high'
+              className='checked:bg-coral h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+            />
+            <label
+              htmlFor='high'
+              className='m-0 text-sm  text-stone-900 hover:cursor-pointer'
+            >
+              High
+            </label>
           </li>
-          <li className='flex items-center justify-between gap-2 rounded-xl p-1 hover:bg-stone-100 hover:dark:bg-stone-700'>
-            <span>Middle</span>
-            <div className='bg-yellow h-[1rem] w-[1rem] rounded-full' />
+          <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+            <input
+              type='checkbox'
+              id='middle'
+              name='middle'
+              className='checked:bg-yellow h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+            />
+            <label
+              htmlFor='middle'
+              className='m-0 text-sm text-stone-900 hover:cursor-pointer'
+            >
+              Middle
+            </label>
           </li>
-          <li className='flex items-center justify-between gap-2 rounded-xl p-1 hover:bg-stone-100 hover:dark:bg-stone-700'>
-            <span>Low</span>
-            <div className='bg-purple h-[1rem] w-[1rem] rounded-full' />
+          <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+            <input
+              type='checkbox'
+              id='low'
+              name='low'
+              className='checked:bg-purple h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+            />
+            <label
+              htmlFor='low'
+              className='m-0 text-sm text-stone-900 hover:cursor-pointer'
+            >
+              Low
+            </label>
           </li>
         </div>
       </ul>
