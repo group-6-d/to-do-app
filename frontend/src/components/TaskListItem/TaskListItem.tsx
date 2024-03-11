@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
+import { MdOutlineDone } from 'react-icons/md';
 
 interface TaskProps {
   task: TaskCard;
@@ -28,7 +29,9 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
         {!isDone && (
           <>
             <h3 className='py-4 pr-4'>{title}</h3>
-            <button>Done</button>
+            <button className='py-3'>
+              <MdOutlineDone />
+            </button>
           </>
         )}
         {isDone && (
