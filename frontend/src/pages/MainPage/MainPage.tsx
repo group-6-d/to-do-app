@@ -6,11 +6,13 @@ import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
 const MainPage = () => {
-  const { getTasksList, taskListDate } = useTasksBoard();
+  const { getTasksList, taskListDate, getCategoryList, categoryListDate } =
+    useTasksBoard();
 
   useEffect(() => {
     getTasksList();
-  }, [taskListDate]);
+    getCategoryList();
+  }, [taskListDate, categoryListDate]);
 
   return (
     <div className='flex h-full '>
