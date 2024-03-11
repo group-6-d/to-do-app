@@ -9,7 +9,7 @@
 
 .title {
   @apply text-xl
-  md:text-2xl;
+  md:mb-10 md:text-4xl;
 }
 
 .input_container {
@@ -17,24 +17,24 @@
 }
 
 .input {
-  @apply w-[272px] rounded-lg border-none bg-zinc-200 px-2 py-3 text-sm
-  md:w-[420px] md:text-lg;
+  @apply w-full rounded-lg border-none bg-zinc-200 px-2 py-3 text-sm
+  md:text-lg;
 }
 
 .input_label {
   @apply mb-1 text-[12px] text-zinc-500
-    md:mb-2 md:text-sm;
+  md:mb-2 md:text-lg;
 }
 
 .error_message {
-  @apply absolute -left-1 top-14 px-1.5 py-2.5 text-[10px] 
-  md:top-[70px];
+  @apply absolute -left-1 top-14 px-1.5 py-2.5 text-[10px] text-red-500
+  md:top-[80px] md:text-[14px];
 }
 
 .button {
-  @apply mt-10 flex w-full transform cursor-pointer items-center justify-center rounded-sm border-none
-  bg-black text-white transition-transform duration-300 hover:scale-125 hover:bg-opacity-80
-  md:p-4;
+  @apply mb-5 mt-10  flex w-full transform cursor-pointer items-center justify-center rounded-sm border-none
+  bg-black text-white hover:bg-opacity-80
+  md:p-4 md:text-lg;
 }
 
 .link_container {
