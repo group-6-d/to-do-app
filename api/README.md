@@ -20,7 +20,46 @@ This is the REST Server for our ToDo app. In this page you'll learn:
 
 ## Architecture
 
-This project utilized [Express](https://expressjs.com/en/4x/api.html) serves as a HTTP server, [node-postgres](https://node-postgres.com/) interface with our PostgresSQL database.
+This project utilized [Express](https://expressjs.com/en/4x/api.html) serves as a HTTP server, [node-postgres](https://node-postgres.com/) interfacing with our PostgresSQL database.
+
+### File Structure
+
+```md
+.
+├── migrations
+│   ├── 20240310130452-create-user.js
+│   └── sqls
+│       ├── 20240310130452-create-user-down.sql
+│       ├── 20240310130452-create-user-up.sql
+├── scripts
+│   └── run_schemats.sh
+├── src
+│   ├── app.test.ts
+│   ├── app.ts
+│   ├── client
+│   │   └── db.ts
+│   ├── db
+│   │   └── user.ts
+│   ├── model
+│   │   └── User.ts
+│   ├── schemas.ts
+│   ├── server.ts
+│   └── service
+│       └── users.ts
+├── database.json
+├── nodemon.json
+```
+
+1. `migrations` database migration files goes here, normally 3 files will be generate after running `npm run db:mc`, in this case
+   1. `20240310130452-create-user-up.sql` the migration up file, for create or alter tables/indexes/constraints...
+   2. `20240310130452-create-user-down.sql` the migration down file, for revert related up changes.
+   3. `20240310130452-create-user.js` the script runs the up and down SQL file.
+   4. filename pattern {data}-{migration-name-you-choose}-{up|down}.{sql|js}
+2. `scripts` all the automatic scripts goes here
+   1. `run_schemats.sh` construct a Postgres connection string for [schemats](https://github.com/vramework/schemats) and run it to generate TypeScript interfaces from the database schema.
+3. `src` contains all our business logic, basically translate RESTful manner requests to sql query and return the corresponding response.
+4. `database.json` config file for [db-migrate](https://github.com/db-migrate/node-db-migrate)
+5. `nodemon.json` config file for [nodemon](https://nodemon.io/)
 
 ## NPM Scripts
 
@@ -45,9 +84,11 @@ Recommended develope approach
 2. `npm i` install all the dependencies, if needed.
 3. `npm run dev` run the dev server.
 4. `npm run test:watch` watch file changes and run the related tests.
-5. Write test first, before you code, be clear what you have when function call, and what you want from function as return.
-6. After all your test passed, manually test the API using Postman.
-7. Of course you can change existing logic, but don't forget to change related tests.
+5. Before you write the code, be clear what you have when calling that function, and what you want from function as return.
+6. Write test first.
+7. After all your tests have passed, manually test the API using Postman.
+8. And then test with existing UI or implement the UI part.
+9. Of course you can change existing logic, but don't forget to change related tests.
 
 ## Processing Request
 
