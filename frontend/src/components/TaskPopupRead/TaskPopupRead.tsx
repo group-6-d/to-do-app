@@ -17,8 +17,6 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
 
   const priorityColor = getPriorityColor(task?.priority);
 
-  console.log('popup priorityColor', priorityColor);
-
   return (
     <div
       id='container'
