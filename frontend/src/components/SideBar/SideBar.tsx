@@ -17,7 +17,7 @@ const SideBar = () => {
         </div>
       </button>
 
-      <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700'>
+      <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
         <div className='p-2'>Priority:</div>
         <div className='flex'>
           <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
@@ -29,7 +29,7 @@ const SideBar = () => {
             />
             <label
               htmlFor='high'
-              className='m-0 text-sm  text-stone-900 hover:cursor-pointer'
+              className='m-0 text-sm  text-stone-900 hover:cursor-pointer dark:text-stone-100'
             >
               High
             </label>
@@ -43,7 +43,7 @@ const SideBar = () => {
             />
             <label
               htmlFor='middle'
-              className='m-0 text-sm text-stone-900 hover:cursor-pointer'
+              className='m-0 text-sm text-stone-900 hover:cursor-pointer dark:text-stone-100'
             >
               Middle
             </label>
@@ -57,7 +57,7 @@ const SideBar = () => {
             />
             <label
               htmlFor='low'
-              className='m-0 text-sm text-stone-900 hover:cursor-pointer'
+              className='m-0 text-sm text-stone-900 hover:cursor-pointer dark:text-stone-100'
             >
               Low
             </label>
