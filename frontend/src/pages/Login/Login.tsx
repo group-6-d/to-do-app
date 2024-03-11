@@ -1,7 +1,5 @@
-import React from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
-// import { Link } from 'react-router-dom';
-import styles from '../../components/Authentication/Authentication.module.css';
+import { Link } from 'react-router-dom';
 
 type FormData = {
   email: string;
@@ -22,17 +20,23 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className='flex flex-col items-center py-16'>
       {/* <Logo /> */}
-      <h2 className={styles.title}>Glad to see you!</h2>
+      <h2
+        className='text-xl
+md:mb-10 md:text-4xl'
+      >
+        Glad to see you!
+      </h2>
       <form
-        className={styles.form}
+        className='grid w-72 grid-cols-1 gap-4
+        md:w-[436px] md:gap-6'
         onSubmit={handleSubmit(onSubmit)}
         name='loginForm'
         noValidate
       >
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>email</label>
+        <div className='relative flex flex-col items-start'>
+          <label>email</label>
           <input
             {...register('email', {
               required: {
@@ -53,15 +57,16 @@ const Login = () => {
               },
             })}
             type='text'
-            className={styles.input}
           />
           {errors?.email && (
-            <div className={styles.error_message}>{errors.email.message}</div>
+            <div className='md:text-md text-sm text-red-500'>
+              {errors.email.message}
+            </div>
           )}
         </div>
 
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>password</label>
+        <div className='relative flex flex-col items-start'>
+          <label>password</label>
           <input
             {...register('password', {
               required: {
@@ -78,29 +83,32 @@ const Login = () => {
               },
             })}
             type='password'
-            className={styles.input}
           />
           {errors?.password && (
-            <div className={styles.error_message}>
+            <div className='md:text-md text-sm text-red-500'>
               {errors.password.message}
             </div>
           )}
         </div>
-        <button
-          disabled={!isValid}
-          // type='submit'
-          className={styles.button_form}
-          aria-label='Send result'
-        >
-          Sign up
-        </button>
+        <div className='mx-auto mb-5'>
+          <button
+            disabled={!isValid}
+            // type='submit'
+            className='md:text-xl'
+            aria-label='Send result'
+          >
+            Login
+          </button>
+        </div>
       </form>
 
-      <div className={styles.link_container}>
-        <p className={styles.link_question}>Not registered yet?</p>
-        {/* <Link to="/signup"> */}
-        <span className={styles.link_item}>Sign up</span>
-        {/* </Link> */}
+      <div className='flex w-full items-center justify-center text-sm md:text-lg'>
+        <p className='mr-3 text-stone-600'>Not registered yet?</p>
+        <Link to='/register'>
+          <span className='text-accent hover:text-accentDark cursor-pointer'>
+            register
+          </span>
+        </Link>
       </div>
     </div>
   );

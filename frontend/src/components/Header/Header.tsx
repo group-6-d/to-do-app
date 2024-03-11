@@ -2,15 +2,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 import { useTheme } from '../../hooks/useTheme';
 
-import styles from './Header.module.css';
-
 type NavLinkWithStyleProps = {
   isActive: boolean;
   label: string;
 };
 
 const NavLinkWithStyle = ({ isActive, label }: NavLinkWithStyleProps) => (
-  <span className={isActive ? styles.active : ''}>{label}</span>
+  <span className={isActive ? 'nav-item--active' : ''}>{label}</span>
 );
 
 const Header = () => {
@@ -27,10 +25,10 @@ const Header = () => {
       </Link>
       <div className='flex items-center'>
         <div className='cursor-pointer p-4 text-stone-400 hover:text-stone-700'>
-          <button className='pt-3 text-2xl' onClick={() => handleMode()}>
+          <div className='pt-3 text-2xl' onClick={() => handleMode()}>
             {isDarkMode && <MdOutlineLightMode />}
             {!isDarkMode && <MdOutlineDarkMode />}
-          </button>
+          </div>
         </div>
         <nav>
           <ul className='flex justify-between gap-4 rounded-full bg-white px-6 py-3 shadow-xl dark:bg-stone-800'>

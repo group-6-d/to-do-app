@@ -1,7 +1,5 @@
-import React from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
-// import { Link } from 'react-router-dom';
-import styles from '../../components/Authentication/Authentication.module.css';
+import { Link } from 'react-router-dom';
 
 type FormData = {
   name: string;
@@ -23,17 +21,17 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className='flex flex-col  items-center py-16'>
       {/* <Logo /> */}
-      <h2 className={styles.title}>Hi!</h2>
+      <h2 className='text-xl md:mb-10 md:text-4xl'>Hi!</h2>
       <form
-        className={styles.form}
+        className='grid w-72 grid-cols-1 gap-4 md:w-[436px] md:gap-6'
         onSubmit={handleSubmit(onSubmit)}
         name='registerForm'
         noValidate
       >
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>name</label>
+        <div className='relative flex flex-col items-start'>
+          <label>name</label>
           <input
             {...register('name', {
               required: {
@@ -54,15 +52,15 @@ const Register = () => {
               },
             })}
             type='text'
-            className={styles.input}
           />
-          {errors?.name && (
-            <div className={styles.error_message}>{errors.name.message}</div>
-          )}
+
+          <div className='md:text-md text-sm text-red-500'>
+            {errors?.name && errors.name.message}
+          </div>
         </div>
 
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>email</label>
+        <div className='relative flex flex-col items-start'>
+          <label>email</label>
           <input
             {...register('email', {
               required: {
@@ -83,15 +81,15 @@ const Register = () => {
               },
             })}
             type='text'
-            className={styles.input}
           />
-          {errors?.email && (
-            <div className={styles.error_message}>{errors.email.message}</div>
-          )}
+
+          <div className='md:text-md text-sm text-red-500'>
+            {errors?.email && errors.email.message}
+          </div>
         </div>
 
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>password</label>
+        <div className='relative flex flex-col items-start'>
+          <label>password</label>
           <input
             {...register('password', {
               required: {
@@ -108,30 +106,32 @@ const Register = () => {
               },
             })}
             type='password'
-            className={styles.input}
           />
-          {errors?.password && (
-            <div className={styles.error_message}>
-              {errors.password.message}
-            </div>
-          )}
+
+          <div className='md:text-md text-sm text-red-500'>
+            {errors?.password && errors.password.message}
+          </div>
         </div>
 
-        <button
-          disabled={!isValid}
-          // type='submit'
-          className={styles.button_form}
-          aria-label='Send result'
-        >
-          Sign up
-        </button>
+        <div className='mx-auto mb-5'>
+          <button
+            disabled={!isValid}
+            // type='submit'
+            className='md:text-xl'
+            aria-label='Send result'
+          >
+            Register
+          </button>
+        </div>
       </form>
 
-      <div className={styles.link_container}>
-        <p className={styles.link_question}>Already registered?</p>
-        {/* <Link to="/signin"> */}
-        <span className={styles.link_item}>Sign in</span>
-        {/* </Link> */}
+      <div className='flex w-full items-center justify-center text-sm md:text-lg'>
+        <p className='mr-3 text-stone-600'>Already registered?</p>
+        <Link to='/login'>
+          <span className='text-accent hover:text-accentDark cursor-pointer'>
+            login
+          </span>
+        </Link>
       </div>
     </div>
   );
