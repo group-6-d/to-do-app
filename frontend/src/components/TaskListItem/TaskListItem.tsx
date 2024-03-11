@@ -7,7 +7,7 @@ interface TaskProps {
 }
 
 const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
-  const { id, title, category, priority } = task;
+  const { id, title, category, priority, isDone } = task;
 
   let priorityColor: string;
   if (priority === 'high priority') {
@@ -30,10 +30,15 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
       </div>
 
       <div className='flex items-center justify-between'>
-        <h3 className='py-4 pr-4'>{title}</h3>
-
-        {/* <button className=' bg-accent hover:bg-accentDark h-8 rounded-2xl px-2 text-white'> */}
-        <button>Done</button>
+        {!isDone && (
+          <>
+            <h3 className='py-4 pr-4'>{title}</h3>
+            <button>Done</button>
+          </>
+        )}
+        {isDone && (
+          <h3 className='py-4 pr-4 text-gray-500 line-through'>{title}</h3>
+        )}
       </div>
     </li>
   );
