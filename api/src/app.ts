@@ -7,7 +7,7 @@ const port = process.env.PORT;
 const app: Express = express();
 app.use(bodyParser.json());
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
   res.json({ hello: 'Express + TypeScript Server' });
 });
 

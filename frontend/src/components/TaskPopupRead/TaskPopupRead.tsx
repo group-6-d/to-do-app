@@ -42,6 +42,15 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           </ul>
         </section>
         <div className='text-orange mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl'>
+          {/* <div
+          className={`${styles.priority} ${
+            task?.priority === 'high priority'
+              ? styles.priority_or
+              : task?.priority === 'middle priority'
+                ? styles.priority_ye
+                : styles.priority_pu
+          }`}
+        > */}
           <TbPointFilled className='text-4xl' />
           <p className=''>{task?.priority}</p>
         </div>
