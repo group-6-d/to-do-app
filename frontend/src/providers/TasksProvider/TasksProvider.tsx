@@ -1,6 +1,7 @@
 import { useState, FC, ReactNode } from 'react';
 import TasksProviderContext from './TasksProvider.context';
 import TaskCard from '../../models/TaskCard';
+import Category from '../../models/Category';
 
 const fakeData: TaskCard[] = [
   {
@@ -110,12 +111,45 @@ const fakeData: TaskCard[] = [
   },
 ];
 
+const fakeCategories: Category[] = [
+  {
+    name: 'hobbies',
+    id: 1,
+    // src: '',
+  },
+  {
+    name: 'movies',
+    id: 1,
+    // src: '',
+  },
+  {
+    name: 'shopping',
+    id: 1,
+    // src: '',
+  },
+  {
+    name: 'work',
+    id: 1,
+    // src: '',
+  },
+  {
+    name: 'personal',
+    id: 1,
+    // src: '',
+  },
+];
+
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [taskListDate, setTaskListDate] = useState<TaskCard[]>([]);
+  const [categoryListDate, setCategoryListDate] = useState<Category[]>([])
 
   const getTasksList = () => {
     setTaskListDate(fakeData);
   };
+
+  const getCategoryList = () => {
+    setCategoryListDate(fakeCategories);
+  }
 
   const createTask = (data: TaskCard) => {
     const newCard = {
@@ -145,7 +179,9 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const value = {
     taskListDate,
+    categoryListDate,
     getTasksList,
+    getCategoryList,
     createTask,
     deleteTask,
     editTask,
