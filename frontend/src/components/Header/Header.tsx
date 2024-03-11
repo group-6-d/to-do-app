@@ -31,7 +31,7 @@ const Header = () => {
           </div>
         </div>
         <nav>
-          <ul className='flex justify-between gap-4 rounded-full bg-white px-6 py-3 shadow-xl dark:bg-stone-800'>
+          <ul className='flex justify-between gap-4 rounded-full bg-white px-6 py-3 text-gray-500 shadow-xl dark:bg-stone-800'>
             <li>
               <NavLink to='/' end>
                 {({ isActive }) => (

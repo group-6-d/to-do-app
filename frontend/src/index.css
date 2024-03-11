@@ -33,6 +33,6 @@
 
 @layer utilities {
   .nav-item--active {
-    @apply text-accent underline-offset-1;
+    @apply text-accent font-semibold underline-offset-1;
   }
 }
