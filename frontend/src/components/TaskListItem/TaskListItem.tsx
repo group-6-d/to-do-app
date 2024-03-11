@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import TaskCard from '../../models/TaskCard';
+import { getPriorityColor } from '../../utils/utils';
 
 interface TaskProps {
   task: TaskCard;
@@ -9,14 +10,7 @@ interface TaskProps {
 const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const { id, title, category, priority, isDone } = task;
 
-  let priorityColor: string;
-  if (priority === 'high priority') {
-    priorityColor = 'bg-orange';
-  } else if (priority === 'middle priority') {
-    priorityColor = 'bg-yellow';
-  } else {
-    priorityColor = 'bg-purple';
-  }
+  const priorityColor = getPriorityColor(priority);
 
   return (
     <li
