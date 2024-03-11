@@ -18,8 +18,8 @@ const SideBar = () => {
       </button>
 
       <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700'>
-        <div className='py-2 pl-4'>Priority:</div>
-        <div className='flex px-3'>
+        <div className='p-2'>Priority:</div>
+        <div className='flex'>
           <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
             <input
               type='checkbox'

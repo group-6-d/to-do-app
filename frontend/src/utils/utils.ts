@@ -1,16 +1,15 @@
 export const getPriorityColor = (priority?: string) => {
   switch (priority) {
     case 'high':
-      return 'orange';
+      return 'text-orange';
       break;
     case 'middle':
-      return 'yellow';
+      return 'text-yellow';
       break;
     case 'low':
-      return 'purple';
+      return 'text-purple';
       break;
     default:
-      return 'no such priority';
       break;
   }
 };

@@ -16,7 +16,8 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
   };
 
   const priorityColor = getPriorityColor(task?.priority);
-  const priorityTextColor = `text-${priorityColor}`;
+
+  console.log('popup priorityColor', priorityColor);
 
   return (
     <div
@@ -30,9 +31,11 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
   md:mb-12'
         >
           <ul className='grid grid-cols-4 gap-3 text-xl text-gray-600 md:gap-6 md:text-2xl'>
-            <li>
-              <IoMdCheckmarkCircleOutline className='icon' />
-            </li>
+            {!task?.isDone && (
+              <li>
+                <IoMdCheckmarkCircleOutline className='icon' />
+              </li>
+            )}
             <li>
               <AiOutlineDelete className='icon' />
             </li>
@@ -45,7 +48,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           </ul>
         </section>
         <div
-          className={`mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl ${priorityTextColor}`}
+          className={`mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl ${priorityColor}`}
         >
           <TbPointFilled className='text-4xl' />
           <p className=''>{`${task?.priority} priority`}</p>

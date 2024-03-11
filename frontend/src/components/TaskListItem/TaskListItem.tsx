@@ -2,6 +2,7 @@ import { FC } from 'react';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { MdOutlineDone, MdDoneAll } from 'react-icons/md';
+import { TbPointFilled } from 'react-icons/tb';
 
 interface TaskProps {
   task: TaskCard;
@@ -10,9 +11,7 @@ interface TaskProps {
 
 const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const { id, title, category, priority, isDone } = task;
-
   const priorityColor = getPriorityColor(priority);
-  const priorityBgColor = `bg-${priorityColor}`;
 
   return (
     <li
@@ -22,7 +21,7 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
     >
       <div className='flex items-center justify-between'>
         <div className='font-thin text-stone-400'>&#8250;&#32;{category}</div>
-        <div className={`h-[1rem] w-[1rem] rounded-full ${priorityBgColor}`} />
+        <TbPointFilled className={`text-4xl ${priorityColor}`} />
       </div>
 
       <div className='flex items-center justify-between'>

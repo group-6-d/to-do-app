@@ -4,8 +4,6 @@ type TaskCard = {
   description?: string;
   dueDate?: string;
   priority?: 'high' | 'middle' | 'low';
-  // change to isDone?
-  status?: 'done' | 'to do';
   isDone?: boolean;
   category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies';
 };
