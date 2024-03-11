@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
-// import styles from './TaskPopupRead.module.css';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 
@@ -18,13 +17,6 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
 
   const priorityColor = getPriorityColor(task?.priority);
   const priorityTextColor = `text-${priorityColor}`;
-  // if ({`${task?.priority} priority`} === 'high') {
-  //   priorityColor = 'text-orange';
-  // } else if ({`${task?.priority} priority`} === 'middle') {
-  //   priorityColor = 'text-yellow';
-  // } else {
-  //   priorityColor = 'text-purple';
-  // }
 
   return (
     <div
@@ -73,9 +65,16 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           <p className='text-[12px] uppercase text-gray-500 md:text-lg'>
             Status
           </p>
-          <p className='bg-coral w-24 rounded-full text-center font-medium text-white hover:bg-opacity-80 md:w-32 md:text-xl'>
-            {task?.status}
-          </p>
+          {!task?.isDone && (
+            <p className='bg-coral w-24 rounded-full text-center font-medium uppercase text-white hover:bg-opacity-80 md:w-32 md:text-xl'>
+              to do
+            </p>
+          )}
+          {task?.isDone && (
+            <p className='w-24 rounded-full text-center font-medium uppercase text-gray-500 hover:bg-opacity-80 md:w-32 md:text-xl'>
+              done
+            </p>
+          )}
         </div>
         <p className='text-[12px] uppercase text-gray-500 md:text-lg'>
           Description
