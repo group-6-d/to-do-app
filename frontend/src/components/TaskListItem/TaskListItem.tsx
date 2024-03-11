@@ -1,5 +1,8 @@
 import { FC } from 'react';
 import TaskCard from '../../models/TaskCard';
+import { getPriorityColor } from '../../utils/utils';
+import { MdOutlineDone, MdDoneAll } from 'react-icons/md';
+import { TbPointFilled } from 'react-icons/tb';
 
 interface TaskProps {
   task: TaskCard;
@@ -8,15 +11,7 @@ interface TaskProps {
 
 const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const { id, title, category, priority, isDone } = task;
-
-  let priorityColor: string;
-  if (priority === 'high priority') {
-    priorityColor = 'bg-orange';
-  } else if (priority === 'middle priority') {
-    priorityColor = 'bg-yellow';
-  } else {
-    priorityColor = 'bg-purple';
-  }
+  const priorityColor = getPriorityColor(priority);
 
   return (
     <li
@@ -26,18 +21,28 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
     >
       <div className='flex items-center justify-between'>
         <div className='font-thin text-stone-400'>&#8250;&#32;{category}</div>
-        <div className={`h-[1rem] w-[1rem] rounded-full ${priorityColor}`} />
+        <TbPointFilled className={`text-4xl ${priorityColor}`} />
       </div>
 
       <div className='flex items-center justify-between'>
         {!isDone && (
           <>
             <h3 className='py-4 pr-4'>{title}</h3>
-            <button>Done</button>
+            <button className='text-accent rounded-full bg-white py-3 hover:text-white dark:bg-stone-800 hover:dark:bg-stone-600'>
+              <MdOutlineDone />
+            </button>
           </>
         )}
         {isDone && (
-          <h3 className='py-4 pr-4 text-gray-500 line-through'>{title}</h3>
+          <>
+            <h3 className='py-4 pr-4 text-gray-500 line-through'>{title}</h3>
+            <button
+              disabled
+              className='bg-transparent py-3 text-gray-500 hover:bg-transparent'
+            >
+              <MdDoneAll />
+            </button>
+          </>
         )}
       </div>
     </li>

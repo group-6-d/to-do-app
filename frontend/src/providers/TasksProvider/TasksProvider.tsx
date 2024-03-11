@@ -11,7 +11,7 @@ const fakeData: TaskCard[] = [
     id: 1,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'high priority',
+    priority: 'high',
     status: 'to do',
   },
   {
@@ -20,7 +20,7 @@ const fakeData: TaskCard[] = [
     id: 2,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'middle priority',
+    priority: 'middle',
     status: 'to do',
   },
   {
@@ -29,7 +29,7 @@ const fakeData: TaskCard[] = [
     id: 3,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'high priority',
+    priority: 'high',
     status: 'to do',
   },
   {
@@ -38,7 +38,7 @@ const fakeData: TaskCard[] = [
     id: 13,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'high priority',
+    priority: 'high',
     status: 'to do',
   },
   {
@@ -48,7 +48,7 @@ const fakeData: TaskCard[] = [
     id: 14,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'middle priority',
+    priority: 'middle',
     status: 'to do',
   },
   {
@@ -58,7 +58,7 @@ const fakeData: TaskCard[] = [
     id: 15,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'low priority',
+    priority: 'low',
     status: 'to do',
   },
   {
@@ -68,7 +68,7 @@ const fakeData: TaskCard[] = [
     id: 16,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'high priority',
+    priority: 'high',
     status: 'to do',
   },
   {
@@ -77,7 +77,7 @@ const fakeData: TaskCard[] = [
     id: 17,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'middle priority',
+    priority: 'middle',
     status: 'to do',
   },
   {
@@ -86,7 +86,7 @@ const fakeData: TaskCard[] = [
     id: 18,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'high priority',
+    priority: 'high',
     status: 'to do',
   },
   {
@@ -96,7 +96,7 @@ const fakeData: TaskCard[] = [
     id: 19,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'middle priority',
+    priority: 'middle',
     status: 'to do',
   },
   {
@@ -106,7 +106,7 @@ const fakeData: TaskCard[] = [
     id: 20,
     description: 'DescriptionDescriptionDescriptionDescription',
     dueDate: '2024-11-05',
-    priority: 'low priority',
+    priority: 'low',
     status: 'to do',
   },
 ];

@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
-// import styles from './TaskPopupRead.module.css';
 import TaskCard from '../../models/TaskCard';
+import { getPriorityColor } from '../../utils/utils';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -15,14 +15,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
 
-  let priorityColor: string;
-  if (task?.priority === 'high priority') {
-    priorityColor = 'text-orange';
-  } else if (task?.priority === 'middle priority') {
-    priorityColor = 'text-yellow';
-  } else {
-    priorityColor = 'text-purple';
-  }
+  const priorityColor = getPriorityColor(task?.priority);
 
   return (
     <div
@@ -36,9 +29,11 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
   md:mb-12'
         >
           <ul className='grid grid-cols-4 gap-3 text-xl text-gray-600 md:gap-6 md:text-2xl'>
-            <li>
-              <IoMdCheckmarkCircleOutline className='icon' />
-            </li>
+            {!task?.isDone && (
+              <li>
+                <IoMdCheckmarkCircleOutline className='icon' />
+              </li>
+            )}
             <li>
               <AiOutlineDelete className='icon' />
             </li>
@@ -54,7 +49,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           className={`mb-3 flex items-center text-sm font-medium uppercase md:mb-4 md:text-xl ${priorityColor}`}
         >
           <TbPointFilled className='text-4xl' />
-          <p className=''>{task?.priority}</p>
+          <p className=''>{`${task?.priority} priority`}</p>
         </div>
         <h1 className='mb-2 text-xl font-semibold md:mb-6 md:text-4xl'>
           {task?.title}
@@ -71,9 +66,16 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           <p className='text-[12px] uppercase text-gray-500 md:text-lg'>
             Status
           </p>
-          <p className='bg-coral w-24 rounded-full text-center font-medium text-white hover:bg-opacity-80 md:w-32 md:text-xl'>
-            {task?.status}
-          </p>
+          {!task?.isDone && (
+            <p className='bg-coral w-24 rounded-full text-center font-medium uppercase text-white hover:bg-opacity-80 md:w-32 md:text-xl'>
+              to do
+            </p>
+          )}
+          {task?.isDone && (
+            <p className='w-24 rounded-full text-center font-medium uppercase text-gray-500 hover:bg-opacity-80 md:w-32 md:text-xl'>
+              done
+            </p>
+          )}
         </div>
         <p className='text-[12px] uppercase text-gray-500 md:text-lg'>
           Description
