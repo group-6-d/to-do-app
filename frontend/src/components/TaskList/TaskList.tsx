@@ -6,9 +6,10 @@ import TaskCard from '../../models/TaskCard';
 interface TaskListProps {
   taskListDate: TaskCard[];
   day: string;
+  date?: string;
 }
 
-const TaskList: FC<TaskListProps> = ({ taskListDate, day }) => {
+const TaskList: FC<TaskListProps> = ({ taskListDate, day, date }) => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
   const [zoomedTask, setZoomedTask] = useState<TaskCard | null>(null);
 
@@ -26,7 +27,7 @@ const TaskList: FC<TaskListProps> = ({ taskListDate, day }) => {
     <>
       <ul className='min-w-[290px] md:overflow-hidden'>
         <h4 className='rounded-t-2xl bg-white p-4 font-semibold dark:bg-stone-800 '>
-          {day}
+          {day}&nbsp;<span className='text-stone-500'>{date}</span>
         </h4>
         <div className='h-full md:overflow-scroll'>
           <div className='mb-6 rounded-b-2xl bg-white pb-2 shadow-xl md:mb-[5rem] dark:bg-stone-800 '>
