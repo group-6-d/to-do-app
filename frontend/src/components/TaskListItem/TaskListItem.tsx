@@ -35,10 +35,10 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
         )}
         {isDone && (
           <>
-            <h3 className='py-4 pr-4 text-gray-500 line-through'>{title}</h3>
+            <h3 className='py-4 pr-4 text-stone-500 line-through'>{title}</h3>
             <button
               disabled
-              className='bg-transparent py-3 text-gray-500 hover:bg-transparent'
+              className='bg-transparent py-3 text-stone-500 hover:bg-transparent'
             >
               <MdDoneAll />
             </button>
