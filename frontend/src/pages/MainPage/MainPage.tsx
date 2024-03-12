@@ -44,7 +44,7 @@ const MainPage = () => {
     <div className='flex h-full '>
       <SideBar />
 
-      <div className='flex max-w-[1500px] flex-col gap-x-4 p-4 md:flex-row md:justify-around lg:gap-x-6 xl:gap-x-10'>
+      <div className='flex max-w-[1500px] flex-col gap-x-4 p-4 md:flex-row md:justify-around lg:gap-x-3 xl:gap-x-7'>
         <TaskList
           day='Today'
           date={formattedDateToday}
