@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SideBar from '../../components/SideBar/SideBar';
 import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
+import TaskCard from '../../models/TaskCard';
 
 const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
@@ -9,18 +10,33 @@ const MainPage = () => {
   const { getTasksList, taskListDate, getCategoryList, categoryListDate } =
     useTasksBoard();
 
+  const[initialTaskList, setInitialTaskList] = useState<TaskCard[]>([])
+  const [filteredTaskList, setFilteredTaskList] = useState<TaskCard[]>([]);
+
+  useEffect(() => {
+    setInitialTaskList(taskListDate);
+    setFilteredTaskList(taskListDate);
+  }, [taskListDate]);
+
   useEffect(() => {
     getTasksList();
     getCategoryList();
-  }, [taskListDate, categoryListDate]);
+  }, [initialTaskList, categoryListDate]);
+
+  const handleCategory = (e: any) => {
+    console.log(e.target.value); 
+      setFilteredTaskList(
+        initialTaskList.filter((task) => task.category === e.target.value),
+      );
+  };
 
   return (
     <div className='flex h-full '>
-      <SideBar />
+      <SideBar handleCategory={handleCategory} />
 
-      <div className='flex max-w-[1500px] flex-col gap-x-4 p-4 md:flex-row md:justify-around lg:gap-x-6 xl:gap-x-10'>
+      <div className='flex w-full flex-col gap-x-6 p-4 md:flex-row md:justify-around'>
         {daysData.map((day) => (
-          <TaskList day={day} taskListDate={taskListDate} />
+          <TaskList day={day} taskList={filteredTaskList} />
         ))}
       </div>
     </div>

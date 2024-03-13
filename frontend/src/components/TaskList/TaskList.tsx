@@ -4,11 +4,11 @@ import TaskPopupRead from '../TaskPopupRead';
 import TaskCard from '../../models/TaskCard';
 
 interface TaskListProps {
-  taskListDate: TaskCard[];
+  taskList: TaskCard[];
   day: string;
 }
 
-const TaskList: FC<TaskListProps> = ({ taskListDate, day }) => {
+const TaskList: FC<TaskListProps> = ({ taskList, day }) => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
   const [zoomedTask, setZoomedTask] = useState<TaskCard | null>(null);
 
@@ -30,7 +30,7 @@ const TaskList: FC<TaskListProps> = ({ taskListDate, day }) => {
         </h4>
         <div className='h-full md:overflow-scroll'>
           <div className='mb-6 rounded-b-2xl bg-white pb-2 shadow-xl md:mb-[5rem] dark:bg-stone-800 '>
-            {taskListDate.map((task) => (
+            {taskList.map((task) => (
               <TaskListItem
                 key={task.id}
                 task={task}
