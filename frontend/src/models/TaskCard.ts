@@ -7,5 +7,5 @@ type TaskCard = {
   isDone?: boolean;
   category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies';
 };
-
+// export type TaskCardcategory='personal' | 'work' | 'shopping' | 'hobbies' | 'movies';
 export default TaskCard;

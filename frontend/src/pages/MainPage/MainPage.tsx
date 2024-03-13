@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import SideBar from '../../components/SideBar/SideBar';
 import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
+// import TaskCard, { TaskCardcategory } from '../../models/TaskCard';
 import TaskCard from '../../models/TaskCard';
+import Category from '../../models/Category';
 
 const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
@@ -10,8 +12,11 @@ const MainPage = () => {
   const { getTasksList, taskListDate, getCategoryList, categoryListDate } =
     useTasksBoard();
 
-  const[initialTaskList, setInitialTaskList] = useState<TaskCard[]>([])
+  const [initialTaskList, setInitialTaskList] = useState<TaskCard[]>([]);
   const [filteredTaskList, setFilteredTaskList] = useState<TaskCard[]>([]);
+  const [selectedCategoriesList, setSelectedCategoriesList] = useState<
+    Category[]
+  >([]);
 
   useEffect(() => {
     setInitialTaskList(taskListDate);
@@ -23,11 +28,19 @@ const MainPage = () => {
     getCategoryList();
   }, [initialTaskList, categoryListDate]);
 
-  const handleCategory = (e: any) => {
-    console.log(e.target.value); 
+  useEffect(() => {
+    if (selectedCategoriesList.length === 0)
+      setFilteredTaskList(initialTaskList);
+    else
       setFilteredTaskList(
-        initialTaskList.filter((task) => task.category === e.target.value),
+        initialTaskList.filter((task) =>
+          selectedCategoriesList.includes(task.category),
+        ),
       );
+  }, [selectedCategoriesList]);
+
+  const handleCategory = (e: any) => {
+    setSelectedCategoriesList([...selectedCategoriesList, e.target.value]);
   };
 
   return (
