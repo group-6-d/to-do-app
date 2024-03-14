@@ -9,22 +9,24 @@ import { FC } from 'react';
 import Category from '../../models/Category';
 
 interface SideBarItemProps {
-    category: Category,
+  category: Category;
+  handleCategory: (e: any) => void;
 }
-  
-  const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
-    return (
-          <li className='flex items-center justify-between gap-10 gap-10  px-4 px-4 py-2   hover:bg-stone-100 hover:dark:bg-stone-700'>
-            <div className='flex items-center justify-between gap-2'>
-              {/* <MdOutlinePerson className='icon' />  */}
-              {category.name}
-            </div> 
-            <div className='rounded-full bg-stone-200  px-2    text-sm text-stone-500 dark:bg-stone-700'>
-              5
-            </div>
-          </li>
-     
-    );
-  };
-  export default SideBarItem;
-  
+
+const SideBarItem: FC<SideBarItemProps> = ({ category, handleCategory }) => {
+  return (
+    <li className=''>
+      <label className=' items-middle flex cursor-pointer items-center justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+        {category.name}
+        <input
+          onClick={handleCategory}
+          type='checkbox'
+          name='categoryCheckbox'
+          value={category.name}
+          className='checked:bg-accent h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+        />
+      </label>
+    </li>
+  );
+};
+export default SideBarItem;
