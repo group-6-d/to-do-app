@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { StatusCodes } from 'http-status-codes';
-import app from './app';
+import bootstrap from './express';
 
 jest.mock('./service/users', () => ({
   ...jest.requireActual('./service/users'),
@@ -61,8 +61,8 @@ describe('Test app.ts', () => {
   ].map(({ name, code, err, body }) => {
     test(name, async () => {
       const res = body
-        ? await request(app).post('/v1/users').send(body())
-        : await request(app).post('/v1/users');
+        ? await request(bootstrap).post('/v1/users').send(body())
+        : await request(bootstrap).post('/v1/users');
       expect(res.status).toEqual(code);
       expect(res.body).toEqual(err);
     });
@@ -75,7 +75,7 @@ describe('Test app.ts', () => {
       email: 'first.born@hospital.se',
       password: '12345678',
     };
-    const res = await request(app).post('/v1/users').send(req);
+    const res = await request(bootstrap).post('/v1/users').send(req);
     expect(res.status).toEqual(StatusCodes.INTERNAL_SERVER_ERROR);
   });
 
@@ -86,7 +86,7 @@ describe('Test app.ts', () => {
       email: 'first.born@hospital.se',
       password: '12345678',
     };
-    const res = await request(app).post('/v1/users').send(req);
+    const res = await request(bootstrap).post('/v1/users').send(req);
     expect(res.status).toEqual(StatusCodes.CREATED);
   });
 });
