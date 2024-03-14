@@ -2,11 +2,20 @@ import { FC, useState } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
-import TaskCard from '../../models/TaskCard';
+// import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 
 interface TaskPopupProps {
   closeTaskPopup: () => void;
+}
+
+interface TaskCard {
+  title: string;
+  description: string;
+  dueDate: string;
+  category: string; // Non-optional
+  priority: string; // Non-optional
+  isDone: boolean;
 }
 
 const TaskPopupNew: FC<TaskPopupProps> = ({ closeTaskPopup }) => {
