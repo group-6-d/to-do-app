@@ -1,5 +1,5 @@
 import omit from 'lodash/fp/omit';
-import { register } from './user';
+import { getUser, register } from './user';
 
 const user = {
   firstName: 'First ',
@@ -19,7 +19,7 @@ jest.mock('../client/db', () => ({
 }));
 
 describe('Test db/user', () => {
-  test('register error', async () => {
+  test('register() error', async () => {
     const userWithFire = {
       ...user,
       password: 'fire',
@@ -28,8 +28,20 @@ describe('Test db/user', () => {
     expect(result).toEqual({});
   });
 
-  test('register successfully', async () => {
+  test('register() successfully', async () => {
     const result = await register(user);
     expect(result).toEqual({ result: omit(['password'])(user) });
+  });
+
+  test('getUser() error', async () => {
+    const email = 'fire@hosipital.se';
+    const result = await getUser({ email });
+    expect(result).toEqual({});
+  });
+
+  test('getUser() error', async () => {
+    const email = 'first.born@hosipital.se';
+    const result = await getUser({ email });
+    expect(result).toEqual({ result: user });
   });
 });

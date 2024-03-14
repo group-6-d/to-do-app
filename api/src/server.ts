@@ -4,7 +4,45 @@ import express from './express';
 
 dotenv.config();
 
+const isValidEnvironment = () => {
+  const {
+    PORT,
+    DB_HOST,
+    DB_PORT,
+    DB_NAME,
+    DB_USERNAME,
+    DB_PASSWORD,
+    DB_SCHEMA,
+    JWT_SECRET_KEY,
+    TOKEN_HEADER_KEY,
+    JWT_EXPIRES_IN,
+  } = process.env;
+  if (
+    !PORT ||
+    !DB_HOST ||
+    !DB_PORT ||
+    !DB_NAME ||
+    !DB_USERNAME ||
+    !DB_PASSWORD ||
+    !DB_SCHEMA ||
+    !JWT_SECRET_KEY ||
+    !TOKEN_HEADER_KEY ||
+    !JWT_EXPIRES_IN
+  ) {
+    return false;
+  }
+};
+
 const main = () => {
+  const isValid = isValidEnvironment();
+  if (isValid) {
+    console.error(
+      `This service will be terminated.
+      Check the environment, some environment variables are missing.`,
+    );
+    process.exit(1);
+  }
+
   const port = process.env.PORT;
 
   express.listen(port, () => {
