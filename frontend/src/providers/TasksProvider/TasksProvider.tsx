@@ -3,6 +3,28 @@ import TasksProviderContext from './TasksProvider.context';
 import TaskCard from '../../models/TaskCard';
 import Category from '../../models/Category';
 
+const getFakeToday = () => {
+  // const currentDate = new Date();
+  // const day = currentDate.getDate().toString().padStart(2, '0');
+  // const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+  // const year = currentDate.getFullYear();
+
+  // return `${day}-${month}-${year}`;
+  return new Date().toLocaleDateString();
+};
+
+const getFakeTomorrow = () => {
+  // const currentDate = new Date();
+  // const tomorrowDate = new Date(currentDate);
+  // tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+  // const day = tomorrowDate.getDate().toString().padStart(2, '0');
+  // const month = (tomorrowDate.getMonth() + 1).toString().padStart(2, '0');
+  // const year = tomorrowDate.getFullYear();
+
+  // return `${day}-${month}-${year}`;
+  return new Date(Date.now() + 86400000).toLocaleDateString();
+};
+
 const fakeData: TaskCard[] = [
   {
     title: 'Go for a run',
@@ -10,36 +32,32 @@ const fakeData: TaskCard[] = [
     isDone: true,
     id: 1,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: getFakeToday(),
     priority: 'high',
-    status: 'to do',
   },
   {
     title: 'Finish report for meeting',
     category: 'work',
     id: 2,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: getFakeToday(),
     priority: 'middle',
-    status: 'to do',
   },
   {
     title: 'Buy groceries',
     category: 'shopping',
     id: 3,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: getFakeTomorrow(),
     priority: 'high',
-    status: 'to do',
   },
   {
     title: 'Buy new running shoes',
     category: 'shopping',
     id: 13,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: '',
     priority: 'high',
-    status: 'to do',
   },
   {
     title: 'Read a book for an hour',
@@ -47,9 +65,8 @@ const fakeData: TaskCard[] = [
     isDone: true,
     id: 14,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: getFakeTomorrow(),
     priority: 'middle',
-    status: 'to do',
   },
   {
     title: 'Watch "The Shawshank Redemption"',
@@ -57,9 +74,8 @@ const fakeData: TaskCard[] = [
     isDone: true,
     id: 15,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: '',
     priority: 'low',
-    status: 'to do',
   },
   {
     title: 'Clean out closet',
@@ -67,27 +83,24 @@ const fakeData: TaskCard[] = [
     isDone: true,
     id: 16,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: getFakeToday(),
     priority: 'high',
-    status: 'to do',
   },
   {
     title: 'Attend team meeting',
     category: 'work',
     id: 17,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: getFakeTomorrow(),
     priority: 'middle',
-    status: 'to do',
   },
   {
     title: 'Grocery shopping for the week',
     category: 'shopping',
     id: 18,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: '',
     priority: 'high',
-    status: 'to do',
   },
   {
     title: 'Practice photography skills',
@@ -95,9 +108,8 @@ const fakeData: TaskCard[] = [
     isDone: true,
     id: 19,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: '',
     priority: 'middle',
-    status: 'to do',
   },
   {
     title: 'Watch "Pulp Fiction"',
@@ -105,9 +117,8 @@ const fakeData: TaskCard[] = [
     isDone: true,
     id: 20,
     description: 'DescriptionDescriptionDescriptionDescription',
-    dueDate: '2024-11-05',
+    dueDate: '',
     priority: 'low',
-    status: 'to do',
   },
 ];
 
@@ -141,7 +152,7 @@ const fakeCategories: Category[] = [
 
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [taskListDate, setTaskListDate] = useState<TaskCard[]>([]);
-  const [categoryListDate, setCategoryListDate] = useState<Category[]>([])
+  const [categoryListDate, setCategoryListDate] = useState<Category[]>([]);
 
   const getTasksList = () => {
     setTaskListDate(fakeData);
@@ -149,7 +160,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const getCategoryList = () => {
     setCategoryListDate(fakeCategories);
-  }
+  };
 
   const createTask = (data: TaskCard) => {
     const newCard = {
@@ -158,7 +169,8 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
       description: data.description,
       dueDate: data.dueDate,
       priority: data.priority,
-      status: data.status,
+      isDone: data.isDone,
+      // status: data.status,
       categoryId: data.category,
     };
     setTaskListDate((prevList: TaskCard[]) => [...prevList, newCard]);
