@@ -50,7 +50,7 @@ const getDBPool = () => {
     const config = getConnectionConfig();
     pool = new Pool({
       ...config,
-      max: 10,
+      max: 4,
     });
   } catch (error) {
     throw error;
