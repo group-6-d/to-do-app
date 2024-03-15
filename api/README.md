@@ -47,7 +47,6 @@ This project utilized [Express](https://expressjs.com/en/4x/api.html) serves as 
 │   └── service
 │       └── users.ts
 ├── database.json
-├── nodemon.json
 ```
 
 1. `migrations` database migration files goes here, normally 3 files will be generate after running `npm run db:mc`, in this case
@@ -59,11 +58,10 @@ This project utilized [Express](https://expressjs.com/en/4x/api.html) serves as 
    1. `run_schemats.sh` construct a Postgres connection string for [schemats](https://github.com/vramework/schemats) and run it to generate TypeScript interfaces from the database schema.
 3. `src` contains all our business logic, basically translate RESTful manner requests to sql query and return the corresponding response.
 4. `database.json` config file for [db-migrate](https://github.com/db-migrate/node-db-migrate)
-5. `nodemon.json` config file for [nodemon](https://nodemon.io/)
 
 ## NPM Scripts
 
-1. `dev` which runs `nodemon` using the `./nodemon.json` configuration file to watch the file changes and restart the server.
+1. `dev` which runs `tsx` using the [tsx](https://github.com/privatenumber/tsx) watch the file changes and restart the server.
 2. `build` which runs `npx tsc` to build this project.
 3. `start` which runs `node dist/src/server.js` to start the builded project.
 4. `test` which runs `jest` using the `./jest.config.js` configuration file to run the tests once.

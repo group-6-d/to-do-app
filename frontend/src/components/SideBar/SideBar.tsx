@@ -5,11 +5,16 @@
 //   MdOutlineLocalMovies,
 //   MdWorkOutline,
 // } from 'react-icons/md';
+import { FC } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 
-const SideBar = () => {
+interface SideBarProps {
+  handleCategory: (e: any) => void;
+}
+
+const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
   const { categoryListDate } = useTasksBoard();
 
   return (
@@ -72,7 +77,7 @@ const SideBar = () => {
       <ul className=''>
         {categoryListDate &&
           categoryListDate.map((category) => (
-            <SideBarItem category={category} />
+            <SideBarItem category={category} handleCategory={handleCategory} />
           ))}
       </ul>
     </aside>

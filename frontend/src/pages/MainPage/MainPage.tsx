@@ -1,61 +1,56 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SideBar from '../../components/SideBar/SideBar';
 import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
-import { useDates } from '../../hooks/useDates';
-import type TaskCard from '../../models/TaskCard';
+// import TaskCard, { TaskCardcategory } from '../../models/TaskCard';
+import TaskCard from '../../models/TaskCard';
+import Category from '../../models/Category';
+
+const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
 const MainPage = () => {
   const { getTasksList, taskListDate, getCategoryList, categoryListDate } =
     useTasksBoard();
-  const { formattedDateToday, formattedDateTomorrow } = useDates();
-  const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
-  const [tasksTomorrow, setTasksTomorrow] = useState<TaskCard[]>([]);
-  const [tasksUpcoming, setTasksUpcoming] = useState<TaskCard[]>([]);
+
+  const [initialTaskList, setInitialTaskList] = useState<TaskCard[]>([]);
+  const [filteredTaskList, setFilteredTaskList] = useState<TaskCard[]>([]);
+  const [selectedCategoriesList, setSelectedCategoriesList] = useState<
+    Category[]
+  >([]);
+
+  useEffect(() => {
+    setInitialTaskList(taskListDate);
+    setFilteredTaskList(taskListDate);
+  }, [taskListDate]);
 
   useEffect(() => {
     getTasksList();
     getCategoryList();
+  }, [initialTaskList, categoryListDate]);
 
-    const sortAndFilterTasks = () => {
-      const today = new Date().toLocaleDateString();
-      const tomorrow = new Date(Date.now() + 86400000).toLocaleDateString();
-
-      console.log('today', today);
-      console.log('tomorrow', tomorrow);
-
-      const tasksToday = taskListDate.filter((task) => task.dueDate === today);
-      const tasksTomorrow = taskListDate.filter(
-        (task) => task.dueDate === tomorrow,
+  useEffect(() => {
+    if (selectedCategoriesList.length === 0)
+      setFilteredTaskList(initialTaskList);
+    else
+      setFilteredTaskList(
+        initialTaskList.filter((task) =>
+          selectedCategoriesList.includes(task.category),
+        ),
       );
-      const tasksUpcoming = taskListDate.filter(
-        (task) => task.dueDate !== today && task.dueDate !== tomorrow,
-      );
+  }, [selectedCategoriesList]);
 
-      setTasksToday(tasksToday);
-      setTasksTomorrow(tasksTomorrow);
-      setTasksUpcoming(tasksUpcoming);
-    };
-
-    sortAndFilterTasks();
-  }, [taskListDate, categoryListDate]);
+  const handleCategory = (e: any) => {
+    setSelectedCategoriesList([...selectedCategoriesList, e.target.value]);
+  };
 
   return (
     <div className='flex h-full '>
-      <SideBar />
+      <SideBar handleCategory={handleCategory} />
 
-      <div className='flex max-w-[1500px] flex-col gap-x-4 p-4 md:flex-row md:justify-around lg:gap-x-3 xl:gap-x-7'>
-        <TaskList
-          day='Today'
-          date={formattedDateToday}
-          taskListDate={tasksToday}
-        />
-        <TaskList
-          day='Tomorrow'
-          date={formattedDateTomorrow}
-          taskListDate={tasksTomorrow}
-        />
-        <TaskList day='Upcoming' taskListDate={tasksUpcoming} />
+      <div className='flex w-full flex-col gap-x-6 p-4 md:flex-row md:justify-around'>
+        {daysData.map((day) => (
+          <TaskList day={day} taskList={filteredTaskList} />
+        ))}
       </div>
     </div>
   );
