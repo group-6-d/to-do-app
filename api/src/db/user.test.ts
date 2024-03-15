@@ -39,7 +39,7 @@ describe('Test db/user', () => {
     expect(result).toEqual({});
   });
 
-  test('getUser() error', async () => {
+  test('getUser() successfully', async () => {
     const email = 'first.born@hosipital.se';
     const result = await getUser({ email });
     expect(result).toEqual({ result: user });

@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 import { destroyDBConnections } from './client/db';
 import express from './express';
+import { getSequelize, closeSequelize } from './orm';
+import { initialModels, Task, User } from './models';
 
 dotenv.config();
 
@@ -33,15 +35,28 @@ const isValidEnvironment = () => {
   }
 };
 
-const main = () => {
+const main = async () => {
+  const error = `This service will be terminated.
+  Check the environment, some environment variables are missing.`;
   const isValid = isValidEnvironment();
   if (isValid) {
-    console.error(
-      `This service will be terminated.
-      Check the environment, some environment variables are missing.`,
-    );
+    console.error(error);
     process.exit(1);
   }
+
+  const sequelize = await getSequelize();
+  if (!sequelize) {
+    console.error(error);
+    process.exit(1);
+  }
+
+  await initialModels(sequelize);
+
+  // Test the models if you like
+  // const allUsers = await User.findAll();
+  // const allTasks = await Task.findAll();
+  // console.log(allUsers);
+  // console.log(allTasks);
 
   const port = process.env.PORT;
 
@@ -51,6 +66,8 @@ const main = () => {
 
   const shutdown = async (signal: string) => {
     await destroyDBConnections();
+    await closeSequelize();
+
     console.info(`[${signal}] This service is shutting down!`);
     process.exit(0);
   };
