@@ -5,22 +5,35 @@
 //   MdOutlineLocalMovies,
 //   MdWorkOutline,
 // } from 'react-icons/md';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
+import TaskPopupNew from '../TaskPopupNew';
 
 interface SideBarProps {
   handleCategory: (e: any) => void;
 }
 
 const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
+  const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
+
+  const openTaskPopup = () => {
+    setIsTaskPopupOpen(true);
+  };
+
+  const closeTaskPopup = () => {
+    setIsTaskPopupOpen(false);
+  };
   const { categoryListDate } = useTasksBoard();
 
   return (
     <aside className='h-fit rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
       <button className='bg-accent hover:bg-accentDark mx-auto mb-4 flex items-center whitespace-nowrap rounded-full px-8 py-4 text-white'>
-        <div className='flex items-center justify-between gap-2'>
+        <div
+          onClick={() => openTaskPopup()}
+          className='flex items-center justify-between gap-2'
+        >
           <LiaPlusSolid />
           New Task
         </div>
@@ -80,6 +93,7 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
             <SideBarItem category={category} handleCategory={handleCategory} />
           ))}
       </ul>
+      {isTaskPopupOpen && <TaskPopupNew closeTaskPopup={closeTaskPopup} />}
     </aside>
   );
 };
