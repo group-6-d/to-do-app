@@ -1,5 +1,8 @@
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useUser from '../../providers/UserProvider/UserProvider.hook';
+import RegisterModel from '../../models/RegisterModel';
+
 
 type FormData = {
   name: string;
@@ -8,6 +11,8 @@ type FormData = {
 };
 
 const Register = () => {
+  const { registration } = useUser();
+
   const {
     register,
     handleSubmit,
@@ -16,8 +21,9 @@ const Register = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit = (data: RegisterModel) => {
     console.log(data);
+    registration(data);
   };
 
   return (

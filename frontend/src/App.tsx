@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import TasksProvider from './providers/TasksProvider/TasksProvider';
+import UserProvider from './providers/UserProvider/UserProvider';
 import { ThemeProvider } from './providers/ThemeProvider.tsx';
 
 import MainPage from './pages/MainPage/MainPage.tsx';
@@ -15,18 +16,20 @@ function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <TasksProvider>
-          <Routes>
-            <Route path='/' element={<PageContainer />}>
-              <Route index element={<MainPage />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
-              <Route path='/profile' element={<ProfileRead />} />
-              <Route path='/profile/edit' element={<ProfileEdit />} />
-              <Route path='*' element={<ErrorPage />} />
-            </Route>
-          </Routes>
-        </TasksProvider>
+        <UserProvider>
+          <TasksProvider>
+            <Routes>
+              <Route path='/' element={<PageContainer />}>
+                <Route index element={<MainPage />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/profile' element={<ProfileRead />} />
+                <Route path='/profile/edit' element={<ProfileEdit />} />
+                <Route path='*' element={<ErrorPage />} />
+              </Route>
+            </Routes>
+          </TasksProvider>
+        </UserProvider>
       </BrowserRouter>
     </ThemeProvider>
   );

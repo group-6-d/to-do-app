@@ -1,5 +1,7 @@
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useUser from '../../providers/UserProvider/UserProvider.hook';
+import LoginModel from '../../models/LoginModel';
 
 type FormData = {
   email: string;
@@ -7,6 +9,8 @@ type FormData = {
 };
 
 const Login = () => {
+  const { login } = useUser();
+
   const {
     register,
     handleSubmit,
@@ -15,17 +19,15 @@ const Login = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: FieldValues) => {
+  const onSubmit = (data: LoginModel) => {
     console.log(data);
+    login(data);
   };
 
   return (
     <div className='flex flex-col items-center py-16'>
       {/* <Logo /> */}
-      <h2
-        className='text-xl
-md:mb-10 md:text-4xl'
-      >
+      <h2 className='text-xl md:mb-10 md:text-4xl'>
         Glad to see you!
       </h2>
       <form
