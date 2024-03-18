@@ -1,16 +1,38 @@
 import { Sequelize } from 'sequelize';
 
-// create a new Sequelize instance and export it
-module.exports = new Sequelize(
-  // pass database, username, password as separate arguments
-  process.env.DB_NAME as string,
-  process.env.DB_USERNAME as string,
-  process.env.DB_PASSWORD as string,
+let sequelizeInstance: Sequelize | null = null;
 
-  // pass the rest of the configuration options as an object
-  {
-    dialect: 'postgres',
-    host: process.env.DB_HOST as string,
-    port: Number(process.env.DB_PORT || 5432),
-  },
-);
+export const getSequelize = async () => {
+  if (sequelizeInstance) return;
+
+  const database = process.env.DB_NAME as string;
+  const username = process.env.DB_USERNAME as string;
+  const password = process.env.DB_PASSWORD as string;
+  const host = process.env.DB_HOST as string;
+  const port = Number(process.env.DB_PORT || 5432);
+  const dialect = 'postgres';
+
+  sequelizeInstance = new Sequelize(database, username, password, {
+    host,
+    port,
+    dialect,
+    pool: {
+      max: 5,
+    },
+  });
+
+  try {
+    await sequelizeInstance.authenticate();
+    console.log('[SEQUELIZE] Connection has been established successfully.');
+    return sequelizeInstance;
+  } catch (error) {
+    console.error('[SEQUELIZE] Unable to connect to the database:', error);
+    return;
+  }
+};
+
+export const closeSequelize = async () => {
+  console.info('[SEQUELIZE] releasing `sequelizeInstance`.');
+  await sequelizeInstance?.close();
+  console.info('[SEQUELIZE] `sequelizeInstance` has been released');
+};

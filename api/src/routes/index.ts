@@ -1,13 +1,12 @@
-const Router = require('express');
-const mainRouter = new Router();
-
+import { Router } from 'express';
 // imports routes
-const taskRouter = require('./taskRouter')
-// const userRouter = require('./userRouter')
+import taskRouter from './taskRouter';
+import userRouter from './userRouter';
 
-// since all other routers are subroots, you need to indicate this
+const mainRouter = Router();
+
+// since all other routers are sub-routes, you need to indicate this
 mainRouter.use('/task', taskRouter);
-// router.use('/user', userRouter);
+mainRouter.use('/users', userRouter);
 
-
-module.exports = mainRouter;
+export default mainRouter;

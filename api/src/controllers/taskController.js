@@ -1,17 +1,27 @@
 // import task model
-const { Task } = require('../models/task');
+import { Task } from '../models';
 // import error
 import { StatusCodes } from 'http-status-codes';
 
 class TaskController {
   async createTask(req, res, next) {
     try {
-      const { title, description, due_date, priority, status, 
-        // categoryId 
-    } = req.body;
-      const task = await Task.create({ title, description, due_date, priority, status, 
-        // categoryId 
-    });
+      const {
+        title,
+        description,
+        due_date,
+        priority,
+        status,
+        // categoryId
+      } = req.body;
+      const task = await Task.create({
+        title,
+        description,
+        due_date,
+        priority,
+        status,
+        // categoryId
+      });
       return res.json(task);
     } catch (e) {
       next(StatusCodes.BAD_REQUEST(e.message));
@@ -43,9 +53,14 @@ class TaskController {
   async editTask(req, res, next) {
     try {
       const { id } = req.params;
-      const { title, description, due_date, priority, status, 
-        // categoryId 
-    } = req.body;
+      const {
+        title,
+        description,
+        due_date,
+        priority,
+        status,
+        // categoryId
+      } = req.body;
       const task = await Task.findOne({
         where: { id },
       });
@@ -59,7 +74,7 @@ class TaskController {
       task.due_date = due_date;
       task.priority = priority;
       task.status = status;
-    //   task.categoryId = categoryId;
+      //   task.categoryId = categoryId;
 
       // save updated task
       await task.save();
