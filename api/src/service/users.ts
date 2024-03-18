@@ -90,7 +90,7 @@ export const verifyAuthorization = (req: Request) => {
 
   try {
     const [, token] = authorization.split(' ');
-    console.log({ token });
+    console.log(`[USER Service] Verifying token: ${token}`);
     const jwtSecretKey = process.env.JWT_SECRET_KEY as string;
     const user = jwt.verify(token, jwtSecretKey) as JwtPayload;
 

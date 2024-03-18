@@ -65,6 +65,7 @@ class UserController {
   }
 
   async verifyToken(req: Request, res: Response) {
+    console.log(`[User Controller] Got user: ${JSON.stringify(req.user)}`);
     const { code, error, user } = verifyAuthorization(req);
     return res.status(code).json({ ...(user ? { user } : { error }) });
   }
