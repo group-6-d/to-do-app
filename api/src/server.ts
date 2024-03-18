@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from './express';
 import { destroyDBConnections } from './client/db';
-import { getSequelize, closeSequelize } from './orm';
+import { getSequelize, closeSequelize } from './client/orm';
 import { initialModels, Task, User } from './models';
 
 const isValidEnvironment = () => {
