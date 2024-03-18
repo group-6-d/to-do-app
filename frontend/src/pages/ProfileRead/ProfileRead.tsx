@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ProfileRead.module.css';
+import useUser from '../../providers/UserProvider/UserProvider.hook';
 
 const ProfileRead = () => {
+  const { signout } = useUser();
+  const handleLogout = () => {
+    signout();
+  };
+  
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Hi, Kseniia!</h2>
@@ -19,6 +25,7 @@ const ProfileRead = () => {
       <div className={styles.link_edit}>
         <Link to='/profile/edit'>Edit</Link>
       </div>
+      <button onClick={handleLogout}>Log out</button>
     </div>
   );
 };

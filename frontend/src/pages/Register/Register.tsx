@@ -6,6 +6,7 @@ import RegisterModel from '../../models/RegisterModel';
 
 type FormData = {
   name: string;
+  lasName: string;
   email: string;
   password: string;
 };
@@ -37,7 +38,7 @@ const Register = () => {
         noValidate
       >
         <div className='relative flex flex-col items-start'>
-          <label>name</label>
+          <label>first name</label>
           <input
             {...register('name', {
               required: {
@@ -62,6 +63,35 @@ const Register = () => {
 
           <div className='md:text-md text-sm text-red-500'>
             {errors?.name && errors.name.message}
+          </div>
+        </div>
+
+        <div className='relative flex flex-col items-start'>
+          <label>last name</label>
+          <input
+            {...register('lastName', {
+              required: {
+                value: true,
+                message: 'Name is required!',
+              },
+              minLength: {
+                value: 3,
+                message: 'Minimum length is 3',
+              },
+              maxLength: {
+                value: 40,
+                message: 'Maximum length is 40',
+              },
+              pattern: {
+                value: /^[a-zA-Zа-яА-ЯёЁ\s-]+$/,
+                message: 'Please enter a valid last name',
+              },
+            })}
+            type='text'
+          />
+
+          <div className='md:text-md text-sm text-red-500'>
+            {errors?.lastName && errors.lastName.message}
           </div>
         </div>
 

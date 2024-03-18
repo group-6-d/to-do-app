@@ -2,13 +2,13 @@ import checkResponse from './checkResponse';
 
 export const BASE_URL = 'http://localhost:5174';
 
-export const register = (name: string, email: string, password: string) => {
+export const register = (firstName: string, lastName: string, email: string, password: string) => {
   return fetch(`${BASE_URL}/v1/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, email, password }),
+    body: JSON.stringify({ firstName, lastName, email, password }),
   }).then(checkResponse);
 };
 

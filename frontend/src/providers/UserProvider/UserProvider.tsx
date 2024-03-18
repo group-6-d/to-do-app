@@ -12,9 +12,9 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const navigate = useNavigate();
 
-  const registration = ({ name, email, password }: RegisterModel) => {
+  const registration = ({ name, lastName, email, password }: RegisterModel) => {
     userApi
-      .register(name, email, password)
+      .register(name, lastName, email, password)
       .then((data) => {
         console.log(data);
         navigate('/login');
@@ -70,6 +70,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     localStorage.clear();
     setisLoggedIn(false);
     setCurrentUser(null);
+    navigate('/login');
   };
 
   const value = {
