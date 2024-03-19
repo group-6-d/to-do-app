@@ -7,24 +7,24 @@ import type { User } from '../schemas';
 
 export const register = async ({
   firstName,
-  lastName,
+  lastName = '',
   email,
   password,
 }: Registration): Promise<GeneralReturn<User>> => {
   try {
     const pool = await getDBPool();
-    const creation = `INSERT INTO
+    const sql = `INSERT INTO
         public.user (first_name, last_name, email, password)
       VALUES
-        (
-          '${firstName}',
-          '${lastName}',
-          '${email}',
-          '${password}'
-        )
+        ($1, $2, $3, $4)
       RETURNING *`;
-    console.info(`[DB] USER CREATING: ${creation}`);
-    const result = await pool.query<User>(creation);
+    console.info(`[DB] USER CREATING: ${sql}`);
+    const result = await pool.query<User>(sql, [
+      firstName,
+      lastName,
+      email,
+      password,
+    ]);
     console.info(`[DB] USER CREATED: ${JSON.stringify(result)}`);
 
     const [user] = result.rows;
@@ -44,9 +44,9 @@ export const getUser = async ({
     FROM
       public.user
     WHERE
-      email='${email}'`;
+      email=$1`;
     console.info(`[DB] USER GETTING: ${sql}`);
-    const result = await pool.query<User>(sql);
+    const result = await pool.query<User>(sql, [email]);
     console.info(`[DB] USER GOT: ${JSON.stringify(result)}`);
 
     const [user] = result.rows;

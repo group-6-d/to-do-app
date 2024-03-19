@@ -9,14 +9,9 @@ class UserController {
       `[users service] incoming registration: ${JSON.stringify(req.body)}`,
     );
 
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, email, password } = req.body;
     if (!firstName) {
       const error = 'Missing `firstName`';
-      console.error(error);
-      return res.status(StatusCodes.BAD_REQUEST).json({ error });
-    }
-    if (!lastName) {
-      const error = 'Missing `lastName`';
       console.error(error);
       return res.status(StatusCodes.BAD_REQUEST).json({ error });
     }
@@ -60,8 +55,8 @@ class UserController {
       return res.status(StatusCodes.BAD_REQUEST).json({ error });
     }
 
-    const { code, error, token } = await login(req.body);
-    return res.status(code).json({ ...(token ? { token } : { error }) });
+    const { code, error, token, user } = await login(req.body);
+    return res.status(code).json({ ...(token ? { token, user } : { error }) });
   }
 
   async verifyToken(req: Request, res: Response) {
