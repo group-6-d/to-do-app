@@ -105,9 +105,10 @@ export const verifyAuthorization = (req: Request) => {
       code: StatusCodes.OK,
       user,
     };
-  } catch {
+  } catch (error) {
     console.error(
       `[USER Service] Access forbidden for authorization: ${authorization}`,
+      error,
     );
     return {
       code: StatusCodes.FORBIDDEN,
