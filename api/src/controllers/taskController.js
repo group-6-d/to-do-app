@@ -36,6 +36,7 @@ class TaskController {
     return res.json(tasks);
   }
 
+  //? do we need this one?
   async getOneTask(req, res, next) {
     try {
       const { id } = req.params;
@@ -58,14 +59,8 @@ class TaskController {
   async editTask(req, res, next) {
     try {
       const { id } = req.params;
-      const {
-        title,
-        description,
-        due_date,
-        priority,
-        status,
-        // categoryId
-      } = req.body;
+      const { title, description, due_date, priority, status, category_id } =
+        req.body;
       const task = await Task.findOne({
         where: { id },
       });
@@ -79,7 +74,7 @@ class TaskController {
       task.due_date = due_date;
       task.priority = priority;
       task.status = status;
-      //   task.categoryId = categoryId;
+      task.category_id = category_id;
 
       // save updated task
       await task.save();
