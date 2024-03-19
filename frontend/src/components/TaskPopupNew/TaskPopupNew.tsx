@@ -79,12 +79,59 @@ const TaskPopupNew: FC<TaskPopupProps> = ({ closeTaskPopup }) => {
             </li>
           </ul>
         </section>
-        <div
+        <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
+          <div className='p-2'>Priority:</div>
+          <div className='flex'>
+            <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+              <input
+                type='checkbox'
+                id='high'
+                name='high'
+                className='checked:bg-coral h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+              />
+              <label
+                htmlFor='high'
+                className='m-0 text-sm  text-stone-900 hover:cursor-pointer dark:text-stone-100'
+              >
+                High
+              </label>
+            </li>
+            <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+              <input
+                type='checkbox'
+                id='middle'
+                name='middle'
+                className='checked:bg-yellow h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+              />
+              <label
+                htmlFor='middle'
+                className='m-0 text-sm text-stone-900 hover:cursor-pointer dark:text-stone-100'
+              >
+                Middle
+              </label>
+            </li>
+            <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+              <input
+                type='checkbox'
+                id='low'
+                name='low'
+                className='checked:bg-purple h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+              />
+              <label
+                htmlFor='low'
+                className='m-0 text-sm text-stone-900 hover:cursor-pointer dark:text-stone-100'
+              >
+                Low
+              </label>
+            </li>
+          </div>
+        </ul>
+        {/* <div
           className={`mb-3 flex  items-center text-sm font-medium uppercase md:mb-4 md:text-xl ${priorityColor}`}
         >
           <TbPointFilled className='text-4xl' />
           <p className=''>{`${newTask.priority} priority`}</p>
-        </div>
+        </div> */}
         <h1 className='mb-2  text-xl font-semibold md:mb-6 md:text-4xl'>
           <input
             type='text'
@@ -100,14 +147,47 @@ const TaskPopupNew: FC<TaskPopupProps> = ({ closeTaskPopup }) => {
             <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
               Due date
             </p>
-            <input
+            {/* <input
               type='text'
               name='dueDate'
               value={newTask.dueDate}
               onChange={handleInputChange}
               placeholder='Due Date'
               className='focus:border-accent w-full border-b border-stone-400 pb-1 text-lg outline-none md:text-xl'
-            />
+            /> */}
+
+            <div className='relative max-w-sm'>
+              <div className='pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3'>
+                {/* <svg
+                  className='h-4 w-4 text-gray-500 dark:text-gray-400'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 20 20'
+                >
+                  <path d='M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z' />
+                </svg> */}
+              </div>
+              <input
+                className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+                placeholder='Select date'
+                type='date'
+                id='start'
+                name='trip-start'
+                value={newTask.dueDate}
+                min='2018-01-01'
+                max='2030-12-31'
+              />
+
+              {/* <input
+                datepicker
+                datepicker-autohide
+                type='text'
+                className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+                placeholder='Select date'
+              /> */}
+            </div>
+
             <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
               Category
             </p>
