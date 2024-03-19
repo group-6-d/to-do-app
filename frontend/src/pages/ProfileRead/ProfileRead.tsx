@@ -4,14 +4,14 @@ import styles from './ProfileRead.module.css';
 import useUser from '../../providers/UserProvider/UserProvider.hook';
 
 const ProfileRead = () => {
-  const { signout } = useUser();
+  const { signout, currentUser } = useUser();
   const handleLogout = () => {
     signout();
   };
   
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Hi, Kseniia!</h2>
+      <h2 className={styles.title}>Hi, {currentUser?.name}!</h2>
       <div className={styles.fields}>
         <div className={styles.field}>
           <p className={styles.field_name}>name</p>
