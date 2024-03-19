@@ -89,6 +89,23 @@ export const login = async ({
   };
 };
 
+export const getUserByEmail = async (email: string) => {
+  const { result: user } = await getUser({ email });
+  if (!user) {
+    console.error(`[USER Service] User ${email} doesn't exit.`);
+    return;
+  }
+
+  const { id, first_name, last_name } = user;
+
+  return {
+    id,
+    email,
+    first_name,
+    last_name,
+  };
+};
+
 export const verifyAuthorization = (req: Request) => {
   const { authorization } = req.headers;
   if (!authorization) {
