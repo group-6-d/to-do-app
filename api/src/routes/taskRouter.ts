@@ -1,6 +1,6 @@
-const Router = require('express');
-const taskRouterObj = new Router();
 const taskController = require('../controllers/taskController');
+import { Router } from 'express';
+const taskRouterObj = Router();
 
 taskRouterObj.post('/', taskController.createTask);
 taskRouterObj.get('/', taskController.getAllTask);
