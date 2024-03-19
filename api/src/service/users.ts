@@ -6,6 +6,7 @@ import { register as createUser, getUser } from '../db/user';
 
 import type { Request } from 'express';
 import type { JwtPayload } from 'jsonwebtoken';
+import { User } from '../schemas';
 
 export type Login = {
   email: string;
@@ -14,7 +15,7 @@ export type Login = {
 
 export type Registration = Login & {
   firstName: string;
-  lastName: string;
+  lastName?: string;
 };
 
 export const register = async (registration: Registration) => {
@@ -32,6 +33,7 @@ type LoginReturn = {
   code: StatusCodes;
   error?: string;
   token?: string;
+  user?: Partial<User>;
 };
 
 export const login = async ({
@@ -67,7 +69,7 @@ export const login = async ({
     };
   }
 
-  const { id } = user;
+  const { id, first_name, last_name } = user;
   const payload = {
     id,
     email,
@@ -76,7 +78,15 @@ export const login = async ({
   const jwtSecretKey = process.env.JWT_SECRET_KEY as string;
   const token = jwt.sign(payload, jwtSecretKey, { expiresIn: jwtExpiresIn });
 
-  return { code: StatusCodes.OK, token };
+  return {
+    code: StatusCodes.OK,
+    token,
+    user: {
+      ...payload,
+      first_name,
+      last_name,
+    },
+  };
 };
 
 export const verifyAuthorization = (req: Request) => {

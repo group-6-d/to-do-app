@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 let sequelizeInstance: Sequelize | null = null;
 
 export const getSequelize = async () => {
-  if (sequelizeInstance) return;
+  if (sequelizeInstance) return sequelizeInstance;
 
   const database = process.env.DB_NAME as string;
   const username = process.env.DB_USERNAME as string;
