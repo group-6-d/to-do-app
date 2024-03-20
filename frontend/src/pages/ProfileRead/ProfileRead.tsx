@@ -24,7 +24,7 @@ const ProfileRead = () => {
       <div className={styles.link_edit}>
         <Link to='/profile/edit'>Edit</Link>
       </div>
-      <button onClick={handleLogout}>Log out</button>
+      <button className=' py-1 w-32 text-lg' onClick={handleLogout}>Log out</button>
     </div>
   );
 };
