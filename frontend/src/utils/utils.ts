@@ -13,3 +13,7 @@ export const getPriorityColor = (priority?: string) => {
       break;
   }
 };
+
+console.log(import.meta);
+
+export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5174';

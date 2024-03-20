@@ -2,7 +2,11 @@ import argon2 from 'argon2';
 import jwt from 'jsonwebtoken';
 import { StatusCodes } from 'http-status-codes';
 
-import { register as createUser, getUser } from '../db/user';
+import {
+  register as createUser,
+  getUser,
+  updateUser as updateDBUser,
+} from '../db/user';
 
 import type { Request } from 'express';
 import type { JwtPayload } from 'jsonwebtoken';
@@ -16,6 +20,12 @@ export type Login = {
 export type Registration = Login & {
   firstName: string;
   lastName?: string;
+};
+
+export type UpdateUser = {
+  id: number;
+  firstName: string;
+  email: string;
 };
 
 export const register = async (registration: Registration) => {
@@ -142,4 +152,17 @@ export const verifyAuthorization = (req: Request) => {
       error: 'Access forbidden',
     };
   }
+};
+
+export const updateUser = async ({ id, firstName, email }: UpdateUser) => {
+  const { result: user } = await updateDBUser({ id, firstName, email });
+
+  if (!user) {
+    return {
+      code: StatusCodes.BAD_REQUEST,
+      error: 'Check your payload',
+    };
+  }
+
+  return { code: StatusCodes.OK, user };
 };

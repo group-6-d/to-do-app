@@ -8,7 +8,6 @@
 import { FC, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
-import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 import TaskPopupNew from '../TaskPopupNew';
 import useCategories from '../../hooks/useCategories';
 

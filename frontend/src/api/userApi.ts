@@ -1,8 +1,14 @@
+import { API_URL } from '../utils/utils';
 import checkResponse from './checkResponse';
 
-export const BASE_URL = 'http://localhost:5174';
+export const BASE_URL = API_URL;
 
-export const register = (firstName: string, lastName: string, email: string, password: string) => {
+export const register = (
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+) => {
   return fetch(`${BASE_URL}/v1/users`, {
     method: 'POST',
     headers: {
@@ -39,3 +45,14 @@ export const check = (token: string) => {
     .then(checkResponse)
     .then((data) => data);
 };
+
+// export const editProfile = (firstName: string, email: string) => {
+//   return fetch(`${BASE_URL}/`, {
+//     method: '',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({firstName, email})
+//   })
+//     .then(checkResponse)
+// };

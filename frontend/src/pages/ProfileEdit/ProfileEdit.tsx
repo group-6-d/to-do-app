@@ -1,7 +1,6 @@
-import React from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
-import styles from './ProfileEdit.module.css';
+import useUser from '../../providers/UserProvider/UserProvider.hook';
 
 type FormData = {
   name: string;
@@ -9,6 +8,8 @@ type FormData = {
 };
 
 const ProfileEdit = () => {
+  const { currentUser } = useUser();
+
   const {
     register,
     handleSubmit,
@@ -22,17 +23,17 @@ const ProfileEdit = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className='flex flex-col items-center py-16'>
       {/* <Logo /> */}
-      <h2 className={styles.title}>Profile Editing</h2>
+      <h2 className='text-xl md:mb-10 md:text-4xl'>Profile Editing</h2>
       <form
-        className={styles.form}
+        className='grid w-72 grid-cols-1 gap-4 md:w-[436px] md:gap-6'
         onSubmit={handleSubmit(onSubmit)}
         name='profileForm'
         noValidate
       >
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>name</label>
+        <div className='relative flex flex-col items-start'>
+          <label>name</label>
           <input
             {...register('name', {
               required: {
@@ -52,16 +53,17 @@ const ProfileEdit = () => {
                 message: 'Please enter a valid name',
               },
             })}
+            defaultValue={currentUser?.name}
             type='text'
-            className={`${styles.input} dark:bg-stone-500`}
+            className='input_auth_form'
           />
           {errors?.name && (
-            <div className={styles.error_message}>{errors.name.message}</div>
+            <div className='md:text-md text-sm text-red-500'>{errors.name.message}</div>
           )}
         </div>
 
-        <div className={styles.input_container}>
-          <label className={styles.input_label}>email</label>
+        <div className='relative flex flex-col items-start'>
+          <label>email</label>
           <input
             {...register('email', {
               required: {
@@ -81,18 +83,18 @@ const ProfileEdit = () => {
                 message: 'Please enter a valid email',
               },
             })}
+            defaultValue={currentUser?.email}
             type='text'
-            className={`${styles.input} dark:bg-stone-500`}
+            className='input_auth_form'
           />
           {errors?.email && (
-            <div className={styles.error_message}>{errors.email.message}</div>
+            <div className='md:text-md text-sm text-red-500'>{errors.email.message}</div>
           )}
         </div>
-        <div className='authentication__button-container authentication__button-container_further'>
+        <div className='mx-auto my-10'>
           <button
             disabled={!isValid}
-            type='submit'
-            className={`${styles.button} bg-black dark:bg-stone-100 dark:text-stone-800`}
+            className='button_auth_form'
             aria-label='Save result'
           >
             Save

@@ -20,10 +20,18 @@
       md:mb-2 md:text-lg;
   }
   input {
-    @apply w-full rounded-lg border border-gray-200 bg-white p-2 text-sm md:text-lg dark:border-stone-700 dark:bg-stone-800;
+    @apply w-full border border-gray-200 bg-white dark:border-stone-700 dark:bg-stone-800;
   }
   button {
-    @apply bg-accent hover:bg-accentDark w-fit cursor-pointer rounded-3xl border-none px-3 py-1 text-white;
+    @apply bg-accent hover:bg-accentDark w-fit cursor-pointer rounded-3xl border-none text-white;
+  }
+
+  .button_auth_form {
+    @apply text-lg py-2 w-72 md:text-2xl md:w-[436px] md:py-3;
+  }
+
+  .input_auth_form {
+    @apply p-3 text-sm rounded-2xl md:text-lg md:p-4 md:rounded-3xl;
   }
 
   .icon {
@@ -36,3 +44,5 @@
     @apply text-accent font-semibold underline-offset-1;
   }
 }
+
+
