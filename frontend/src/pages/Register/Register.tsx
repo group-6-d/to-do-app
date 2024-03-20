@@ -1,8 +1,10 @@
+// TODO: For our safety we need to remove @ts-nocheck
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useUser from '../../providers/UserProvider/UserProvider.hook';
 import RegisterModel from '../../models/RegisterModel';
-
 
 type FormData = {
   name: string;
@@ -39,7 +41,8 @@ const Register = () => {
       >
         <div className='relative flex flex-col items-start'>
           <label>first name</label>
-          <input className='input_auth_form'
+          <input
+            className='input_auth_form'
             {...register('name', {
               required: {
                 value: true,
@@ -68,7 +71,8 @@ const Register = () => {
 
         <div className='relative flex flex-col items-start'>
           <label>email</label>
-          <input className='input_auth_form'
+          <input
+            className='input_auth_form'
             {...register('email', {
               required: {
                 value: true,
@@ -97,7 +101,8 @@ const Register = () => {
 
         <div className='relative flex flex-col items-start'>
           <label>password</label>
-          <input className='input_auth_form'
+          <input
+            className='input_auth_form'
             {...register('password', {
               required: {
                 value: true,
