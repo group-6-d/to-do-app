@@ -6,6 +6,7 @@ import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 import TaskCard from '../../models/TaskCard';
 import Category from '../../models/Category';
 
+import useTasks from '../../hooks/useTasks';
 const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
 const MainPage = () => {
@@ -17,6 +18,10 @@ const MainPage = () => {
   const [selectedCategoriesList, setSelectedCategoriesList] = useState<
     Category[]
   >([]);
+
+  const token = localStorage.getItem('token');
+  const { tasks } = useTasks(token);
+  console.log('tasks in main page', tasks);
 
   useEffect(() => {
     setInitialTaskList(taskListDate);

@@ -5,7 +5,8 @@ type TaskCard = {
   dueDate?: string;
   priority?: 'high' | 'middle' | 'low';
   isDone?: boolean;
-  category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies';
+  status?: string;
+  category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies' | 'other';
 };
 // export type TaskCardcategory='personal' | 'work' | 'shopping' | 'hobbies' | 'movies';
 export default TaskCard;
