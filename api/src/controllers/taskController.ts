@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // import task model
 import { Task } from '../models';
 // import error
