@@ -5,6 +5,7 @@ import { useState, FC, ReactNode } from 'react';
 import TasksProviderContext from './TasksProvider.context';
 import TaskCard from '../../models/TaskCard';
 import Category from '../../models/Category';
+import useTasks from '../../hooks/useTasks';
 
 const getFakeToday = () => {
   // const currentDate = new Date();
@@ -157,10 +158,16 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [taskListDate, setTaskListDate] = useState<TaskCard[]>([]);
   const [categoryListDate, setCategoryListDate] = useState<Category[]>([]);
 
+  const token = localStorage.getItem('token');
+  const { tasks } = useTasks(token);
+  console.log('tasks in task provider', tasks);
+
   const getTasksList = () => {
-    setTaskListDate(fakeData);
+    // setTaskListDate(fakeData);
+    setTaskListDate(tasks);
   };
 
+  //? we use category from backend only in sidebar for now => create separate categoryProvider
   const getCategoryList = () => {
     setCategoryListDate(fakeCategories);
   };
@@ -173,7 +180,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
       dueDate: data.dueDate,
       priority: data.priority,
       isDone: data.isDone,
-      // status: data.status,
+      status: data.status,
       categoryId: data.category,
     };
     setTaskListDate((prevList: TaskCard[]) => [...prevList, newCard]);

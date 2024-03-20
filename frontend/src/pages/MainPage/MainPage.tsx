@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import SideBar from '../../components/SideBar/SideBar';
 import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
-// import TaskCard, { TaskCardcategory } from '../../models/TaskCard';
+
 import TaskCard from '../../models/TaskCard';
 import Category from '../../models/Category';
 

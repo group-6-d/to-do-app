@@ -10,8 +10,5 @@ export const fetchAll = (token: string) => {
       Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
-
-  console.log(response);
-
   return response;
 };
