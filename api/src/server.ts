@@ -6,7 +6,7 @@ import { initialModels, Task, User } from './models';
 
 const isValidEnvironment = () => {
   const {
-    PORT,
+    EXPRESS_PORT,
     DB_HOST,
     DB_PORT,
     DB_NAME,
@@ -18,7 +18,7 @@ const isValidEnvironment = () => {
     JWT_EXPIRES_IN,
   } = process.env;
   if (
-    !PORT ||
+    !EXPRESS_PORT ||
     !DB_HOST ||
     !DB_PORT ||
     !DB_NAME ||
@@ -35,6 +35,7 @@ const isValidEnvironment = () => {
 
 const main = async () => {
   dotenv.config();
+  console.log({ env: process.env });
 
   const error = `This service will be terminated.
   Check the environment, some environment variables are missing.`;
@@ -59,7 +60,7 @@ const main = async () => {
   // console.log(allUsers);
   // console.log(allTasks);
 
-  const port = process.env.PORT;
+  const port = process.env.EXPRESS_PORT;
 
   express.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
