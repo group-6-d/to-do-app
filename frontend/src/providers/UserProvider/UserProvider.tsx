@@ -8,7 +8,7 @@ import UserModel from '../../models/UserModel';
 
 const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoggedIn, setisLoggedIn] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<UserModel | []>([]);
+  const [currentUser, setCurrentUser] = useState<UserModel | null>(null);
 
   const navigate = useNavigate();
 
@@ -33,8 +33,8 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }
         setisLoggedIn(true);
         setCurrentUser({
-          name: res.name,
-          email: res.email,
+          name: res.user.first_name,
+          email: res.user.email,
         });
         navigate('/');
       })
@@ -51,8 +51,8 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         .then((res) => {
           setisLoggedIn(true);
           setCurrentUser({
-            name: res.name,
-            email: res.email,
+            name: res.user.first_name,
+            email: res.user.email,
           });
         })
         .catch((err) => {
@@ -69,7 +69,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const signout = () => {
     localStorage.clear();
     setisLoggedIn(false);
-    setCurrentUser([]);
+    setCurrentUser(null);
     navigate('/login');
   };
 

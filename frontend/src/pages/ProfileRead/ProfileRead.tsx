@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ProfileRead.module.css';
 import useUser from '../../providers/UserProvider/UserProvider.hook';
@@ -15,11 +14,11 @@ const ProfileRead = () => {
       <div className={styles.fields}>
         <div className={styles.field}>
           <p className={styles.field_name}>name</p>
-          <p className={styles.field_content}>Kseniia</p>
+          <p className={styles.field_content}>{currentUser?.name}</p>
         </div>
         <div className={styles.field}>
           <p className={styles.field_name}>email</p>
-          <p className={styles.field_content}>email@email.com</p>
+          <p className={styles.field_content}>{currentUser?.email}</p>
         </div>
       </div>
       <div className={styles.link_edit}>

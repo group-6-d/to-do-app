@@ -1,7 +1,7 @@
-import React from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
 import styles from './ProfileEdit.module.css';
+import useUser from '../../providers/UserProvider/UserProvider.hook';
 
 type FormData = {
   name: string;
@@ -9,6 +9,8 @@ type FormData = {
 };
 
 const ProfileEdit = () => {
+  const {currentUser} = useUser();
+
   const {
     register,
     handleSubmit,
@@ -52,6 +54,7 @@ const ProfileEdit = () => {
                 message: 'Please enter a valid name',
               },
             })}
+            defaultValue={currentUser?.name}
             type='text'
             className={`${styles.input} dark:bg-stone-500`}
           />
@@ -81,6 +84,7 @@ const ProfileEdit = () => {
                 message: 'Please enter a valid email',
               },
             })}
+            defaultValue={currentUser?.email}
             type='text'
             className={`${styles.input} dark:bg-stone-500`}
           />

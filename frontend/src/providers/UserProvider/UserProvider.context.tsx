@@ -5,7 +5,7 @@ import UserModel from '../../models/UserModel';
 
 interface IUserProvider {
   isLoggedIn: boolean;
-  currentUser: UserModel[] | null;
+  currentUser: UserModel | null;
   registration: (data: RegisterModel) => void;
   login: (data: LoginModel) => void;
   signout:() => void;
@@ -14,7 +14,7 @@ interface IUserProvider {
 
 const UserContext = createContext<IUserProvider>({
   isLoggedIn: false,
-  currentUser: [],
+  currentUser: null,
   registration: () => {},
   login: () => {},
   signout: () => {},
