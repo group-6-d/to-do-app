@@ -6,7 +6,7 @@ import { initialModels, Task, User } from './models';
 
 const isValidEnvironment = () => {
   const {
-    EXPRESS_PORT,
+    PORT,
     DB_HOST,
     DB_PORT,
     DB_NAME,
@@ -18,7 +18,7 @@ const isValidEnvironment = () => {
     JWT_EXPIRES_IN,
   } = process.env;
   if (
-    !EXPRESS_PORT ||
+    !PORT ||
     !DB_HOST ||
     !DB_PORT ||
     !DB_NAME ||
@@ -60,7 +60,7 @@ const main = async () => {
   // console.log(allUsers);
   // console.log(allTasks);
 
-  const port = process.env.EXPRESS_PORT;
+  const port = process.env.PORT;
 
   express.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
