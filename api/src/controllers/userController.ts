@@ -1,7 +1,12 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import { register, login, verifyAuthorization } from '../service/users';
+import {
+  register,
+  login,
+  verifyAuthorization,
+  getUserByEmail,
+} from '../service/users';
 
 class UserController {
   async register(req: Request, res: Response) {
@@ -62,7 +67,19 @@ class UserController {
   async verifyToken(req: Request, res: Response) {
     console.log(`[User Controller] Got user: ${JSON.stringify(req.user)}`);
     const { code, error, user } = verifyAuthorization(req);
-    return res.status(code).json({ ...(user ? { user } : { error }) });
+    const email = user?.email;
+    if (!email) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: 'Check your request' });
+    }
+    const userInDb = await getUserByEmail(email);
+    if (!userInDb) {
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
+    }
+    return res
+      .status(code)
+      .json({ ...(user ? { user: { ...userInDb, ...user } } : { error }) });
   }
 }
 

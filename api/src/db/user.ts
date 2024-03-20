@@ -52,7 +52,7 @@ export const getUser = async ({
     const [user] = result.rows;
     return { result: user };
   } catch (error) {
-    console.error(`[DB] USER GETTING ERROR: ${error}`);
+    console.error(`[DB] USER GOT ERROR: ${error}`);
     return {};
   }
 };

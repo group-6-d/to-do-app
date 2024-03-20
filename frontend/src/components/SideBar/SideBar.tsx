@@ -10,6 +10,7 @@ import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 import TaskPopupNew from '../TaskPopupNew';
+import useCategories from '../../hooks/useCategories';
 
 interface SideBarProps {
   handleCategory: (e: any) => void;
@@ -17,6 +18,8 @@ interface SideBarProps {
 
 const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
+  const token = localStorage.getItem('token');
+  const { categories } = useCategories(token);
 
   const openTaskPopup = () => {
     setIsTaskPopupOpen(true);
@@ -25,7 +28,7 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
   const closeTaskPopup = () => {
     setIsTaskPopupOpen(false);
   };
-  const { categoryListDate } = useTasksBoard();
+  // const { categoryListDate } = useTasksBoard();
 
   return (
     <aside className='h-fit rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
@@ -88,8 +91,8 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
       </ul>
 
       <ul className=''>
-        {categoryListDate &&
-          categoryListDate.map((category) => (
+        {categories &&
+          categories.map((category) => (
             <SideBarItem category={category} handleCategory={handleCategory} />
           ))}
       </ul>
