@@ -8,9 +8,14 @@ import { getPriorityColor } from '../../utils/utils';
 interface TaskPopupProps {
   task: TaskCard | null;
   closeTaskPopup: () => void;
+  onEditClick: () => void; // Add this line
 }
 
-const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
+const TaskPopupRead: FC<TaskPopupProps> = ({
+  task,
+  closeTaskPopup,
+  onEditClick,
+}) => {
   const closePopup = (event: React.MouseEvent) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
@@ -38,7 +43,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
               <AiOutlineDelete className='icon' />
             </li>
             <li>
-              <AiOutlineEdit className='icon' />
+              <AiOutlineEdit className='icon' onClick={onEditClick} />
             </li>
             <li>
               <IoMdClose onClick={closeTaskPopup} className='icon' />
