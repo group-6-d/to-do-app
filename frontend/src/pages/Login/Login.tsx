@@ -39,7 +39,7 @@ const Login = () => {
       >
         <div className='relative flex flex-col items-start'>
           <label>email</label>
-          <input
+          <input className='input_auth_form'
             {...register('email', {
               required: {
                 value: true,
@@ -69,7 +69,7 @@ const Login = () => {
 
         <div className='relative flex flex-col items-start'>
           <label>password</label>
-          <input
+          <input className='input_auth_form'
             {...register('password', {
               required: {
                 value: true,
@@ -92,11 +92,10 @@ const Login = () => {
             </div>
           )}
         </div>
-        <div className='mx-auto mb-5'>
+        <div className='mx-auto my-5'>
           <button
             disabled={!isValid}
-            // type='submit'
-            className='md:text-xl'
+            className='button_auth_form'
             aria-label='Send result'
           >
             Login
