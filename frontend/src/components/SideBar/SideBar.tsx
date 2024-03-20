@@ -15,7 +15,7 @@ interface SideBarProps {
   handleCategory: (e: any) => void;
 }
 
-const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
+const SideBar: FC<SideBarProps> = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
   const token = localStorage.getItem('token');
   const { categories } = useCategories(token);
@@ -27,7 +27,6 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
   const closeTaskPopup = () => {
     setIsTaskPopupOpen(false);
   };
-  // const { categoryListDate } = useTasksBoard();
 
   return (
     <aside className='h-fit rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
@@ -91,9 +90,7 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
 
       <ul className=''>
         {categories &&
-          categories.map((category) => (
-            <SideBarItem category={category} handleCategory={handleCategory} />
-          ))}
+          categories.map((category) => <SideBarItem category={category} />)}
       </ul>
       {isTaskPopupOpen && <TaskPopupNew closeTaskPopup={closeTaskPopup} />}
     </aside>

@@ -5,21 +5,34 @@
 //     MdOutlineLocalMovies,
 //     MdWorkOutline,
 //   } from 'react-icons/md';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import Category from '../../models/Category';
+import { SelectedCategoriesContext } from '../../providers/SelectedCategoriesProvider';
 
 interface SideBarItemProps {
   category: Category;
-  handleCategory: (e: any) => void;
 }
 
-const SideBarItem: FC<SideBarItemProps> = ({ category, handleCategory }) => {
+const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
+  const { filters, filterTasksHandler } = useContext(SelectedCategoriesContext);
+
+  const handleCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const categoryName = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      filterTasksHandler([...(filters ?? []), categoryName]);
+    } else {
+      filterTasksHandler((filters ?? []).filter((cat) => cat !== categoryName));
+    }
+  };
+
   return (
-    <li className=''>
+    <li className='' key={category.name}>
       <label className=' items-middle flex cursor-pointer items-center justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
         {category.name}
         <input
-          onClick={handleCategory}
+          onChange={handleCategory}
           type='checkbox'
           name='categoryCheckbox'
           value={category.name}
