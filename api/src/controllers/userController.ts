@@ -6,6 +6,7 @@ import {
   login,
   verifyAuthorization,
   getUserByEmail,
+  updateUser,
 } from '../service/users';
 
 class UserController {
@@ -80,6 +81,32 @@ class UserController {
     return res
       .status(code)
       .json({ ...(user ? { user: { ...userInDb, ...user } } : { error }) });
+  }
+
+  async patchUser(req: Request, res: Response) {
+    const { user } = req;
+    if (!user || user.id === undefined) {
+      const error = `Weird! How did you even make it to reach here? Let's kill an engineer and cover this issue!`;
+      console.error(`[User Controller] ${error} with headers: ${req.headers}`);
+      return res.status(StatusCodes.BAD_REQUEST).json({ error });
+    }
+
+    const { id } = user;
+    const { email, firstName } = req.body;
+    if (!email && !firstName) {
+      const error = 'What are you trying to update?';
+      console.error(`[User Controller] ${error}`);
+      return res.status(StatusCodes.BAD_REQUEST).json({ error });
+    }
+
+    const {
+      error,
+      code,
+      user: updatedUser,
+    } = await updateUser({ id, email, firstName });
+    return res
+      .status(code)
+      .json({ ...(updatedUser ? { user: updatedUser } : { error }) });
   }
 }
 

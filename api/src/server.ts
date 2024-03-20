@@ -35,7 +35,6 @@ const isValidEnvironment = () => {
 
 const main = async () => {
   dotenv.config();
-  console.log({ env: process.env });
 
   const error = `This service will be terminated.
   Check the environment, some environment variables are missing.`;
