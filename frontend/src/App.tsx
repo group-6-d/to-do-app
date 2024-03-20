@@ -7,6 +7,7 @@ import { ThemeProvider } from './providers/ThemeProvider.tsx';
 import ProtectedRoute from './routeProtection/ProtectedRoute.tsx';
 import UnprotectedRoute from './routeProtection/UnprotectedRoute.tsx';
 
+import StartPage from './pages/StartPage/StartPage.tsx';
 import MainPage from './pages/MainPage/MainPage.tsx';
 import PageContainer from './components/PageContainer/PageContainer.tsx';
 import Login from './pages/Login';
@@ -22,6 +23,10 @@ function App() {
         <UserProvider>
           <TasksProvider>
             <Routes>
+              <Route
+                path='/hi'
+                element={<UnprotectedRoute element={<StartPage />} />}
+              />
               <Route
                 path='/register'
                 element={<UnprotectedRoute element={<Register />} />}
