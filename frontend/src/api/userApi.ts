@@ -1,6 +1,7 @@
+import { API_URL } from '../utils/utils';
 import checkResponse from './checkResponse';
 
-export const BASE_URL = 'http://localhost:5174';
+export const BASE_URL = API_URL;
 
 export const register = (
   firstName: string,
