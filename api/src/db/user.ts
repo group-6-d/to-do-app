@@ -59,7 +59,7 @@ export const getUser = async ({
 
 export const updateUser = async ({ id, firstName, email }: UpdateUser) => {
   try {
-    const updateFields = [];
+    const updateFields = [`updated_date=now()`];
     const params: (string | number)[] = [id];
     let counter = 2;
     if (firstName) {
