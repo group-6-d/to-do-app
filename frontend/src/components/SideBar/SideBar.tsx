@@ -12,7 +12,7 @@ import TaskPopupNew from '../TaskPopupNew';
 import useCategories from '../../hooks/useCategories';
 
 interface SideBarProps {
-  handleCategory: (e: any) => void;
+  handleCategory: (e: MouseEvent) => void;
 }
 
 const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
@@ -92,10 +92,20 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
       <ul className=''>
         {categories &&
           categories.map((category) => (
-            <SideBarItem category={category} handleCategory={handleCategory} />
+            <SideBarItem
+              key={category.id}
+              category={category}
+              handleCategory={handleCategory}
+            />
           ))}
       </ul>
-      {isTaskPopupOpen && <TaskPopupNew closeTaskPopup={closeTaskPopup} />}
+      {isTaskPopupOpen && (
+        <TaskPopupNew
+          categories={categories || []}
+          closeTaskPopup={closeTaskPopup}
+          onAddTask={() => {}}
+        />
+      )}
     </aside>
   );
 };

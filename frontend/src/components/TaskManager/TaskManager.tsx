@@ -9,9 +9,14 @@ interface TaskManagerProps {
 }
 
 // Example TaskManager component
-const TaskManager: React.FC<TaskManagerProps> = () => {
-  const [currentTask, setCurrentTask] = useState<TaskCard | null>(null);
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+const TaskManager: React.FC<TaskManagerProps> = ({
+  task,
+  closeTaskManager,
+}) => {
+  const initialTask = task || null;
+  const initialMode = task ? false : true;
+  const [currentTask, setCurrentTask] = useState<TaskCard | null>(initialTask);
+  const [isEditMode, setIsEditMode] = useState<boolean>(initialMode);
 
   const handleEditClick = () => {
     setIsEditMode(true); // Switch to edit mode
@@ -20,6 +25,7 @@ const TaskManager: React.FC<TaskManagerProps> = () => {
   const closeTaskPopup = () => {
     setIsEditMode(false);
     setCurrentTask(null); // Reset current task
+    closeTaskManager();
   };
 
   const onSaveTask = (updatedTask: TaskCard) => {

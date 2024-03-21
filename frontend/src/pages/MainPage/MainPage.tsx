@@ -42,7 +42,7 @@ const MainPage = () => {
       );
   }, [selectedCategoriesList]);
 
-  const handleCategory = (e: unknown) => {
+  const handleCategory = (e: MouseEvent) => {
     setSelectedCategoriesList([...selectedCategoriesList, e.target.value]);
   };
 
@@ -51,8 +51,8 @@ const MainPage = () => {
       <SideBar handleCategory={handleCategory} />
 
       <div className='flex w-full flex-col gap-x-6 p-4 md:flex-row md:justify-around'>
-        {daysData.map((day) => (
-          <TaskList day={day} taskList={filteredTaskList} />
+        {daysData.map((day, index) => (
+          <TaskList key={index} day={day} taskList={filteredTaskList} />
         ))}
       </div>
     </div>

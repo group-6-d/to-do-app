@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import Category from '../../models/Category';
 // import TaskCard from '../../models/TaskCard';
 
 type Inputs = {
@@ -16,7 +17,7 @@ type Inputs = {
 type TaskPopupProps = {
   closeTaskPopup: () => void;
   onAddTask: (task: Inputs) => void;
-  categories: string[];
+  categories: Category[];
 };
 
 const TaskPopupNew: FC<TaskPopupProps> = ({
@@ -109,20 +110,20 @@ const TaskPopupNew: FC<TaskPopupProps> = ({
             />
             {errors.dueDate && <p>{errors.dueDate.message}</p>}
           </div>
-          {/* <div>
-              <label htmlFor='category'>Category</label>
-              <select
-                id='category'
-                {...register('category', { required: 'This field is required' })}
-              >
-                {categories.map((category, index) => (
-                  <option key={index} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-              {errors.category && <p>{errors.category.message}</p>}
-            </div> */}
+          <div>
+            <label htmlFor='category'>Category</label>
+            <select
+              id='category'
+              {...register('category', { required: 'This field is required' })}
+            >
+              {categories.map((category, index) => (
+                <option key={index} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            {errors.category && <p>{errors.category.message}</p>}
+          </div>
           <div>
             <label htmlFor='taskDescription'>Task Description</label>
             <textarea
