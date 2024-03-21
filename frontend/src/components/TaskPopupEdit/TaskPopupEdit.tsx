@@ -97,7 +97,7 @@ const TaskPopupEdit: FC<TaskPopupProps> = ({
             <input
               type='text'
               name='dueDate'
-              value={editedTask?.dueDate}
+              value={editedTask?.due_date}
               onChange={handleInputChange}
               placeholder='Due Date'
               className='focus:border-accent w-full border-b border-stone-400 pb-1 text-lg outline-none md:text-xl'
