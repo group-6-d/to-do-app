@@ -9,7 +9,7 @@ import EditProfileModel from '../../models/EditProfileModel';
 
 const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoggedIn, setisLoggedIn] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<UserModel | undefined>();
+  const [currentUser, setCurrentUser] = useState<UserModel | null>(null);
 
   const navigate = useNavigate();
 
@@ -67,6 +67,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     checkToken();
   }, []);
 
+
   const editUserData = ({ name, email }: EditProfileModel) => {
     const jwt = localStorage.getItem('token');
     userApi
@@ -86,7 +87,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const signout = () => {
     localStorage.clear();
     setisLoggedIn(false);
-    setCurrentUser(undefined);
+    setCurrentUser(null);
     navigate('/login');
   };
 

@@ -6,7 +6,7 @@ import EditProfileModel from '../../models/EditProfileModel';
 
 interface IUserProvider {
   isLoggedIn: boolean;
-  currentUser: UserModel | undefined;
+  currentUser: UserModel | null;
   registration: (data: RegisterModel) => void;
   login: (data: LoginModel) => void;
   editUserData: (data: EditProfileModel) => void;
@@ -16,7 +16,7 @@ interface IUserProvider {
 
 const UserContext = createContext<IUserProvider>({
   isLoggedIn: false,
-  currentUser: undefined,
+  currentUser: null,
   registration: () => {},
   login: () => {},
   editUserData: () => {},

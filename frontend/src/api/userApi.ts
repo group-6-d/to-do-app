@@ -46,7 +46,7 @@ export const check = (token: string) => {
     .then((data) => data);
 };
 
-export const editProfile = (firstName: string, email: string, jwt: string) => {
+export const editProfile = (firstName: string, email: string, jwt: string | null) => {
   return fetch(`${BASE_URL}/v1/users/:id`, {
     method: 'PATCH',
     headers: {
