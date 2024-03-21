@@ -3,20 +3,28 @@ import { useForm } from 'react-hook-form';
 import { IoMdClose } from 'react-icons/io';
 import { AiOutlineSave } from 'react-icons/ai';
 import TaskCard from '../../models/TaskCard';
+import Category from '../../models/Category';
 // import { getPriorityColor } from '../../utils/utils';
 
 interface TaskPopupEditProps {
   task: TaskCard;
   closeTaskPopup: () => void;
   onSaveTask: (updatedTask: TaskCard) => void; // Handler to save the edited task
+  categories: Category[];
 }
 
 const TaskPopupEdit: FC<TaskPopupEditProps> = ({
   task,
   closeTaskPopup,
   onSaveTask,
+  categories,
 }) => {
-  const { register, handleSubmit, reset } = useForm<TaskCard>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<TaskCard>();
 
   useEffect(() => {
     if (task) reset(task); // Resets the form with the current task values when the task prop changes
@@ -61,6 +69,49 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
               className='input'
               {...register('title', { required: 'Title is required' })}
             />
+          </div>
+
+          <div className='my-6  bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
+            <label className=' mr-2'>Priority:</label>
+            {['High', 'Medium', 'Low'].map((priority) => (
+              <label className=' mr-3' key={priority}>
+                <input
+                  className='checked:bg-coral mr-1 h-5 w-5 appearance-none rounded-full bg-white hover:cursor-pointer'
+                  type='radio'
+                  value={priority}
+                  {...register('priority', {
+                    required: 'This field is required',
+                  })}
+                />
+                {priority}
+              </label>
+            ))}
+            {errors.priority && <p>{errors.priority.message}</p>}
+          </div>
+
+          <div className='mb-10 mt-6 grid grid-cols-2 items-end gap-y-4 md:mb-16 md:w-96 md:gap-y-5'>
+            <label htmlFor='dueDate'>Due Date:</label>
+            <input
+              id='dueDate'
+              type='date'
+              {...register('dueDate', { required: 'This field is required' })}
+            />
+            {errors.dueDate && <p>{errors.dueDate.message}</p>}
+          </div>
+
+          <div>
+            <label htmlFor='category'>Category</label>
+            <select
+              id='category'
+              {...register('category', { required: 'This field is required' })}
+            >
+              {categories.map((category, index) => (
+                <option key={index} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            {errors.category && <p>{errors.category.message}</p>}
           </div>
 
           {/* Task Description */}

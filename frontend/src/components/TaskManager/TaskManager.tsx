@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TaskCard from '../../models/TaskCard'; // Adjust the import path as necessary
 import TaskPopupRead from '../TaskPopupRead';
 import TaskPopupEdit from '../TaskPopupEdit';
+import useCategories from '../../hooks/useCategories';
 
 interface TaskManagerProps {
   task: TaskCard;
@@ -17,6 +18,8 @@ const TaskManager: React.FC<TaskManagerProps> = ({
   const initialMode = task ? false : true;
   const [currentTask, setCurrentTask] = useState<TaskCard | null>(initialTask);
   const [isEditMode, setIsEditMode] = useState<boolean>(initialMode);
+  const token = localStorage.getItem('token');
+  const { categories } = useCategories(token);
 
   const handleEditClick = () => {
     setIsEditMode(true); // Switch to edit mode
@@ -45,6 +48,7 @@ const TaskManager: React.FC<TaskManagerProps> = ({
       )}
       {isEditMode && currentTask && (
         <TaskPopupEdit
+          categories={categories || []}
           task={currentTask}
           closeTaskPopup={closeTaskPopup}
           onSaveTask={onSaveTask}
