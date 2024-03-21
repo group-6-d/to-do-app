@@ -29,7 +29,7 @@ const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
 
   return (
     <li className='' key={category.name}>
-      <label className=' items-middle flex cursor-pointer items-center justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
+      <label className='items-middle flex cursor-pointer items-center justify-between p-2 px-5 hover:bg-stone-100 hover:dark:bg-stone-700'>
         {category.name}
         <input
           onChange={handleCategory}

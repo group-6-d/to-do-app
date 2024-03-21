@@ -29,7 +29,7 @@ const SideBar: FC<SideBarProps> = () => {
   };
 
   return (
-    <aside className='h-fit rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
+    <aside className='h-fit min-w-[180px] rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
       <button className='bg-accent hover:bg-accentDark mx-auto mb-4 flex items-center whitespace-nowrap rounded-full px-8 py-4 text-white'>
         <div
           onClick={() => openTaskPopup()}
@@ -40,7 +40,7 @@ const SideBar: FC<SideBarProps> = () => {
         </div>
       </button>
 
-      <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
+      {/* <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
         <div className='p-2'>Priority:</div>
         <div className='flex'>
           <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
@@ -86,7 +86,7 @@ const SideBar: FC<SideBarProps> = () => {
             </label>
           </li>
         </div>
-      </ul>
+      </ul> */}
 
       <ul className=''>
         {!categories && <li className='p-4'>No categories...</li>}

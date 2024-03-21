@@ -14,7 +14,7 @@ const MainPage = () => {
     <div className='flex h-full '>
       <SideBar />
 
-      <div className='flex w-full flex-col gap-x-6 p-4 md:flex-row md:justify-around'>
+      <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
         {daysData.map((day) => (
           <TaskList key={day} day={day} taskList={tasks} />
         ))}
