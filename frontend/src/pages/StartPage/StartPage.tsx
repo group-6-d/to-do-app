@@ -1,10 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import useUser from '../../providers/UserProvider/UserProvider.hook';
 
 const StartPage = () => {
+  const { isLoggedIn } = useUser();
+
+  const navigate = useNavigate();
+
+  const handleLogoNavigate = () => {
+    isLoggedIn ? navigate('/dashboard') : navigate('/login');
+  };
+
   return (
     <div className=' mx-auto flex h-screen max-w-[1520px] flex-col p-6'>
       <header className=' mb-6 flex h-[10%] w-full items-center justify-between'>
-        <div className=' relative flex text-3xl font-medium md:text-5xl'>
+        <button
+          onClick={handleLogoNavigate}
+          className=' relative flex text-3xl font-medium md:text-5xl'
+        >
           <p className='mr-4 md:mr-6'>T </p>
           <p>DO</p>
           <div
@@ -12,7 +24,7 @@ const StartPage = () => {
           md:left-6 md:top-[18px] md:h-6 md:w-6
           '
           ></div>
-        </div>
+        </button>
         <Link to='/login'>
           <span
             className=' text-accent border-accent hover:bg-accent rounded-full border px-10 py-2 

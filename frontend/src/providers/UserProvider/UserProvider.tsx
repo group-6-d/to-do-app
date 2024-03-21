@@ -5,6 +5,7 @@ import * as userApi from '../../api/userApi';
 import RegisterModel from '../../models/RegisterModel';
 import LoginModel from '../../models/LoginModel';
 import UserModel from '../../models/UserModel';
+import EditProfileModel from '../../models/EditProfileModel';
 
 const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoggedIn, setisLoggedIn] = useState<boolean>(false);
@@ -36,7 +37,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
           name: res.user.first_name,
           email: res.user.email,
         });
-        navigate('/');
+        navigate('/dashboard');
       })
       .catch((err) => {
         console.log(err);
@@ -66,6 +67,22 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     checkToken();
   }, []);
 
+  const editUserData = ({ name, email, id }: EditProfileModel) => {
+    const jwt = localStorage.getItem('token');
+    userApi
+      .editProfile(name, email, id, jwt)
+      .then((res) => {
+        setCurrentUser({
+          name: res.user.first_name,
+          email: res.user.email,
+        });
+        navigate('/profile');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const signout = () => {
     localStorage.clear();
     setisLoggedIn(false);
@@ -78,6 +95,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
     currentUser,
     registration,
     login,
+    editUserData,
     signout,
     checkToken,
   };

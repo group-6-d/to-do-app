@@ -1,6 +1,7 @@
-import { useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 // import { Link } from 'react-router-dom';
 import useUser from '../../providers/UserProvider/UserProvider.hook';
+import EditProfileModel from '../../models/EditProfileModel';
 
 type FormData = {
   name: string;
@@ -8,7 +9,7 @@ type FormData = {
 };
 
 const ProfileEdit = () => {
-  const { currentUser } = useUser();
+  const { currentUser, editUserData } = useUser();
 
   const {
     register,
@@ -18,8 +19,8 @@ const ProfileEdit = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
+  const onSubmit = (data: EditProfileModel) => {
+    editUserData(data)
   };
 
   return (
