@@ -6,7 +6,6 @@ import TasksProviderContext from './TasksProvider.context';
 import useTasks from '../../hooks/useTasks';
 
 import type TaskCard from '../../models/TaskCard';
-import type Category from '../../models/Category';
 
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   // const [tasks, setTasks] = useState<TaskCard[]>([]);
@@ -14,6 +13,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { tasks } = useTasks(token);
 
   console.log('tasks in task provider', tasks);
+  
 
   const getTasks = () => {
     setTasks(tasks);
