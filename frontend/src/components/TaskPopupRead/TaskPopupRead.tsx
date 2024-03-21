@@ -11,6 +11,7 @@ interface TaskPopupProps {
 }
 
 const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
+
   const closePopup = (event: React.MouseEvent) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
@@ -58,7 +59,15 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Due date
           </p>
-          <p className='font-medium md:text-xl'>{task?.dueDate}</p>
+          {task?.due_date && (
+            <p className='font-medium md:text-xl'>
+              {new Date(task.due_date).toLocaleDateString('en-GB', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+              })}
+            </p>
+          )}
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Category
           </p>
@@ -66,13 +75,11 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Status
           </p>
-          {!task?.isDone && (
-            <p className='text-coral font-medium uppercase text-white hover:text-opacity-80 md:text-xl'>
-              to do
-            </p>
+          {task?.status === 'todo' && (
+            <p className='text-coral font-medium uppercase md:text-xl'>to do</p>
           )}
-          {task?.isDone && (
-            <p className='font-medium uppercase text-stone-500 hover:text-opacity-80 md:text-xl'>
+          {task?.status === 'done' && (
+            <p className='font-medium uppercase text-stone-500 md:text-xl'>
               done
             </p>
           )}

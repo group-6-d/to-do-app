@@ -2,7 +2,7 @@ type TaskCard = {
   id: number;
   title: string;
   description?: string;
-  dueDate?: string;
+  due_date?: string;
   priority?: 'high' | 'middle' | 'low';
   isDone?: boolean;
   status?: string;
