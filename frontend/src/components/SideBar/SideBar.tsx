@@ -89,6 +89,7 @@ const SideBar: FC<SideBarProps> = () => {
       </ul>
 
       <ul className=''>
+        {!categories && <li className='p-4'>No categories...</li>}
         {categories &&
           categories.map((category) => <SideBarItem category={category} />)}
       </ul>

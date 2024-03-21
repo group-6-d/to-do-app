@@ -30,13 +30,19 @@ const TaskList: FC<TaskListProps> = ({ taskList, day }) => {
         </h4>
         <div className='h-full md:overflow-scroll'>
           <div className='mb-6 rounded-b-2xl bg-white pb-2 shadow-xl md:mb-[5rem] dark:bg-stone-800 '>
-            {taskList.map((task) => (
-              <TaskListItem
-                key={task.id}
-                task={task}
-                onClick={() => openTaskPopup(task)}
-              />
-            ))}
+            {!taskList && (
+              <li className='hover:dark:border-accent mx-2 mb-3 flex cursor-default flex-col justify-between rounded-lg border-[1px] border-stone-200 bg-white px-4  py-2 dark:border-stone-700 dark:bg-stone-800'>
+                No tasks
+              </li>
+            )}
+            {taskList &&
+              taskList.map((task) => (
+                <TaskListItem
+                  key={task.id}
+                  task={task}
+                  onClick={() => openTaskPopup(task)}
+                />
+              ))}
           </div>
         </div>
       </ul>
