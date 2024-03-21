@@ -14,16 +14,20 @@ interface SideBarItemProps {
 }
 
 const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
-  const { filters, filterTasksHandler } = useContext(SelectedCategoriesContext);
+  const { selectedCategories, selectedCategoriesHandler } = useContext(
+    SelectedCategoriesContext,
+  );
 
   const handleCategory = (e: React.ChangeEvent<HTMLInputElement>) => {
     const categoryName = e.target.value;
     const isChecked = e.target.checked;
 
     if (isChecked) {
-      filterTasksHandler([...(filters ?? []), categoryName]);
+      selectedCategoriesHandler([...(selectedCategories ?? []), categoryName]);
     } else {
-      filterTasksHandler((filters ?? []).filter((cat) => cat !== categoryName));
+      selectedCategoriesHandler(
+        (selectedCategories ?? []).filter((cat) => cat !== categoryName),
+      );
     }
   };
 
@@ -32,6 +36,7 @@ const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
       <label className='items-middle flex cursor-pointer items-center justify-between p-2 px-5 hover:bg-stone-100 hover:dark:bg-stone-700'>
         {category.name}
         <input
+          defaultChecked={selectedCategories.includes(category.name)}
           onChange={handleCategory}
           type='checkbox'
           name='categoryCheckbox'

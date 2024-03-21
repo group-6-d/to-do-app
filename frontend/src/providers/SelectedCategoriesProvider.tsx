@@ -1,14 +1,14 @@
 import { createContext, useState, ReactNode } from 'react';
 
 interface SelectedCategoriesContextType {
-  filters: string[] | null;
-  filterTasksHandler: (selectedCategories: string[]) => void;
+  selectedCategories: string[];
+  selectedCategoriesHandler: (selectedCategories: string[]) => void;
 }
 
 export const SelectedCategoriesContext =
   createContext<SelectedCategoriesContextType>({
-    filters: null,
-    filterTasksHandler: () => undefined,
+    selectedCategories: [],
+    selectedCategoriesHandler: () => undefined,
   });
 
 type SelectedCategoriesProviderProps = {
@@ -18,16 +18,25 @@ type SelectedCategoriesProviderProps = {
 const SelectedCategoriesProvider = ({
   children,
 }: SelectedCategoriesProviderProps) => {
-  const [filters, setSelectedCategories] = useState<string[] | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([
+    'personal',
+    'hobbies',
+    'movies',
+    'shopping',
+    'work',
+    'other',
+  ]);
 
-  const filterTasksHandler = (selectedCategories: string[]) => {
+  const selectedCategoriesHandler = (selectedCategories: string[]) => {
     setSelectedCategories(selectedCategories);
   };
 
-  console.log('filters in filter provider', filters);
+  console.log('selectedCategories in filter provider', selectedCategories);
 
   return (
-    <SelectedCategoriesContext.Provider value={{ filters, filterTasksHandler }}>
+    <SelectedCategoriesContext.Provider
+      value={{ selectedCategories, selectedCategoriesHandler }}
+    >
       {children}
     </SelectedCategoriesContext.Provider>
   );
