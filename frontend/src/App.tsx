@@ -26,8 +26,8 @@ function App() {
             <SelectedCategoriesProvider>
               <Routes>
                 <Route
-                  path='/hi'
-                  element={<UnprotectedRoute element={<StartPage />} />}
+                  path='/'
+                  element={<StartPage />}
                 />
                 <Route
                   path='/register'
@@ -39,7 +39,7 @@ function App() {
                 />
                 <Route element={<PageContainer />}>
                   <Route
-                    path='/'
+                    path='/dashboard'
                     element={<ProtectedRoute element={<MainPage />} />}
                   />
                   <Route

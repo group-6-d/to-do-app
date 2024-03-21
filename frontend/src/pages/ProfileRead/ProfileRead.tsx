@@ -7,7 +7,7 @@ const ProfileRead = () => {
   const handleLogout = () => {
     signout();
   };
-  
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Hi, {currentUser?.name}!</h2>
@@ -24,7 +24,13 @@ const ProfileRead = () => {
       <div className={styles.link_edit}>
         <Link to='/profile/edit'>Edit</Link>
       </div>
-      <button className=' py-1 w-32 text-lg' onClick={handleLogout}>Log out</button>
+      <button
+        className=' hover:bg-accent rounded-full border border-gray-800 px-3 py-1 text-lg text-gray-800 
+          transition duration-1000 ease-in-out hover:border-none hover:text-white'
+        onClick={handleLogout}
+      >
+        Log out
+      </button>
     </div>
   );
 };
