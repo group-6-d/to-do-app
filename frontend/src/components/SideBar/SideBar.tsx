@@ -8,7 +8,6 @@
 import { FC, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
-import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 import TaskPopupNew from '../TaskPopupNew';
 import useCategories from '../../hooks/useCategories';
 
@@ -16,7 +15,7 @@ interface SideBarProps {
   handleCategory: (e: any) => void;
 }
 
-const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
+const SideBar: FC<SideBarProps> = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
   const token = localStorage.getItem('token');
   const { categories } = useCategories(token);
@@ -28,10 +27,9 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
   const closeTaskPopup = () => {
     setIsTaskPopupOpen(false);
   };
-  // const { categoryListDate } = useTasksBoard();
 
   return (
-    <aside className='h-fit rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
+    <aside className='h-fit min-w-[180px] rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
       <button className='bg-accent hover:bg-accentDark mx-auto mb-4 flex items-center whitespace-nowrap rounded-full px-8 py-4 text-white'>
         <div
           onClick={() => openTaskPopup()}
@@ -42,7 +40,7 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
         </div>
       </button>
 
-      <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
+      {/* <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
         <div className='p-2'>Priority:</div>
         <div className='flex'>
           <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
@@ -88,13 +86,12 @@ const SideBar: FC<SideBarProps> = ({ handleCategory }) => {
             </label>
           </li>
         </div>
-      </ul>
+      </ul> */}
 
       <ul className=''>
+        {!categories && <li className='p-4'>No categories...</li>}
         {categories &&
-          categories.map((category) => (
-            <SideBarItem category={category} handleCategory={handleCategory} />
-          ))}
+          categories.map((category) => <SideBarItem category={category} />)}
       </ul>
       {isTaskPopupOpen && <TaskPopupNew closeTaskPopup={closeTaskPopup} />}
     </aside>

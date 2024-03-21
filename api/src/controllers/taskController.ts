@@ -9,24 +9,27 @@ class TaskController {
   async createTask(req, res, next) {
     try {
       const {
+        user_id,
         title,
         description,
         due_date,
         priority,
         status,
-        // categoryId
+        category_id,
       } = req.body;
       const task = await Task.create({
+        user_id,
         title,
         description,
         due_date,
         priority,
         status,
-        // categoryId
+        category_id,
       });
       return res.json(task);
-    } catch (e) {
-      next(StatusCodes.BAD_REQUEST(e.message));
+    } catch (err) {
+      console.error(err);
+      res.status(StatusCodes.BAD_REQUEST).json({ err });
     }
   }
 
@@ -35,6 +38,7 @@ class TaskController {
     return res.json(tasks);
   }
 
+  //? do we need this one?
   async getOneTask(req, res, next) {
     try {
       const { id } = req.params;
@@ -48,21 +52,17 @@ class TaskController {
 
       return res.json(task);
     } catch (err) {
-      next(StatusCodes.INTERNAL_SERVER_ERROR('Failed to fetch task.'));
+      // next(StatusCodes.INTERNAL_SERVER_ERROR('Failed to fetch task.'));
+      console.error(err);
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
     }
   }
 
   async editTask(req, res, next) {
     try {
       const { id } = req.params;
-      const {
-        title,
-        description,
-        due_date,
-        priority,
-        status,
-        // categoryId
-      } = req.body;
+      const { title, description, due_date, priority, status, category_id } =
+        req.body;
       const task = await Task.findOne({
         where: { id },
       });
@@ -76,13 +76,15 @@ class TaskController {
       task.due_date = due_date;
       task.priority = priority;
       task.status = status;
-      //   task.categoryId = categoryId;
+      task.category_id = category_id;
 
       // save updated task
       await task.save();
       return res.json(task);
     } catch (err) {
-      next(ApiError.badRequest('Failed to edit task.'));
+      // next(ApiError.badRequest('Failed to edit task.'));
+      console.error(err);
+      res.status(StatusCodes.BAD_REQUEST).json({ err });
     }
   }
 
@@ -99,7 +101,9 @@ class TaskController {
 
       return res.json({ message: 'Task deleted successfully' });
     } catch (err) {
-      next(StatusCodes.BAD_REQUEST('Failed to delete task.'));
+      // next(StatusCodes.BAD_REQUEST);
+      console.error(err);
+      res.status(StatusCodes.BAD_REQUEST).json({ err });
     }
   }
 }
