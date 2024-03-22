@@ -1,8 +1,9 @@
 import { createContext, useState, ReactNode } from 'react';
+import type Category from '../models/Category';
 
 interface SelectedCategoriesContextType {
-  selectedCategories: string[];
-  selectedCategoriesHandler: (selectedCategories: string[]) => void;
+  selectedCategories: Category[];
+  selectedCategoriesHandler: (selectedCategories: Category[]) => void;
 }
 
 export const SelectedCategoriesContext =
@@ -18,16 +19,9 @@ type SelectedCategoriesProviderProps = {
 const SelectedCategoriesProvider = ({
   children,
 }: SelectedCategoriesProviderProps) => {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([
-    'personal',
-    'hobbies',
-    'movies',
-    'shopping',
-    'work',
-    'other',
-  ]);
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 
-  const selectedCategoriesHandler = (selectedCategories: string[]) => {
+  const selectedCategoriesHandler = (selectedCategories: Category[]) => {
     setSelectedCategories(selectedCategories);
   };
 

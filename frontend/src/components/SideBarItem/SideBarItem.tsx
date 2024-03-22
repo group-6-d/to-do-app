@@ -22,11 +22,16 @@ const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
     const categoryName = e.target.value;
     const isChecked = e.target.checked;
 
+    const categoryId = category.id;
+
     if (isChecked) {
-      selectedCategoriesHandler([...(selectedCategories ?? []), categoryName]);
+      selectedCategoriesHandler([
+        ...selectedCategories,
+        { id: categoryId, name: categoryName },
+      ]);
     } else {
       selectedCategoriesHandler(
-        (selectedCategories ?? []).filter((cat) => cat !== categoryName),
+        selectedCategories.filter((cat) => cat.id !== categoryId),
       );
     }
   };
