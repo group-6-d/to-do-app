@@ -80,7 +80,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
             Category
           </p>
           <p className='text-accent font-medium md:text-xl'>
-            {getCategoryNameById(task.category_id)}
+            {getCategoryNameById(task!.category_id)}
           </p>
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Status
