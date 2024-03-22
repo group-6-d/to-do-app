@@ -20,6 +20,8 @@ const SideBar: FC<SideBarProps> = () => {
   const token = localStorage.getItem('token');
   const { categories } = useCategories(token);
 
+  console.log('categories in sidebar', categories);
+
   const openTaskPopup = () => {
     setIsTaskPopupOpen(true);
   };

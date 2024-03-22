@@ -4,6 +4,7 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
+import useCategories from '../../hooks/useCategories';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -11,12 +12,19 @@ interface TaskPopupProps {
 }
 
 const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
-
   const closePopup = (event: React.MouseEvent) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
 
   const priorityColor = getPriorityColor(task?.priority);
+
+  const token = localStorage.getItem('token');
+  const { categories } = useCategories(token);
+
+  const getCategoryNameById = (categoryId: number) => {
+    const category = categories?.find((cat) => cat.id === categoryId);
+    return category ? category.name : 'Unknown Category';
+  };
 
   return (
     <div
@@ -71,7 +79,9 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Category
           </p>
-          <p className='text-accent font-medium md:text-xl'>{task?.category}</p>
+          <p className='text-accent font-medium md:text-xl'>
+            {getCategoryNameById(task.category_id)}
+          </p>
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Status
           </p>

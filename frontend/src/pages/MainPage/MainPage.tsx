@@ -10,6 +10,8 @@ const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 const MainPage = () => {
   const { tasks } = useTasksBoard();
 
+  console.log('tasks', tasks);
+
   return (
     <div className='flex h-full '>
       <SideBar />
