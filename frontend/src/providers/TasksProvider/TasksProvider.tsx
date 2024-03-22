@@ -17,6 +17,8 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const getTasks = () => {
     setTasks(tasks);
+  const getTasks = () => {
+    setTasks(tasks);
   };
 
   const createTask = (data: TaskCard) => {
@@ -28,12 +30,16 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
       priority: data.priority,
       isDone: data.isDone,
       status: data.status,
+      status: data.status,
       categoryId: data.category,
     };
+    setTasks((prevList: TaskCard[]) => [...prevList, newCard]);
     setTasks((prevList: TaskCard[]) => [...prevList, newCard]);
   };
 
   const deleteTask = (data: TaskCard) => {
+    const updList = tasks.filter((card: TaskCard) => card.id !== data.id);
+    setTasks(updList);
     const updList = tasks.filter((card: TaskCard) => card.id !== data.id);
     setTasks(updList);
   };
@@ -45,6 +51,8 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   // }
 
   const value = {
+    tasks,
+    getTasks,
     tasks,
     getTasks,
     createTask,
