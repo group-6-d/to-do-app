@@ -24,11 +24,9 @@ function App() {
         <UserProvider>
           <TasksProvider>
             <SelectedCategoriesProvider>
+              {/* <SelectedCategoriesProvider> */}
               <Routes>
-                <Route
-                  path='/'
-                  element={<StartPage />}
-                />
+                <Route path='/' element={<StartPage />} />
                 <Route
                   path='/register'
                   element={<UnprotectedRoute element={<Register />} />}
@@ -53,6 +51,7 @@ function App() {
                   <Route path='*' element={<ErrorPage />} />
                 </Route>
               </Routes>
+              {/* </SelectedCategoriesProvider> */}
             </SelectedCategoriesProvider>
           </TasksProvider>
         </UserProvider>

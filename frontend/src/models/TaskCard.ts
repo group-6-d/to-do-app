@@ -6,6 +6,9 @@ type TaskCard = {
   priority?: 'high' | 'middle' | 'low';
   isDone?: boolean;
   status?: string;
+  category_id: number;
+
+  // todo: will be deleted
   category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies' | 'other';
 };
 // export type TaskCardcategory='personal' | 'work' | 'shopping' | 'hobbies' | 'movies';

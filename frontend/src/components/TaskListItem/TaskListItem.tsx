@@ -3,6 +3,7 @@ import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { MdOutlineDone, MdDoneAll } from 'react-icons/md';
 import { TbPointFilled } from 'react-icons/tb';
+import useCategories from '../../hooks/useCategories';
 
 interface TaskProps {
   task: TaskCard;
@@ -10,8 +11,16 @@ interface TaskProps {
 }
 
 const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
-  const { id, title, category, priority, isDone } = task;
+  const { id, title, priority, isDone } = task;
   const priorityColor = getPriorityColor(priority);
+
+  const token = localStorage.getItem('token');
+  const { categories } = useCategories(token);
+
+  const getCategoryNameById = (categoryId: number) => {
+    const category = categories?.find((cat) => cat.id === categoryId);
+    return category ? category.name : 'Unknown Category';
+  };
 
   return (
     <li
@@ -20,7 +29,9 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
       className='hover:dark:border-accent mx-2 mb-3 flex flex-col justify-between rounded-lg border-[1px] border-stone-200 bg-white px-4 py-2 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800'
     >
       <div className='flex items-center justify-between'>
-        <div className='font-thin text-stone-400'>&#8250;&#32;{category}</div>
+        <div className='font-thin text-stone-400'>
+          &#8250;&#32;{getCategoryNameById(task.category_id)}
+        </div>
         <TbPointFilled className={`text-4xl ${priorityColor}`} />
       </div>
 
