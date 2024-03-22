@@ -4,7 +4,7 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
-import useCategories from '../../hooks/useCategories';
+import { useCategoriesContext } from '../../providers/CategoryProvider';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -12,14 +12,12 @@ interface TaskPopupProps {
 }
 
 const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
+  const priorityColor = getPriorityColor(task?.priority);
+  const categories = useCategoriesContext();
+
   const closePopup = (event: React.MouseEvent) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
-
-  const priorityColor = getPriorityColor(task?.priority);
-
-  const token = localStorage.getItem('token');
-  const { categories } = useCategories(token);
 
   const getCategoryNameById = (categoryId: number) => {
     const category = categories?.find((cat) => cat.id === categoryId);

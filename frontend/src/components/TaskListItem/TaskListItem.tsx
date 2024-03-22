@@ -3,7 +3,7 @@ import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { MdOutlineDone, MdDoneAll } from 'react-icons/md';
 import { TbPointFilled } from 'react-icons/tb';
-import useCategories from '../../hooks/useCategories';
+import { useCategoriesContext } from '../../providers/CategoryProvider';
 
 interface TaskProps {
   task: TaskCard;
@@ -13,9 +13,7 @@ interface TaskProps {
 const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const { id, title, priority, isDone } = task;
   const priorityColor = getPriorityColor(priority);
-
-  const token = localStorage.getItem('token');
-  const { categories } = useCategories(token);
+  const categories = useCategoriesContext();
 
   const getCategoryNameById = (categoryId: number) => {
     const category = categories?.find((cat) => cat.id === categoryId);

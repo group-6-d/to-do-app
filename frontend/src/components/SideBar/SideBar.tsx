@@ -9,7 +9,7 @@ import { FC, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import TaskPopupNew from '../TaskPopupNew';
-import useCategories from '../../hooks/useCategories';
+import { useCategoriesContext } from '../../providers/CategoryProvider';
 
 interface SideBarProps {
   handleCategory: (e: any) => void;
@@ -17,8 +17,7 @@ interface SideBarProps {
 
 const SideBar: FC<SideBarProps> = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
-  const token = localStorage.getItem('token');
-  const { categories } = useCategories(token);
+  const categories = useCategoriesContext();
 
   const openTaskPopup = () => {
     setIsTaskPopupOpen(true);
