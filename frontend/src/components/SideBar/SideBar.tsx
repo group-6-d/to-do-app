@@ -9,7 +9,7 @@ import { FC, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import TaskPopupNew from '../TaskPopupNew';
-import { useCategoriesContext } from '../../providers/CategoryProvider';
+import { useCategoriesContext } from '../../context/CategoryContext';
 
 interface SideBarProps {
   handleCategory: (e: any) => void;

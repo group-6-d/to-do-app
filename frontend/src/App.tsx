@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import TasksProvider from './providers/TasksProvider/TasksProvider';
 import UserProvider from './providers/UserProvider/UserProvider';
-import { ThemeProvider } from './providers/ThemeProvider.tsx';
+import { ThemeContextProvider } from './context/ThemeContext.tsx';
+import SelectedCategoriesProvider from './context/SelectedCategoriesContext.tsx';
+import { CategoriesProvider } from './context/CategoryContext.tsx';
 
 import ProtectedRoute from './routeProtection/ProtectedRoute.tsx';
 import UnprotectedRoute from './routeProtection/UnprotectedRoute.tsx';
@@ -15,18 +17,15 @@ import Register from './pages/Register';
 import ErrorPage from './pages/ErrorPage/ErrorPage.tsx';
 import ProfileRead from './pages/ProfileRead/index.ts';
 import ProfileEdit from './pages/ProfileEdit/ProfileEdit.tsx';
-import SelectedCategoriesProvider from './providers/SelectedCategoriesProvider.tsx';
-import { CategoriesProvider } from './providers/CategoryProvider.tsx';
 
 function App() {
   return (
-    <ThemeProvider>
+    <ThemeContextProvider>
       <BrowserRouter>
         <UserProvider>
           <CategoriesProvider>
             <TasksProvider>
               <SelectedCategoriesProvider>
-                {/* <SelectedCategoriesProvider> */}
                 <Routes>
                   <Route path='/' element={<StartPage />} />
                   <Route
@@ -53,13 +52,12 @@ function App() {
                     <Route path='*' element={<ErrorPage />} />
                   </Route>
                 </Routes>
-                {/* </SelectedCategoriesProvider> */}
               </SelectedCategoriesProvider>
             </TasksProvider>
           </CategoriesProvider>
         </UserProvider>
       </BrowserRouter>
-    </ThemeProvider>
+    </ThemeContextProvider>
   );
 }
 

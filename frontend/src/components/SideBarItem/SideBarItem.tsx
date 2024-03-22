@@ -7,7 +7,7 @@
 //   } from 'react-icons/md';
 import { FC, useContext } from 'react';
 import Category from '../../models/Category';
-import { SelectedCategoriesContext } from '../../providers/SelectedCategoriesProvider';
+import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
 
 interface SideBarItemProps {
   category: Category;

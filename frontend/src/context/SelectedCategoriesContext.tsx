@@ -1,20 +1,20 @@
 import { createContext, useState, ReactNode } from 'react';
 import type Category from '../models/Category';
 
-interface SelectedCategoriesContextType {
+interface SelectedCategoriesContext {
   selectedCategories: Category[];
   selectedCategoriesHandler: (selectedCategories: Category[]) => void;
 }
 
 export const SelectedCategoriesContext =
-  createContext<SelectedCategoriesContextType>({
+  createContext<SelectedCategoriesContext>({
     selectedCategories: [],
     selectedCategoriesHandler: () => undefined,
   });
 
-type SelectedCategoriesProviderProps = {
+interface SelectedCategoriesProviderProps {
   children: ReactNode;
-};
+}
 
 const SelectedCategoriesProvider = ({
   children,
@@ -24,8 +24,6 @@ const SelectedCategoriesProvider = ({
   const selectedCategoriesHandler = (selectedCategories: Category[]) => {
     setSelectedCategories(selectedCategories);
   };
-
-  console.log('selectedCategories in filter provider', selectedCategories);
 
   return (
     <SelectedCategoriesContext.Provider

@@ -5,8 +5,8 @@ import { useState, useContext, useEffect } from 'react';
 import SideBar from '../../components/SideBar/SideBar';
 import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
-import { SelectedCategoriesContext } from '../../providers/SelectedCategoriesProvider';
-import { useCategoriesContext } from '../../providers/CategoryProvider';
+import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
+import { useCategoriesContext } from '../../context/CategoryContext';
 
 const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 

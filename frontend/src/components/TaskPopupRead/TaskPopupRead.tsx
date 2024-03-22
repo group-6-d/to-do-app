@@ -4,7 +4,7 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
-import { useCategoriesContext } from '../../providers/CategoryProvider';
+import { useCategoriesContext } from '../../context/CategoryContext';
 
 interface TaskPopupProps {
   task: TaskCard | null;

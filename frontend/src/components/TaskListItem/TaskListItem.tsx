@@ -3,7 +3,7 @@ import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { MdOutlineDone, MdDoneAll } from 'react-icons/md';
 import { TbPointFilled } from 'react-icons/tb';
-import { useCategoriesContext } from '../../providers/CategoryProvider';
+import { useCategoriesContext } from '../../context/CategoryContext';
 
 interface TaskProps {
   task: TaskCard;
