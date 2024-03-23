@@ -20,6 +20,12 @@ const SideBar: FC = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
   const categories = useCategoriesContext();
 
+  // const arrСategories = Object.values(categories);
+  const arrСategories = Object.values(categories).flat();
+
+  // console.log('categories sideBar', categories);
+  // console.log('arrСategories sideBar', arrСategories);
+
   const openTaskPopup = () => {
     setIsTaskPopupOpen(true);
   };
@@ -89,10 +95,10 @@ const SideBar: FC = () => {
       </ul> */}
 
       <ul className=''>
-        {!categories ? (
+        {!arrСategories ? (
           <li className='p-4'>Loading...</li>
         ) : (
-          categories.map((category: Category) => (
+          arrСategories.map((category: Category) => (
             <SideBarItem key={category.id} category={category} />
           ))
         )}

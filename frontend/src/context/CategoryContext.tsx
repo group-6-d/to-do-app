@@ -14,8 +14,6 @@ const CategoriesContext = createContext<CategoriesContextType>({
   categories: [],
 });
 
-// const CategoriesContext = createContext<CategoriesContextType | null>(null);
-
 interface CategoriesProviderProps {
   children: ReactNode;
 }
@@ -25,10 +23,11 @@ export const CategoriesProvider = ({ children }: CategoriesProviderProps) => {
   const { categories } = useCategories(token);
 
   return (
-    <CategoriesContext.Provider value={categories}>
+    <CategoriesContext.Provider value={{ categories }}>
       {children}
     </CategoriesContext.Provider>
   );
 };
 
-export const useCategoriesContext = () => useContext(CategoriesContext);
+export const useCategoriesContext = (): CategoriesContextType =>
+  useContext(CategoriesContext);

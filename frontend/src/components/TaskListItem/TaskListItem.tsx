@@ -19,8 +19,10 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const priorityColor = getPriorityColor(priority);
   const categories = useCategoriesContext();
 
+  const arrСategories = Object.values(categories).flat();
+
   const getCategoryNameById = (categoryId: number) => {
-    const category = categories?.find((cat) => cat.id === categoryId);
+    const category = arrСategories?.find((cat) => cat.id === categoryId);
     return category ? category.name : 'Unknown Category';
   };
 
