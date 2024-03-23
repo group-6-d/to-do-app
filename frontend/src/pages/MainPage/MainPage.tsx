@@ -7,16 +7,14 @@ import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
 import { useCategoriesContext } from '../../context/CategoryContext';
+import { getFormattedDate } from '../../utils/utils';
 import type TaskCard from '../../models/TaskCard';
-
-// const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
 const MainPage = () => {
   const { tasks } = useTasksBoard();
   const categories = useCategoriesContext();
   const { selectedCategories } = useContext(SelectedCategoriesContext);
   const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
-
   const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
   const [tasksTomorrow, setTasksTomorrow] = useState<TaskCard[]>([]);
   const [tasksUpcoming, setTasksUpcoming] = useState<TaskCard[]>([]);
@@ -54,9 +52,6 @@ const MainPage = () => {
         .toISOString()
         .split('T')[0];
 
-      console.log('today', today);
-      console.log('tomorrow', tomorrow);
-
       const tasksToday = filteredTasksByCategory.filter(
         (task) => task.due_date === today,
       );
@@ -75,9 +70,6 @@ const MainPage = () => {
     sortAndFilterTasks();
   }, [filteredTasksByCategory]);
 
-  console.log('tasksToday', tasksToday);
-  console.log('tasksTomorrow', tasksTomorrow);
-  console.log('tasksUpcoming', tasksUpcoming);
   return (
     <div className='flex h-full'>
       <SideBar />
