@@ -90,13 +90,13 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
           </div>
 
           <div className='mb-10 mt-6 grid grid-cols-2 items-end gap-y-4 md:mb-16 md:w-96 md:gap-y-5'>
-            <label htmlFor='dueDate'>Due Date:</label>
+            <label htmlFor='due_date'>Due Date:</label>
             <input
-              id='dueDate'
+              id='due_date'
               type='date'
-              {...register('dueDate', { required: 'This field is required' })}
+              {...register('due_date', { required: 'This field is required' })}
             />
-            {errors.dueDate && <p>{errors.dueDate.message}</p>}
+            {errors.due_date && <p>{errors.due_date.message}</p>}
           </div>
 
           <div>
