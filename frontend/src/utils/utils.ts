@@ -1,3 +1,5 @@
+import TaskCard from '../models/TaskCard';
+
 export const getPriorityColor = (priority?: string) => {
   switch (priority) {
     case 'high':
