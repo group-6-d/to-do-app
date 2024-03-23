@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { IoMdClose } from 'react-icons/io';
-import { AiOutlineSave } from 'react-icons/ai';
+import { IoMdCheckmarkCircleOutline, IoMdClose } from 'react-icons/io';
+// import { AiOutlineSave } from 'react-icons/ai';
 import TaskCard from '../../models/TaskCard';
 import Category from '../../models/Category';
 // import { getPriorityColor } from '../../utils/utils';
@@ -50,15 +50,17 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
         <section className='mb-6 flex w-full justify-end md:mb-12'>
           <ul className='grid grid-cols-2 gap-3 text-xl text-stone-600 md:gap-6 md:text-2xl'>
             <li>
-              <AiOutlineSave onClick={onSubmit} className='icon' />
+              <IoMdCheckmarkCircleOutline onClick={onSubmit} className='icon' />
             </li>
+            {/* <li>
+              <AiOutlineSave onClick={onSubmit} className='icon' />
+            </li> */}
             <li>
               <IoMdClose onClick={closeTaskPopup} className='icon' />
             </li>
           </ul>
         </section>
         <form onSubmit={onSubmit} noValidate>
-          {/* Task Title */}
           <div className='mb-4'>
             <label htmlFor='title' className='mb-2 block text-sm font-medium'>
               Title
@@ -128,8 +130,6 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
               {...register('description')}
             />
           </div>
-
-          {/* Additional fields like Priority, Category, Due Date, etc., can be added here in a similar fashion */}
         </form>
       </div>
     </div>
