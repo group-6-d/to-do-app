@@ -101,7 +101,7 @@ const TaskPopupNew: FC<TaskPopupProps> = ({
             ))}
             {errors.priority && <p>{errors.priority.message}</p>}
           </div>
-          <div className='mb-10 mt-6 grid grid-cols-2 items-end gap-y-4 md:mb-16 md:w-96 md:gap-y-5'>
+          <div className='mb-10 mt-6 grid grid-cols-2 items-end gap-y-4 md:mb-3 md:w-96 md:gap-y-5'>
             <label htmlFor='dueDate'>Due Date:</label>
             <input
               id='dueDate'
@@ -110,9 +110,10 @@ const TaskPopupNew: FC<TaskPopupProps> = ({
             />
             {errors.dueDate && <p>{errors.dueDate.message}</p>}
           </div>
-          <div>
+          <div className='mb-10 mt-6 grid grid-cols-2 items-end gap-y-4 md:mb-3 md:w-96 md:gap-y-5'>
             <label htmlFor='category'>Category</label>
             <select
+              className=' border'
               id='category'
               {...register('category', { required: 'This field is required' })}
             >
@@ -130,7 +131,7 @@ const TaskPopupNew: FC<TaskPopupProps> = ({
               className='focus:border-accent flex w-full items-start border border-stone-400 px-2 py-1 outline-none md:text-xl'
               id='description'
               // type='string'
-              rows={10}
+              rows={5}
               {...register('description', {
                 required: 'This field is required',
               })}
