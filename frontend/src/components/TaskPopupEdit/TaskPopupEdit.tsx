@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import { FC,  } from 'react';
 import { useForm } from 'react-hook-form';
-import { IoMdCheckmarkCircleOutline, IoMdClose } from 'react-icons/io';
+import { IoMdClose } from 'react-icons/io';
 // import { AiOutlineSave } from 'react-icons/ai';
 import TaskCard from '../../models/TaskCard';
 import Category from '../../models/Category';
