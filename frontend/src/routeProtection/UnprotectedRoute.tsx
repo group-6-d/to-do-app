@@ -6,14 +6,14 @@ interface UnprotectedRouteProps {
   element: ReactNode;
 }
 
-const UnprotectedRoute: FC<UnprotectedRouteProps> = ({element}) => {
+const UnprotectedRoute: FC<UnprotectedRouteProps> = ({ element }) => {
   const { isLoggedIn } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(isLoggedIn) navigate(-1);
+    if (isLoggedIn) navigate('/dashboard');
   }, [isLoggedIn, navigate]);
-  
+
   return isLoggedIn ? null : element;
 };
 
