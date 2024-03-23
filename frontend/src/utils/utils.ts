@@ -10,6 +10,7 @@ export const getPriorityColor = (priority?: string) => {
       return 'text-purple';
       break;
     default:
+      return 'text-transparent';
       break;
   }
 };

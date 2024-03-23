@@ -14,7 +14,7 @@ const MainPage = () => {
   const { tasks } = useTasksBoard();
   const categories = useCategoriesContext();
   const { selectedCategories } = useContext(SelectedCategoriesContext);
-  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
 
   useEffect(() => {
     if (selectedCategories && categories) {
@@ -34,21 +34,24 @@ const MainPage = () => {
         });
       };
 
-      const filteredTasks = filterTasksByCategory(tasks, selectedCategories);
-      setFilteredTasks(filteredTasks);
+      const filteredTasksByCategory = filterTasksByCategory(
+        tasks,
+        selectedCategories,
+      );
+      setFilteredTasksByCategory(filteredTasksByCategory);
     }
   }, [tasks, categories, selectedCategories]);
 
   // console.log('selectedCategories in main', selectedCategories);
-  // console.log('filteredTasks in main', filteredTasks);
+  // console.log('filteredTasksByCategory in main', filteredTasksByCategory);
 
   return (
-    <div className='flex h-full '>
+    <div className='flex h-full'>
       <SideBar />
 
       <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
         {daysData.map((day) => (
-          <TaskList key={day} day={day} taskList={filteredTasks} />
+          <TaskList key={day} day={day} taskList={filteredTasksByCategory} />
         ))}
       </div>
     </div>
