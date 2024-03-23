@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
-import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+// import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Category from '../../models/Category';
 // import TaskCard from '../../models/TaskCard';
@@ -56,12 +56,12 @@ const TaskPopupNew: FC<TaskPopupProps> = ({
             <li>
               <IoMdCheckmarkCircleOutline className='icon' />
             </li>
-            <li>
+            {/* <li>
               <AiOutlineDelete className='icon' />
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <AiOutlineEdit className='icon' />
-            </li>
+            </li> */}
             <li>
               <IoMdClose
                 onClick={closeTaskPopup}
