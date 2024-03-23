@@ -18,8 +18,6 @@ interface SideBarItemProps {
 }
 
 const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
-  // console.log('category - in SideBarItem ', category);
-
   const { selectedCategories, selectedCategoriesHandler } = useContext(
     SelectedCategoriesContext,
   );

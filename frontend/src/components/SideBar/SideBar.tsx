@@ -20,11 +20,7 @@ const SideBar: FC = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
   const categories = useCategoriesContext();
 
-  // const arrСategories = Object.values(categories);
   const arrСategories = Object.values(categories).flat();
-
-  // console.log('categories sideBar', categories);
-  // console.log('arrСategories sideBar', arrСategories);
 
   const openTaskPopup = () => {
     setIsTaskPopupOpen(true);

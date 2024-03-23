@@ -5,6 +5,7 @@ import { TbPointFilled } from 'react-icons/tb';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { useCategoriesContext } from '../../context/CategoryContext';
+import type Category from '../../models/Category';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -15,12 +16,16 @@ const TaskPopupRead: FC<TaskPopupProps> = ({ task, closeTaskPopup }) => {
   const priorityColor = getPriorityColor(task?.priority);
   const categories = useCategoriesContext();
 
+  const arrСategories = Object.values(categories).flat();
+
   const closePopup = (event: React.MouseEvent) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
 
   const getCategoryNameById = (categoryId: number) => {
-    const category = categories?.find((cat) => cat.id === categoryId);
+    const category = arrСategories?.find(
+      (cat: Category) => cat.id === categoryId,
+    );
     return category ? category.name : 'Unknown Category';
   };
 
