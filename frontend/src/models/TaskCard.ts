@@ -7,6 +7,7 @@ type TaskCard = {
   isDone?: boolean;
   status?: string;
   category_id: number;
+  categoryName: string
 
   // todo: will be deleted
   category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies' | 'other';
