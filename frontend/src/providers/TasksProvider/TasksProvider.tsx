@@ -13,8 +13,6 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('token');
   const { tasks } = useTasks(token);
 
-  console.log('tasks in task provider', tasks);
-
   const getTasks = () => {
     setTasks(tasks);
   };

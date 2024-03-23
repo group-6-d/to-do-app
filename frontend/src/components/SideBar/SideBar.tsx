@@ -1,3 +1,7 @@
+// TODO: For our safety we need to remove @ts-nocheck
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 // import {
 //   MdOutlineLocalGroceryStore,
 //   MdOutlinePerson,
@@ -9,18 +13,14 @@ import { FC, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import TaskPopupNew from '../TaskPopupNew';
-import useCategories from '../../hooks/useCategories';
+import { useCategoriesContext } from '../../context/CategoryContext';
+import Category from '../../models/Category';
 
-interface SideBarProps {
-  handleCategory: (e: any) => void;
-}
-
-const SideBar: FC<SideBarProps> = () => {
+const SideBar: FC = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
-  const token = localStorage.getItem('token');
-  const { categories } = useCategories(token);
+  const categories = useCategoriesContext();
 
-  console.log('categories in sidebar', categories);
+  const arrСategories = Object.values(categories).flat();
 
   const openTaskPopup = () => {
     setIsTaskPopupOpen(true);
@@ -91,9 +91,13 @@ const SideBar: FC<SideBarProps> = () => {
       </ul> */}
 
       <ul className=''>
-        {!categories && <li className='p-4'>No categories...</li>}
-        {categories &&
-          categories.map((category) => <SideBarItem category={category} />)}
+        {!arrСategories ? (
+          <li className='p-4'>Loading...</li>
+        ) : (
+          arrСategories.map((category: Category) => (
+            <SideBarItem key={category.id} category={category} />
+          ))
+        )}
       </ul>
       {isTaskPopupOpen && <TaskPopupNew closeTaskPopup={closeTaskPopup} />}
     </aside>

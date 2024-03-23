@@ -1,37 +1,29 @@
 import { createContext, useState, ReactNode } from 'react';
+import type Category from '../models/Category';
 
-interface SelectedCategoriesContextType {
-  selectedCategories: string[];
-  selectedCategoriesHandler: (selectedCategories: string[]) => void;
+interface SelectedCategoriesContext {
+  selectedCategories: Category[];
+  selectedCategoriesHandler: (selectedCategories: Category[]) => void;
 }
 
 export const SelectedCategoriesContext =
-  createContext<SelectedCategoriesContextType>({
+  createContext<SelectedCategoriesContext>({
     selectedCategories: [],
     selectedCategoriesHandler: () => undefined,
   });
 
-type SelectedCategoriesProviderProps = {
+interface SelectedCategoriesProviderProps {
   children: ReactNode;
-};
+}
 
 const SelectedCategoriesProvider = ({
   children,
 }: SelectedCategoriesProviderProps) => {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([
-    'personal',
-    'hobbies',
-    'movies',
-    'shopping',
-    'work',
-    'other',
-  ]);
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
 
-  const selectedCategoriesHandler = (selectedCategories: string[]) => {
+  const selectedCategoriesHandler = (selectedCategories: Category[]) => {
     setSelectedCategories(selectedCategories);
   };
-
-  console.log('selectedCategories in filter provider', selectedCategories);
 
   return (
     <SelectedCategoriesContext.Provider

@@ -10,11 +10,13 @@ export const ThemeContext = createContext<ThemeContextType>({
   darkModeHandler: () => undefined,
 });
 
-type ThemeProvider = {
+type ThemeContextProviderProps = {
   children: ReactNode;
 };
 
-export const ThemeProvider = ({ children }: ThemeProvider) => {
+export const ThemeContextProvider = ({
+  children,
+}: ThemeContextProviderProps) => {
   const [isDarkMode, setDarkMode] = useState(false);
 
   const darkModeHandler = () => {
