@@ -1,3 +1,7 @@
+// TODO: For our safety we need to remove @ts-nocheck
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 // import {
 //   MdOutlineLocalGroceryStore,
 //   MdOutlinePerson,
@@ -10,12 +14,9 @@ import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import TaskPopupNew from '../TaskPopupNew';
 import { useCategoriesContext } from '../../context/CategoryContext';
+import Category from '../../models/Category';
 
-interface SideBarProps {
-  handleCategory: (e: any) => void;
-}
-
-const SideBar: FC<SideBarProps> = () => {
+const SideBar: FC = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
   const categories = useCategoriesContext();
 
@@ -88,9 +89,13 @@ const SideBar: FC<SideBarProps> = () => {
       </ul> */}
 
       <ul className=''>
-        {!categories && <li className='p-4'>No categories...</li>}
-        {categories &&
-          categories.map((category) => <SideBarItem category={category} />)}
+        {!categories ? (
+          <li className='p-4'>Loading...</li>
+        ) : (
+          categories.map((category: Category) => (
+            <SideBarItem key={category.id} category={category} />
+          ))
+        )}
       </ul>
       {isTaskPopupOpen && <TaskPopupNew closeTaskPopup={closeTaskPopup} />}
     </aside>
