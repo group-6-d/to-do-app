@@ -11,5 +11,5 @@ type TaskCard = {
   // todo: will be deleted
   category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies' | 'other';
 };
-// export type TaskCardcategory='personal' | 'work' | 'shopping' | 'hobbies' | 'movies';
+
 export default TaskCard;

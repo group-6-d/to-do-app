@@ -40,20 +40,19 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
       </div>
 
       <div className='flex items-center justify-between'>
-        {status === 'done' && (
+        {status === 'done' ? (
           <>
             <h3 className='py-4 pr-4'>{title}</h3>
             <button className='text-accent hover:bg-accent rounded-full bg-white p-3 hover:text-white dark:bg-stone-800 hover:dark:bg-stone-600'>
               <MdOutlineDone />
             </button>
           </>
-        )}
-        {status === 'to do' && (
+        ) : (
           <>
             <h3 className='py-4 pr-4 text-stone-500 line-through'>{title}</h3>
             <button
               disabled
-              className='bg-transparent py-3 text-stone-500 hover:bg-transparent'
+              className='bg-transparent p-3 text-stone-500 hover:bg-transparent'
             >
               <MdDoneAll />
             </button>
