@@ -49,8 +49,9 @@ function App() {
                       path='/profile/edit'
                       element={<ProtectedRoute element={<ProfileEdit />} />}
                     />
-                    <Route path='*' element={<ErrorPage />} />
                   </Route>
+
+                  <Route path='*' element={<ErrorPage />} />
                 </Routes>
               </SelectedCategoriesProvider>
             </TasksProvider>
