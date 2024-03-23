@@ -9,7 +9,7 @@ import { SelectedCategoriesContext } from '../../context/SelectedCategoriesConte
 import { useCategoriesContext } from '../../context/CategoryContext';
 import type TaskCard from '../../models/TaskCard';
 
-const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+// const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
 const MainPage = () => {
   const { tasks } = useTasksBoard();
@@ -49,7 +49,6 @@ const MainPage = () => {
 
   useEffect(() => {
     const sortAndFilterTasks = () => {
-      // const today = new Date().toISOString().split('T')[0];
       const today = new Date().toISOString().split('T')[0];
       const tomorrow = new Date(Date.now() + 86400000)
         .toISOString()
@@ -84,9 +83,9 @@ const MainPage = () => {
       <SideBar />
 
       <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
-        {daysData.map((day) => (
-          <TaskList key={day} day={day} taskList={filteredTasksByCategory} />
-        ))}
+        <TaskList key={'Today'} taskList={tasksToday} />
+        <TaskList key={'Tomorrow'} taskList={tasksTomorrow} />
+        <TaskList key={'Upcoming'} taskList={tasksUpcoming} />
       </div>
     </div>
   );
