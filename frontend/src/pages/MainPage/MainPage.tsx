@@ -7,6 +7,7 @@ import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
 import { useCategoriesContext } from '../../context/CategoryContext';
+import type TaskCard from '../../models/TaskCard';
 
 const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
 
@@ -15,6 +16,10 @@ const MainPage = () => {
   const categories = useCategoriesContext();
   const { selectedCategories } = useContext(SelectedCategoriesContext);
   const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
+
+  const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
+  const [tasksTomorrow, setTasksTomorrow] = useState<TaskCard[]>([]);
+  const [tasksUpcoming, setTasksUpcoming] = useState<TaskCard[]>([]);
 
   useEffect(() => {
     if (selectedCategories && categories) {
@@ -42,9 +47,38 @@ const MainPage = () => {
     }
   }, [tasks, categories, selectedCategories]);
 
-  // console.log('selectedCategories in main', selectedCategories);
-  // console.log('filteredTasksByCategory in main', filteredTasksByCategory);
+  useEffect(() => {
+    const sortAndFilterTasks = () => {
+      // const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0];
+      const tomorrow = new Date(Date.now() + 86400000)
+        .toISOString()
+        .split('T')[0];
 
+      console.log('today', today);
+      console.log('tomorrow', tomorrow);
+
+      const tasksToday = filteredTasksByCategory.filter(
+        (task) => task.due_date === today,
+      );
+      const tasksTomorrow = filteredTasksByCategory.filter(
+        (task) => task.due_date === tomorrow,
+      );
+      const tasksUpcoming = filteredTasksByCategory.filter(
+        (task) => task.due_date !== today && task.due_date !== tomorrow,
+      );
+
+      setTasksToday(tasksToday);
+      setTasksTomorrow(tasksTomorrow);
+      setTasksUpcoming(tasksUpcoming);
+    };
+
+    sortAndFilterTasks();
+  }, [filteredTasksByCategory]);
+
+  console.log('tasksToday', tasksToday);
+  console.log('tasksTomorrow', tasksTomorrow);
+  console.log('tasksUpcoming', tasksUpcoming);
   return (
     <div className='flex h-full'>
       <SideBar />
