@@ -1,59 +1,83 @@
 // TODO: For our safety we need to remove @ts-nocheck
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { useEffect, useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import SideBar from '../../components/SideBar/SideBar';
 import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
-// import TaskCard, { TaskCardcategory } from '../../models/TaskCard';
-import TaskCard from '../../models/TaskCard';
-import Category from '../../models/Category';
-
-const daysData = ['Today', 'Tomorrow', 'Day After Tomorrow'];
+import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
+import { useCategoriesContext } from '../../context/CategoryContext';
+import { getFormattedDate } from '../../utils/utils';
+import type TaskCard from '../../models/TaskCard';
 
 const MainPage = () => {
-  const { getTasksList, taskListDate, getCategoryList, categoryListDate } =
-    useTasksBoard();
-
-  const [initialTaskList, setInitialTaskList] = useState<TaskCard[]>([]);
-  const [filteredTaskList, setFilteredTaskList] = useState<TaskCard[]>([]);
-  const [selectedCategoriesList, setSelectedCategoriesList] = useState<
-    Category[]
-  >([]);
-
-  useEffect(() => {
-    setInitialTaskList(taskListDate);
-    setFilteredTaskList(taskListDate);
-  }, [taskListDate]);
+  const { tasks } = useTasksBoard();
+  const categories = useCategoriesContext();
+  const { selectedCategories } = useContext(SelectedCategoriesContext);
+  const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
+  const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
+  const [tasksTomorrow, setTasksTomorrow] = useState<TaskCard[]>([]);
+  const [tasksUpcoming, setTasksUpcoming] = useState<TaskCard[]>([]);
 
   useEffect(() => {
-    getTasksList();
-    getCategoryList();
-  }, [initialTaskList, categoryListDate]);
+    if (selectedCategories && categories) {
+      const filterTasksByCategory = (tasks, categories) => {
+        const categoriesMap = categories.reduce((acc, category) => {
+          acc[category.id] = category.name;
+          return acc;
+        }, {});
 
-  useEffect(() => {
-    if (selectedCategoriesList.length === 0)
-      setFilteredTaskList(initialTaskList);
-    else
-      setFilteredTaskList(
-        initialTaskList.filter((task) =>
-          selectedCategoriesList.includes(task.category),
-        ),
+        return tasks.filter((task) => {
+          const categoryName = categoriesMap[task.category_id];
+          if (categoryName) {
+            task.categoryName = categoryName;
+            return true;
+          }
+          return false;
+        });
+      };
+
+      const filteredTasksByCategory = filterTasksByCategory(
+        tasks,
+        selectedCategories,
       );
-  }, [selectedCategoriesList]);
+      setFilteredTasksByCategory(filteredTasksByCategory);
+    }
+  }, [tasks, categories, selectedCategories]);
 
-  const handleCategory = (e: MouseEvent) => {
-    setSelectedCategoriesList([...selectedCategoriesList, e.target.value]);
-  };
+  useEffect(() => {
+    const sortAndFilterTasks = () => {
+      const today = new Date().toISOString().split('T')[0];
+      const tomorrow = new Date(Date.now() + 86400000)
+        .toISOString()
+        .split('T')[0];
+
+      const tasksToday = filteredTasksByCategory.filter(
+        (task) => task.due_date === today,
+      );
+      const tasksTomorrow = filteredTasksByCategory.filter(
+        (task) => task.due_date === tomorrow,
+      );
+      const tasksUpcoming = filteredTasksByCategory.filter(
+        (task) => task.due_date !== today && task.due_date !== tomorrow,
+      );
+
+      setTasksToday(tasksToday);
+      setTasksTomorrow(tasksTomorrow);
+      setTasksUpcoming(tasksUpcoming);
+    };
+
+    sortAndFilterTasks();
+  }, [filteredTasksByCategory]);
 
   return (
-    <div className='flex h-full '>
-      <SideBar handleCategory={handleCategory} />
+    <div className='flex h-full'>
+      <SideBar />
 
-      <div className='flex w-full flex-col gap-x-6 p-4 md:flex-row md:justify-around'>
-        {daysData.map((day, index) => (
-          <TaskList key={index} day={day} taskList={filteredTaskList} />
-        ))}
+      <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
+        <TaskList day={'Today'} taskList={tasksToday} />
+        <TaskList day={'Tomorrow'} taskList={tasksTomorrow} />
+        <TaskList day={'Upcoming'} taskList={tasksUpcoming} />
       </div>
     </div>
   );

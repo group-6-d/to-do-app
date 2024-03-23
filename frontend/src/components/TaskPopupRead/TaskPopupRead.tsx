@@ -4,6 +4,8 @@ import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
+import { useCategoriesContext } from '../../context/CategoryContext';
+import type Category from '../../models/Category';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -16,11 +18,21 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
   closeTaskPopup,
   onEditClick,
 }) => {
+  const priorityColor = getPriorityColor(task?.priority);
+  const categories = useCategoriesContext();
+
+  const arrСategories = Object.values(categories).flat();
+
   const closePopup = (event: React.MouseEvent) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
 
-  const priorityColor = getPriorityColor(task?.priority);
+  const getCategoryNameById = (categoryId: number) => {
+    const category = arrСategories?.find(
+      (cat: Category) => cat.id === categoryId,
+    );
+    return category ? category.name : 'Unknown Category';
+  };
 
   return (
     <div
@@ -63,21 +75,29 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Due date
           </p>
-          <p className='font-medium md:text-xl'>{task?.dueDate}</p>
+          {task?.due_date && (
+            <p className='font-medium md:text-xl'>
+              {new Date(task.due_date).toLocaleDateString('en-GB', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+              })}
+            </p>
+          )}
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Category
           </p>
-          <p className='text-accent font-medium md:text-xl'>{task?.category}</p>
+          <p className='text-accent font-medium md:text-xl'>
+            {getCategoryNameById(task!.category_id)}
+          </p>
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Status
           </p>
-          {!task?.isDone && (
-            <p className='text-coral font-medium uppercase text-white hover:text-opacity-80 md:text-xl'>
-              to do
-            </p>
+          {task?.status === 'todo' && (
+            <p className='text-coral font-medium uppercase md:text-xl'>to do</p>
           )}
-          {task?.isDone && (
-            <p className='font-medium uppercase text-stone-500 hover:text-opacity-80 md:text-xl'>
+          {task?.status === 'done' && (
+            <p className='font-medium uppercase text-stone-500 md:text-xl'>
               done
             </p>
           )}

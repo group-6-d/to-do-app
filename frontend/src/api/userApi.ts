@@ -46,13 +46,14 @@ export const check = (token: string) => {
     .then((data) => data);
 };
 
-// export const editProfile = (firstName: string, email: string) => {
-//   return fetch(`${BASE_URL}/`, {
-//     method: '',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({firstName, email})
-//   })
-//     .then(checkResponse)
-// };
+export const editProfile = (firstName: string, email: string, jwt: string | null) => {
+  return fetch(`${BASE_URL}/v1/users/:id`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${jwt}`,
+    },
+    body: JSON.stringify({firstName, email})
+  })
+    .then(checkResponse)
+};
