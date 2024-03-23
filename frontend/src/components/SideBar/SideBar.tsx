@@ -91,15 +91,18 @@ const SideBar: FC = () => {
       </ul> */}
 
       <ul className=''>
-        {!arrСategories ? (
-          <li className='p-4'>Loading...</li>
-        ) : (
-          arrСategories.map((category: Category) => (
-            <SideBarItem key={category.id} category={category} />
-          ))
-        )}
+        {categories &&
+          categories.map((category) => (
+            <SideBarItem category={category} handleCategory={handleCategory} />
+          ))}
       </ul>
-      {isTaskPopupOpen && <TaskPopupNew closeTaskPopup={closeTaskPopup} />}
+      {isTaskPopupOpen && (
+        <TaskPopupNew
+          categories={categories || []}
+          closeTaskPopup={closeTaskPopup}
+          onAddTask={() => {}}
+        />
+      )}
     </aside>
   );
 };
