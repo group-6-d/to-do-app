@@ -22,7 +22,7 @@ const SelectedCategoriesProvider = ({
 }: SelectedCategoriesProviderProps) => {
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
   const categories = useCategoriesContext();
-  const arrСategories = Object.values(categories).flat();
+  // const arrСategories = Object.values(categories).flat();
 
   useEffect(() => {
     const arrСategories = Object.values(categories).flat();
@@ -32,12 +32,6 @@ const SelectedCategoriesProvider = ({
   const selectedCategoriesHandler = (selectedCategories: Category[]) => {
     setSelectedCategories(selectedCategories);
   };
-
-  console.log('categories ctx', categories);
-
-  console.log('arrСategories ctx', arrСategories);
-
-  console.log('selectedCategories ctx', selectedCategories);
 
   return (
     <SelectedCategoriesContext.Provider

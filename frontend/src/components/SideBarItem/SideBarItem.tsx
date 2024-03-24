@@ -12,7 +12,6 @@
 import { FC, useContext } from 'react';
 import Category from '../../models/Category';
 import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
-import { LuOption } from 'react-icons/lu';
 
 interface SideBarItemProps {
   category: Category;
@@ -35,8 +34,6 @@ const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
       );
     }
   };
-
-  // console.log('selectedCategories', selectedCategories);
 
   return (
     <li className='' key={category.name}>

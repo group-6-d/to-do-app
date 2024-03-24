@@ -7,9 +7,10 @@ import TaskManager from '../TaskManager';
 interface TaskListProps {
   taskList: TaskCard[];
   day: string;
+  date?: string;
 }
 
-const TaskList: FC<TaskListProps> = ({ taskList, day }) => {
+const TaskList: FC<TaskListProps> = ({ taskList, day, date }) => {
   const [isTaskManagerOpen, setIsTaskManagerOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<TaskCard | null>(null);
 
@@ -27,8 +28,10 @@ const TaskList: FC<TaskListProps> = ({ taskList, day }) => {
     <>
       <ul className='min-w-[330px] md:overflow-hidden'>
         <h4 className='mx-3 rounded-t-2xl bg-white p-4 font-semibold dark:bg-stone-800'>
-          {day}
+          <span>{day}</span>
+          <span className='text-stone-400'>&nbsp;&nbsp;{date}</span>
         </h4>
+
         <div className='h-full px-3 md:overflow-scroll'>
           <div className='mb-6 rounded-b-2xl bg-white pb-2  shadow-xl md:mb-[5rem] dark:bg-stone-800'>
             {!taskList && (
