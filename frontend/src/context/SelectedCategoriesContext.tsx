@@ -1,5 +1,6 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useEffect } from 'react';
 import type Category from '../models/Category';
+import { useCategoriesContext } from './CategoryContext';
 
 interface SelectedCategoriesContext {
   selectedCategories: Category[];
@@ -20,6 +21,13 @@ const SelectedCategoriesProvider = ({
   children,
 }: SelectedCategoriesProviderProps) => {
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
+  const categories = useCategoriesContext();
+  // const arrСategories = Object.values(categories).flat();
+
+  useEffect(() => {
+    const arrСategories = Object.values(categories).flat();
+    setSelectedCategories(arrСategories);
+  }, [categories]);
 
   const selectedCategoriesHandler = (selectedCategories: Category[]) => {
     setSelectedCategories(selectedCategories);

@@ -45,13 +45,11 @@ const MainPage = () => {
     }
   }, [tasks, categories, selectedCategories]);
 
+  const today = new Date().toISOString().split('T')[0];
+  const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+
   useEffect(() => {
     const sortAndFilterTasks = () => {
-      const today = new Date().toISOString().split('T')[0];
-      const tomorrow = new Date(Date.now() + 86400000)
-        .toISOString()
-        .split('T')[0];
-
       const tasksToday = filteredTasksByCategory.filter(
         (task) => task.due_date === today,
       );
@@ -75,9 +73,9 @@ const MainPage = () => {
       <SideBar />
 
       <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
-        <TaskList day={'Today'} taskList={tasksToday} />
-        <TaskList day={'Tomorrow'} taskList={tasksTomorrow} />
-        <TaskList day={'Upcoming'} taskList={tasksUpcoming} />
+        <TaskList day='Today' date={today} taskList={tasksToday} />
+        <TaskList day='Tomorrow' date={tomorrow} taskList={tasksTomorrow} />
+        <TaskList day='Upcoming' taskList={tasksUpcoming} />
       </div>
     </div>
   );
