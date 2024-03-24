@@ -17,7 +17,7 @@ interface TaskPopupEditProps {
 const TaskPopupEdit: FC<TaskPopupEditProps> = ({
   task,
   closeTaskPopup,
-  onSaveTask,
+  // onSaveTask,
   categories,
 }) => {
   const { editTask } = useTasksBoard();
