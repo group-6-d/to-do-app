@@ -35,7 +35,7 @@
   }
 
   .task_form_label {
-    @apply mb-2 text-sm text-stone-500 md:text-xl;
+    @apply text-sm text-stone-500 md:text-xl;
   }
 
   .task_form_input {

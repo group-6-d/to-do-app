@@ -12,28 +12,48 @@
 import { FC, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
-import TaskPopupNew from '../TaskPopupNew';
+// import TaskPopupNew from '../TaskPopupNew';
+import TaskManager from '../TaskManager';
 import { useCategoriesContext } from '../../context/CategoryContext';
 
 const SideBar: FC = () => {
-  const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
+  // const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
+  const [isTaskManagerOpen, setIsTaskManagerOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<TaskCard | null>(null);
   const categories = useCategoriesContext();
+
+  const openNewTaskPopup = () => {
+    const newTask:TaskCard={
+      id: null,
+      title: '',
+      status: 'to do',
+      category_id: 6 ,
+      categoryName: 'other',
+    };
+    setSelectedTask(newTask);
+    setIsTaskManagerOpen(true);
+  };
+
+  const closeTaskManager = () => {
+    setSelectedTask(null);
+    setIsTaskManagerOpen(false);
+  };
 
   const arrСategories = Object.values(categories).flat();
 
-  const openTaskPopup = () => {
-    setIsTaskPopupOpen(true);
-  };
+  // const openTaskPopup = () => {
+  //   setIsTaskPopupOpen(true);
+  // };
 
-  const closeTaskPopup = () => {
-    setIsTaskPopupOpen(false);
-  };
+  // const closeTaskPopup = () => {
+  //   setIsTaskPopupOpen(false);
+  // };
 
   return (
     <aside className='h-fit min-w-[180px] rounded-br-3xl rounded-tr-3xl bg-white py-6 dark:bg-stone-800'>
       <button className='bg-accent hover:bg-accentDark mx-auto mb-4 flex items-center whitespace-nowrap rounded-full px-8 py-4 text-white'>
         <div
-          onClick={() => openTaskPopup()}
+          onClick={() => openNewTaskPopup()}
           className='flex items-center justify-between gap-2'
         >
           <LiaPlusSolid />
@@ -95,12 +115,15 @@ const SideBar: FC = () => {
             <SideBarItem key={index} category={category} />
           ))}
       </ul>
-      {isTaskPopupOpen && (
+      {/* {isTaskPopupOpen && (
         <TaskPopupNew
           categories={arrСategories || []}
           closeTaskPopup={closeTaskPopup}
           onAddTask={() => {}}
         />
+      )} */}
+      {isTaskManagerOpen && selectedTask && (
+        <TaskManager task={selectedTask} closeTaskManager={closeTaskManager} />
       )}
     </aside>
   );

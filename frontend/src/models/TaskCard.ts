@@ -1,5 +1,5 @@
 type TaskCard = {
-  id: number;
+  id: number | null;
   title: string;
   description?: string;
   due_date?: string;
@@ -10,7 +10,7 @@ type TaskCard = {
   categoryName: string
 
   // todo: will be deleted
-  category: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies' | 'other';
+  category?: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies' | 'other';
 };
 
 export default TaskCard;
