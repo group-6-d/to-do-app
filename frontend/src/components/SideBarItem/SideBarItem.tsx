@@ -12,6 +12,7 @@
 import { FC, useContext } from 'react';
 import Category from '../../models/Category';
 import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
+import { LuOption } from 'react-icons/lu';
 
 interface SideBarItemProps {
   category: Category;
@@ -35,14 +36,14 @@ const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
     }
   };
 
+  // console.log('selectedCategories', selectedCategories);
+
   return (
     <li className='' key={category.name}>
       <label className='items-middle flex cursor-pointer items-center justify-between p-2 px-5 hover:bg-stone-100 hover:dark:bg-stone-700'>
         {category.name}
         <input
-          defaultChecked={selectedCategories.some(
-            (cat) => cat.id === category.id,
-          )}
+          defaultChecked={true}
           onChange={handleCategory}
           type='checkbox'
           name='categoryCheckbox'

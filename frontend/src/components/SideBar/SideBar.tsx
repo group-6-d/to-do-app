@@ -14,7 +14,6 @@ import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import TaskPopupNew from '../TaskPopupNew';
 import { useCategoriesContext } from '../../context/CategoryContext';
-import Category from '../../models/Category';
 
 const SideBar: FC = () => {
   const [isTaskPopupOpen, setIsTaskPopupOpen] = useState(false);
@@ -92,8 +91,8 @@ const SideBar: FC = () => {
 
       <ul className=''>
         {arrСategories &&
-          arrСategories.map((category) => (
-            <SideBarItem key={category.id} category={category} />
+          arrСategories.map((category, index) => (
+            <SideBarItem key={index} category={category} />
           ))}
       </ul>
       {isTaskPopupOpen && (
