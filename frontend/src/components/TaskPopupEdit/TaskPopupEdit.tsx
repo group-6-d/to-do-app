@@ -10,15 +10,16 @@ import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 interface TaskPopupEditProps {
   task: TaskCard;
   closeTaskPopup: () => void;
-  onSaveTask: (updatedTask: TaskCard) => void; // Handler to save the edited task
+  onUpdateTask: (updatedTask: TaskCard) => void; // Handler to save the edited task
   categories: Category[];
 }
 
 const TaskPopupEdit: FC<TaskPopupEditProps> = ({
   task,
   closeTaskPopup,
-  // onSaveTask,
   categories,
+  setIsEditMode,
+  setCurrentTask,
 }) => {
   const { editTask } = useTasksBoard();
 
@@ -37,7 +38,9 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
     console.log(data);
     // onSaveTask(data);
     editTask(data);
-    closeTaskPopup();
+    setIsEditMode(false)
+    setCurrentTask(data);
+    // closeTaskPopup();
   };
 
   return (
