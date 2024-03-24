@@ -22,7 +22,6 @@ export const ThemeContextProvider = ({
   const darkModeHandler = () => {
     setDarkMode(!isDarkMode);
     document.body.classList.toggle('dark');
-    console.log('isDarkMode', isDarkMode);
   };
 
   return (

@@ -40,9 +40,7 @@ const SideBarItem: FC<SideBarItemProps> = ({ category }) => {
       <label className='items-middle flex cursor-pointer items-center justify-between p-2 px-5 hover:bg-stone-100 hover:dark:bg-stone-700'>
         {category.name}
         <input
-          defaultChecked={selectedCategories.some(
-            (cat) => cat.id === category.id,
-          )}
+          defaultChecked={true}
           onChange={handleCategory}
           type='checkbox'
           name='categoryCheckbox'
