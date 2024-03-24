@@ -31,19 +31,19 @@
   }
 
   .input_auth_form {
-    @apply rounded-2xl p-3 text-sm md:rounded-3xl md:p-4 md:text-lg;
+    @apply w-full rounded-2xl border border-gray-200 bg-white p-3 text-sm md:rounded-3xl md:p-4 md:text-lg dark:border-stone-700 dark:bg-stone-800;
   }
 
   .task_form_label {
-    @apply text-sm text-stone-500 mb-2 md:text-xl
+    @apply mb-2 text-sm text-stone-500 md:text-xl;
   }
 
   .task_form_input {
-    @apply p-2 md:text-xl rounded-lg w-full border border-gray-200 bg-white dark:border-stone-700 dark:bg-stone-800;
+    @apply w-full rounded-lg border border-gray-200 bg-white p-2 md:text-xl dark:border-stone-700 dark:bg-stone-800;
   }
 
   .icon {
-    @apply hover:text-accent cursor-pointer hover:font-bold text-stone-600 text-xl md:gap-6 md:text-2xl;
+    @apply hover:text-accent cursor-pointer text-xl text-stone-600 hover:font-bold md:gap-6 md:text-2xl;
   }
 }
 

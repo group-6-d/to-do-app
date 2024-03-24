@@ -11,7 +11,7 @@ import type Category from '../../models/Category';
 
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   // const [tasks, setTasks] = useState<TaskCard[]>([]);
-  const [currentTask, setCurrentTask] = useState(null);
+  // const [currentTask, setCurrentTask] = useState(null);
   const token = localStorage.getItem('token');
   const { tasks } = useTasks(token);
 
@@ -23,9 +23,6 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const token = localStorage.getItem('token');
     taskApi
       .editTask(data, token)
-      .then((updatedTask) => {
-        setCurrentTask(updatedTask);
-      })
       .catch((err) => {
         console.log(err);
       });

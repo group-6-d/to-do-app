@@ -30,7 +30,7 @@ const TaskManager: React.FC<TaskManagerProps> = ({task, closeTaskManager,}) => {
     closeTaskManager();
   };
 
-  const onSaveTask = (updatedTask: TaskCard) => {
+  const onUpdateTask = (updatedTask: TaskCard) => {
     // Update the task in your state or database here
     console.log('Task updated:', updatedTask);
     setIsEditMode(false); // Optionally close the edit mode after saving
@@ -50,7 +50,9 @@ const TaskManager: React.FC<TaskManagerProps> = ({task, closeTaskManager,}) => {
           categories={categories || []}
           task={currentTask}
           closeTaskPopup={closeTaskPopup}
-          onSaveTask={onSaveTask}
+          onUpdateTask={onUpdateTask}
+          setIsEditMode={setIsEditMode}
+          setCurrentTask={setCurrentTask}
         />
       )}
     </div>
