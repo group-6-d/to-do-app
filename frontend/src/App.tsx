@@ -17,6 +17,7 @@ import Register from './pages/Register';
 import ErrorPage from './pages/ErrorPage/ErrorPage.tsx';
 import ProfileRead from './pages/ProfileRead/index.ts';
 import ProfileEdit from './pages/ProfileEdit/ProfileEdit.tsx';
+import SelectedPriorityProvider from './context/PriorityContext.tsx';
 
 function App() {
   return (
@@ -26,33 +27,35 @@ function App() {
           <CategoriesProvider>
             <TasksProvider>
               <SelectedCategoriesProvider>
-                <Routes>
-                  <Route path='/' element={<StartPage />} />
-                  <Route
-                    path='/register'
-                    element={<UnprotectedRoute element={<Register />} />}
-                  />
-                  <Route
-                    path='/login'
-                    element={<UnprotectedRoute element={<Login />} />}
-                  />
-                  <Route element={<PageContainer />}>
+                <SelectedPriorityProvider>
+                  <Routes>
+                    <Route path='/' element={<StartPage />} />
                     <Route
-                      path='/dashboard'
-                      element={<ProtectedRoute element={<MainPage />} />}
+                      path='/register'
+                      element={<UnprotectedRoute element={<Register />} />}
                     />
                     <Route
-                      path='/profile'
-                      element={<ProtectedRoute element={<ProfileRead />} />}
+                      path='/login'
+                      element={<UnprotectedRoute element={<Login />} />}
                     />
-                    <Route
-                      path='/profile/edit'
-                      element={<ProtectedRoute element={<ProfileEdit />} />}
-                    />
-                  </Route>
+                    <Route element={<PageContainer />}>
+                      <Route
+                        path='/dashboard'
+                        element={<ProtectedRoute element={<MainPage />} />}
+                      />
+                      <Route
+                        path='/profile'
+                        element={<ProtectedRoute element={<ProfileRead />} />}
+                      />
+                      <Route
+                        path='/profile/edit'
+                        element={<ProtectedRoute element={<ProfileEdit />} />}
+                      />
+                    </Route>
 
-                  <Route path='*' element={<ErrorPage />} />
-                </Routes>
+                    <Route path='*' element={<ErrorPage />} />
+                  </Routes>
+                </SelectedPriorityProvider>
               </SelectedCategoriesProvider>
             </TasksProvider>
           </CategoriesProvider>

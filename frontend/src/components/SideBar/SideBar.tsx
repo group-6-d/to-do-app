@@ -9,13 +9,13 @@
 //   MdOutlineLocalMovies,
 //   MdWorkOutline,
 // } from 'react-icons/md';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import TaskPopupNew from '../TaskPopupNew';
 import { useCategoriesContext } from '../../context/CategoryContext';
 import Category from '../../models/Category';
-import SideBarPriorityFilterItem from '../SideBarPriorityFilterItem/SideBarPriorityFilterItem';
+import SideBarPriorityFilterItem from '../SideBarPriorityItem/SideBarPriorityItem';
 
 const priorityItem = [
   { name: 'High', color: 'coral' },
@@ -52,16 +52,20 @@ const SideBar: FC = () => {
       <ul className='mx-2 mb-3 rounded-lg border-[1px] border-stone-200 bg-white pb-1 dark:border-stone-700 dark:bg-stone-800'>
         <div className='p-2'>Priority:</div>
         <div className='flex'>
-          {priorityItem.map((item) => (
-            <SideBarPriorityFilterItem name={item.name} color={item.color} />
+          {priorityItem.map((item, index) => (
+            <SideBarPriorityFilterItem
+              key={index}
+              name={item.name}
+              color={item.color}
+            />
           ))}
         </div>
       </ul>
 
       <ul className=''>
         {arrСategories &&
-          arrСategories.map((category) => (
-            <SideBarItem key={category.name} category={category} />
+          arrСategories.map((category, index) => (
+            <SideBarItem key={index} category={category} />
           ))}
       </ul>
       {isTaskPopupOpen && (
