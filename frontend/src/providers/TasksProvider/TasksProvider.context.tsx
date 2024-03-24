@@ -9,7 +9,7 @@ interface ITasksProvider {
   getCategoryList:() => void;
   createTask: (data: TaskCard) => void;
   deleteTask: (data: TaskCard) => void;
-  editTask: () => void;
+  editTask: (data: TaskCard) => void;
 }
 
 const TasksContext = createContext<ITasksProvider>({

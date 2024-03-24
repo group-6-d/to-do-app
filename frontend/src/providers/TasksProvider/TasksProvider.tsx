@@ -4,17 +4,31 @@
 import { useState, FC, ReactNode } from 'react';
 import TasksProviderContext from './TasksProvider.context';
 import useTasks from '../../hooks/useTasks';
+import * as taskApi from '../../api/tasksApi';
 
 import type TaskCard from '../../models/TaskCard';
 import type Category from '../../models/Category';
 
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   // const [tasks, setTasks] = useState<TaskCard[]>([]);
+  const [currentTask, setCurrentTask] = useState(null);
   const token = localStorage.getItem('token');
   const { tasks } = useTasks(token);
 
   const getTasks = () => {
     setTasks(tasks);
+  };
+
+  const editTask = (data: TaskCard) => {
+    const token = localStorage.getItem('token');
+    taskApi
+      .editTask(data, token)
+      .then((updatedTask) => {
+        setCurrentTask(updatedTask);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const createTask = (data: TaskCard) => {
@@ -35,8 +49,6 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const updList = tasks.filter((card: TaskCard) => card.id !== data.id);
     setTasks(updList);
   };
-
-  const editTask = () => {};
 
   const value = {
     tasks,
