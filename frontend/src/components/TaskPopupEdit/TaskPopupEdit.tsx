@@ -58,7 +58,7 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
           <IoMdClose onClick={closeTaskPopup} className='icon' />
         </section>
         <form onSubmit={handleSubmit(onSubmit)} className=' flex flex-col'>
-          <input type='hidden' defaultValue={task?.id} {...register('id')} />
+          <input type='hidden' defaultValue={task?.id??undefined} {...register('id')} />
 
           <div className=' flex flex-col'>
             <label className='task_form_label'>Title</label>
