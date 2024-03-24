@@ -23,7 +23,7 @@ const SelectedPriorityProvider = ({
     setSelectedPriority(selectedPriority);
   };
 
-  console.log('selectedPriority in hook', selectedPriority);
+  // console.log('provider priority', selectedPriority);
 
   return (
     <SelectedPriorityContext.Provider

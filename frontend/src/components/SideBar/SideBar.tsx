@@ -14,7 +14,7 @@ import SideBarItem from '../SideBarItem/SideBarItem';
 import { LiaPlusSolid } from 'react-icons/lia';
 import TaskPopupNew from '../TaskPopupNew';
 import { useCategoriesContext } from '../../context/CategoryContext';
-import Category from '../../models/Category';
+// import Category from '../../models/Category';
 import SideBarPriorityFilterItem from '../SideBarPriorityItem/SideBarPriorityItem';
 
 const priorityItem = [

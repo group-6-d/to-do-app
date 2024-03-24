@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { SelectedPriorityContext } from '../../context/PriorityContext';
 
 interface SideBarPriorityFilterItemProps {
@@ -17,20 +17,12 @@ const SideBarPriorityFilterItem = ({
   const handlePriority = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
 
-    console.log('-isChecked', isChecked);
-    console.log('-name', name);
-    // console.log('-selectedPriority', selectedPriority);
-
     if (isChecked) {
       selectedPriorityHandler([...selectedPriority, name]);
     } else {
       selectedPriorityHandler(selectedPriority.filter((p) => p !== name));
     }
   };
-
-  useEffect(() => {
-    console.log('selectedPriority updated:', selectedPriority);
-  }, [selectedPriority]);
 
   return (
     <li className='items-middle flex justify-between gap-2 rounded-xl p-2 hover:bg-stone-100 hover:dark:bg-stone-700'>
