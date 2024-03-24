@@ -5,9 +5,7 @@ import { useState, FC, ReactNode, useEffect } from 'react';
 import TasksProviderContext from './TasksProvider.context';
 import useTasks from '../../hooks/useTasks';
 import * as taskApi from '../../api/tasksApi';
-
 import type TaskCard from '../../models/TaskCard';
-import type Category from '../../models/Category';
 
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [allTasks, setAllTasks] = useState<TaskCard[]>([]);
@@ -40,7 +38,8 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
       status: data.status,
       categoryId: data.category,
     };
-    setTasks((prevList: TaskCard[]) => [...prevList, newCard]);
+    // todo: add this when logic is ready
+    // setAllTasks((prevList) => [...prevList, newCard]);
   };
 
   const deleteTask = async (data: TaskCard) => {
