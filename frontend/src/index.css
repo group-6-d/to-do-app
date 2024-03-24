@@ -15,13 +15,13 @@
 }
 
 @layer components {
-  label {
+  /* label {
     @apply mb-1 text-sm text-stone-500
       md:mb-2 md:text-lg;
-  }
-  input {
+  } */
+  /* input {
     @apply w-full border border-gray-200 bg-white dark:border-stone-700 dark:bg-stone-800;
-  }
+  } */
   /* button {
     @apply bg-accent hover:bg-accentDark w-fit cursor-pointer rounded-3xl border-none text-white;
   } */
@@ -34,8 +34,16 @@
     @apply rounded-2xl p-3 text-sm md:rounded-3xl md:p-4 md:text-lg;
   }
 
+  .task_form_label {
+    @apply text-sm text-stone-500 mb-2 md:text-xl
+  }
+
+  .task_form_input {
+    @apply p-2 md:text-xl rounded-lg w-full border border-gray-200 bg-white dark:border-stone-700 dark:bg-stone-800;
+  }
+
   .icon {
-    @apply hover:text-accent cursor-pointer hover:font-bold;
+    @apply hover:text-accent cursor-pointer hover:font-bold text-stone-600 text-xl md:gap-6 md:text-2xl;
   }
 }
 

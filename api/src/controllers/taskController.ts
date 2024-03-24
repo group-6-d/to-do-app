@@ -62,7 +62,7 @@ class TaskController {
     try {
       const { id } = req.params;
       const { title, description, due_date, priority, status, category_id } =
-        req.body;
+        req.body.data;
       const task = await Task.findOne({
         where: { id },
       });
