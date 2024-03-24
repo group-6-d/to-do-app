@@ -11,13 +11,17 @@ import { getFormattedDate } from '../../utils/utils';
 import type TaskCard from '../../models/TaskCard';
 
 const MainPage = () => {
-  const { tasks } = useTasksBoard();
+  const { allTasks, getTasks } = useTasksBoard();
   const categories = useCategoriesContext();
   const { selectedCategories } = useContext(SelectedCategoriesContext);
   const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
   const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
   const [tasksTomorrow, setTasksTomorrow] = useState<TaskCard[]>([]);
   const [tasksUpcoming, setTasksUpcoming] = useState<TaskCard[]>([]);
+
+  useEffect(() => {
+    getTasks(allTasks);
+  }, [allTasks]);
 
   useEffect(() => {
     if (selectedCategories && categories) {
@@ -38,12 +42,12 @@ const MainPage = () => {
       };
 
       const filteredTasksByCategory = filterTasksByCategory(
-        tasks,
+        allTasks,
         selectedCategories,
       );
       setFilteredTasksByCategory(filteredTasksByCategory);
     }
-  }, [tasks, categories, selectedCategories]);
+  }, [allTasks, categories, selectedCategories]);
 
   const today = new Date().toISOString().split('T')[0];
   const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
@@ -73,8 +77,16 @@ const MainPage = () => {
       <SideBar />
 
       <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
-        <TaskList day='Today' date={today} taskList={tasksToday} />
-        <TaskList day='Tomorrow' date={tomorrow} taskList={tasksTomorrow} />
+        <TaskList
+          day='Today'
+          date={getFormattedDate(today)}
+          taskList={tasksToday}
+        />
+        <TaskList
+          day='Tomorrow'
+          date={getFormattedDate(tomorrow)}
+          taskList={tasksTomorrow}
+        />
         <TaskList day='Upcoming' taskList={tasksUpcoming} />
       </div>
     </div>

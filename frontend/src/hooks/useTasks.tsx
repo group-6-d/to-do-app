@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import * as tasksAPI from '../api/tasksApi';
-import { getFormattedDate } from '../utils/utils';
+import { getFormattedDateForTask } from '../utils/utils';
 import type TaskCard from '../models/TaskCard';
 
 const useTasks = (token: string | null) => {
@@ -20,7 +20,7 @@ const useTasks = (token: string | null) => {
     fetchAllTasks(token);
   }, [fetchAllTasks, token]);
 
-  getFormattedDate(tasks);
+  getFormattedDateForTask(tasks);
 
   return { tasks, fetchAllTasks };
 };

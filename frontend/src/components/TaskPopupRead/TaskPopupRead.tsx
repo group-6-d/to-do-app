@@ -2,10 +2,12 @@ import { FC } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
-import TaskCard from '../../models/TaskCard';
+import type TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { useCategoriesContext } from '../../context/CategoryContext';
+import { getFormattedDate } from '../../utils/utils';
 import type Category from '../../models/Category';
+import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -18,6 +20,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
   closeTaskPopup,
   onEditClick,
 }) => {
+  const { deleteTask } = useTasksBoard();
   const priorityColor = getPriorityColor(task?.priority);
   const categories = useCategoriesContext();
 
@@ -34,6 +37,13 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
     return category ? category.name : 'Unknown Category';
   };
 
+  const handleDeleteTask = (data: TaskCard | null) => {
+    if (data) {
+      deleteTask(data);
+      closeTaskPopup();
+    }
+  };
+
   return (
     <div
       id='container'
@@ -41,9 +51,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
       onClick={closePopup}
     >
       <div className='h-screen/80 relative grid w-[300px] cursor-default content-start overflow-auto rounded-2xl bg-white p-5 md:w-[700px] md:p-10 dark:bg-stone-800'>
-        <section
-          className='mb-6 flex w-full justify-end md:mb-12'
-        >
+        <section className='mb-6 flex w-full justify-end md:mb-12'>
           <ul className='grid grid-cols-4 gap-3 md:gap-6'>
             {!task?.isDone && (
               <li>
@@ -51,7 +59,10 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
               </li>
             )}
             <li>
-              <AiOutlineDelete className='icon' />
+              <AiOutlineDelete
+                className='icon'
+                onClick={() => handleDeleteTask(task)}
+              />
             </li>
             <li>
               <AiOutlineEdit className='icon' onClick={onEditClick} />
@@ -76,11 +87,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
           </p>
           {task?.due_date && (
             <p className='font-medium md:text-xl'>
-              {new Date(task.due_date).toLocaleDateString('en-GB', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-              })}
+              {getFormattedDate(task.due_date)}
             </p>
           )}
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>

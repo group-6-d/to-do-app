@@ -21,6 +21,18 @@ export const editTask = (data: TaskCard, token: string) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({data}),
+    body: JSON.stringify({ data }),
   }).then(checkResponse);
+};
+
+export const deleteTask = async (id: number, token: string) => {
+  const response = await fetch(`${BASE_URL}/v1/task/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+
+  return response;
 };

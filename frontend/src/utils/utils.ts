@@ -21,7 +21,7 @@ console.log(import.meta);
 
 export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5174';
 
-export const getFormattedDate = (tasks: TaskCard[] | null) => {
+export const getFormattedDateForTask = (tasks: TaskCard[] | null) => {
   tasks?.forEach((task) => {
     if (task.due_date) {
       const dueDate = new Date(task.due_date);
@@ -34,4 +34,14 @@ export const getFormattedDate = (tasks: TaskCard[] | null) => {
       task.due_date = formattedDueDate;
     }
   });
+};
+
+export const getFormattedDate = (date: string) => {
+  const newDate = new Date(date);
+  const formattedDueDate = newDate.toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  return formattedDueDate;
 };
