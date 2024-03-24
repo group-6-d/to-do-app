@@ -1,7 +1,7 @@
 // TODO: For our safety we need to remove @ts-nocheck
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import { useState, FC, ReactNode } from 'react';
+import { useState, FC, ReactNode, useEffect } from 'react';
 import TasksProviderContext from './TasksProvider.context';
 import useTasks from '../../hooks/useTasks';
 import * as taskApi from '../../api/tasksApi';
@@ -10,14 +10,17 @@ import type TaskCard from '../../models/TaskCard';
 import type Category from '../../models/Category';
 
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  // const [tasks, setTasks] = useState<TaskCard[]>([]);
-  // const [currentTask, setCurrentTask] = useState(null);
+  const [allTasks, setAllTasks] = useState<TaskCard[]>([]);
   const token = localStorage.getItem('token');
   const { tasks } = useTasks(token);
 
-  // const getTasks = () => {
-  //   setTasks(tasks);
-  // };
+  const getTasks = (updatedTasks) => {
+    setAllTasks(updatedTasks);
+  };
+
+  useEffect(() => {
+    getTasks(tasks);
+  }, [tasks]);
 
   const editTask = (data: TaskCard) => {
     const token = localStorage.getItem('token');
@@ -40,16 +43,23 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setTasks((prevList: TaskCard[]) => [...prevList, newCard]);
   };
 
-  const deleteTask = (data: TaskCard) => {
-    taskApi
-      .deleteTask(data.id, token)
-      .then((res) => console.log('deleted!', res))
-      .catch((err) => console.error(err));
+  const deleteTask = async (data: TaskCard) => {
+    try {
+      taskApi
+        .deleteTask(data.id, token)
+        .then((res) => console.log('deleted!', res))
+        .catch((err) => console.error(err));
+
+      setAllTasks(allTasks.filter((task) => task.id !== data.id));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const value = {
+    allTasks,
     tasks,
-    // getTasks,
+    getTasks,
     createTask,
     deleteTask,
     editTask,
