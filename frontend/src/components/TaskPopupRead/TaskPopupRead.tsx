@@ -92,7 +92,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Status
           </p>
-          {task?.status === 'todo' && (
+          {task?.status === 'to do' && (
             <p className='text-coral font-medium uppercase md:text-xl'>to do</p>
           )}
           {task?.status === 'done' && (
