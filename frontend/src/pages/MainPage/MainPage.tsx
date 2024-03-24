@@ -7,7 +7,8 @@ import TaskList from '../../components/TaskList/TaskList';
 import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 import { SelectedCategoriesContext } from '../../context/SelectedCategoriesContext';
 import { useCategoriesContext } from '../../context/CategoryContext';
-import { getFormattedDate } from '../../utils/utils';
+import { SelectedPriorityContext } from '../../context/PriorityContext';
+// import { getFormattedDate } from '../../utils/utils';
 import type TaskCard from '../../models/TaskCard';
 
 const MainPage = () => {
@@ -15,6 +16,9 @@ const MainPage = () => {
   const categories = useCategoriesContext();
   const { selectedCategories } = useContext(SelectedCategoriesContext);
   const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
+  const { selectedPriority } = useContext(SelectedPriorityContext);
+  const [filteredTasksByPriority, setFilteredTasksByPriority] = useState([]);
+
   const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
   const [tasksTomorrow, setTasksTomorrow] = useState<TaskCard[]>([]);
   const [tasksUpcoming, setTasksUpcoming] = useState<TaskCard[]>([]);
@@ -46,19 +50,34 @@ const MainPage = () => {
   }, [tasks, categories, selectedCategories]);
 
   useEffect(() => {
+    if (selectedPriority && tasks) {
+      const filterTasksByPriority = (tasks, priority) => {
+        return tasks.filter((task) => priority.includes(task.priority));
+      };
+
+      const filteredTasksByPriority = filterTasksByPriority(
+        filteredTasksByCategory,
+        selectedPriority,
+      );
+      setFilteredTasksByPriority(filteredTasksByPriority);
+    }
+  }, [selectedPriority, filteredTasksByCategory]);
+
+  // filter by days
+  useEffect(() => {
     const sortAndFilterTasks = () => {
       const today = new Date().toISOString().split('T')[0];
       const tomorrow = new Date(Date.now() + 86400000)
         .toISOString()
         .split('T')[0];
 
-      const tasksToday = filteredTasksByCategory.filter(
+      const tasksToday = filteredTasksByPriority.filter(
         (task) => task.due_date === today,
       );
-      const tasksTomorrow = filteredTasksByCategory.filter(
+      const tasksTomorrow = filteredTasksByPriority.filter(
         (task) => task.due_date === tomorrow,
       );
-      const tasksUpcoming = filteredTasksByCategory.filter(
+      const tasksUpcoming = filteredTasksByPriority.filter(
         (task) => task.due_date !== today && task.due_date !== tomorrow,
       );
 
@@ -68,7 +87,12 @@ const MainPage = () => {
     };
 
     sortAndFilterTasks();
-  }, [filteredTasksByCategory]);
+  }, [filteredTasksByCategory, filteredTasksByPriority]);
+
+  console.log('selectedCategories', selectedCategories);
+  console.log('selectedPriority', selectedPriority);
+  console.log('filtered Tasks By Category', filteredTasksByCategory);
+  console.log('filtered Tasks By Priority', filteredTasksByPriority);
 
   return (
     <div className='flex h-full'>
