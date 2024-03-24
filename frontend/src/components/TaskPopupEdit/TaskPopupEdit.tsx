@@ -12,6 +12,8 @@ interface TaskPopupEditProps {
   closeTaskPopup: () => void;
   onUpdateTask: (updatedTask: TaskCard) => void; // Handler to save the edited task
   categories: Category[];
+  setIsEditMode:  React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentTask: React.Dispatch<React.SetStateAction<TaskCard | null>>;
 }
 
 const TaskPopupEdit: FC<TaskPopupEditProps> = ({
