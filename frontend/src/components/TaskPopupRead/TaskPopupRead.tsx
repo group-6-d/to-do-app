@@ -2,11 +2,12 @@ import { FC } from 'react';
 import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
-import TaskCard from '../../models/TaskCard';
+import type TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { useCategoriesContext } from '../../context/CategoryContext';
 import { getFormattedDate } from '../../utils/utils';
 import type Category from '../../models/Category';
+import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 
 interface TaskPopupProps {
   task: TaskCard | null;
@@ -19,6 +20,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
   closeTaskPopup,
   onEditClick,
 }) => {
+  const { deleteTask } = useTasksBoard();
   const priorityColor = getPriorityColor(task?.priority);
   const categories = useCategoriesContext();
 
@@ -33,6 +35,13 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
       (cat: Category) => cat.id === categoryId,
     );
     return category ? category.name : 'Unknown Category';
+  };
+
+  const handleDeleteTask = (data: TaskCard | null) => {
+    if (data) {
+      deleteTask(data);
+      closeTaskPopup();
+    }
   };
 
   return (
@@ -50,7 +59,10 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
               </li>
             )}
             <li>
-              <AiOutlineDelete className='icon' />
+              <AiOutlineDelete
+                className='icon'
+                onClick={() => handleDeleteTask(task)}
+              />
             </li>
             <li>
               <AiOutlineEdit className='icon' onClick={onEditClick} />

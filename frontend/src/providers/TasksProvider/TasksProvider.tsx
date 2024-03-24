@@ -15,17 +15,15 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const token = localStorage.getItem('token');
   const { tasks } = useTasks(token);
 
-  const getTasks = () => {
-    setTasks(tasks);
-  };
+  // const getTasks = () => {
+  //   setTasks(tasks);
+  // };
 
   const editTask = (data: TaskCard) => {
     const token = localStorage.getItem('token');
-    taskApi
-      .editTask(data, token)
-      .catch((err) => {
-        console.log(err);
-      });
+    taskApi.editTask(data, token).catch((err) => {
+      console.log(err);
+    });
   };
 
   const createTask = (data: TaskCard) => {
@@ -43,13 +41,15 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const deleteTask = (data: TaskCard) => {
-    const updList = tasks.filter((card: TaskCard) => card.id !== data.id);
-    setTasks(updList);
+    taskApi
+      .deleteTask(data.id, token)
+      .then((res) => console.log('deleted!', res))
+      .catch((err) => console.error(err));
   };
 
   const value = {
     tasks,
-    getTasks,
+    // getTasks,
     createTask,
     deleteTask,
     editTask,
