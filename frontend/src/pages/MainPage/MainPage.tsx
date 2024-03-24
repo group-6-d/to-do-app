@@ -73,8 +73,16 @@ const MainPage = () => {
       <SideBar />
 
       <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
-        <TaskList day='Today' date={today} taskList={tasksToday} />
-        <TaskList day='Tomorrow' date={tomorrow} taskList={tasksTomorrow} />
+        <TaskList
+          day='Today'
+          date={getFormattedDate(today)}
+          taskList={tasksToday}
+        />
+        <TaskList
+          day='Tomorrow'
+          date={getFormattedDate(tomorrow)}
+          taskList={tasksTomorrow}
+        />
         <TaskList day='Upcoming' taskList={tasksUpcoming} />
       </div>
     </div>

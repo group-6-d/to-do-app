@@ -5,6 +5,7 @@ import { TbPointFilled } from 'react-icons/tb';
 import TaskCard from '../../models/TaskCard';
 import { getPriorityColor } from '../../utils/utils';
 import { useCategoriesContext } from '../../context/CategoryContext';
+import { getFormattedDate } from '../../utils/utils';
 import type Category from '../../models/Category';
 
 interface TaskPopupProps {
@@ -41,9 +42,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
       onClick={closePopup}
     >
       <div className='h-screen/80 relative grid w-[300px] cursor-default content-start overflow-auto rounded-2xl bg-white p-5 md:w-[700px] md:p-10 dark:bg-stone-800'>
-        <section
-          className='mb-6 flex w-full justify-end md:mb-12'
-        >
+        <section className='mb-6 flex w-full justify-end md:mb-12'>
           <ul className='grid grid-cols-4 gap-3 md:gap-6'>
             {!task?.isDone && (
               <li>
@@ -76,11 +75,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
           </p>
           {task?.due_date && (
             <p className='font-medium md:text-xl'>
-              {new Date(task.due_date).toLocaleDateString('en-GB', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-              })}
+              {getFormattedDate(task.due_date)}
             </p>
           )}
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
