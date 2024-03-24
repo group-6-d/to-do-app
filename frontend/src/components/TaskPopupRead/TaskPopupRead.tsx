@@ -42,10 +42,9 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
     >
       <div className='h-screen/80 relative grid w-[300px] cursor-default content-start overflow-auto rounded-2xl bg-white p-5 md:w-[700px] md:p-10 dark:bg-stone-800'>
         <section
-          className='mb-6 flex w-full
-  justify-end md:mb-12'
+          className='mb-6 flex w-full justify-end md:mb-12'
         >
-          <ul className='grid grid-cols-4 gap-3 text-xl text-stone-600 md:gap-6 md:text-2xl'>
+          <ul className='grid grid-cols-4 gap-3 md:gap-6'>
             {!task?.isDone && (
               <li>
                 <IoMdCheckmarkCircleOutline className='icon' />

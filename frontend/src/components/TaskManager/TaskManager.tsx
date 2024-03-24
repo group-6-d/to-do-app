@@ -10,16 +10,15 @@ interface TaskManagerProps {
 }
 
 // Example TaskManager component
-const TaskManager: React.FC<TaskManagerProps> = ({
-  task,
-  closeTaskManager,
-}) => {
+const TaskManager: React.FC<TaskManagerProps> = ({task, closeTaskManager,}) => {
+  const token = localStorage.getItem('token');
+  const { categories } = useCategories(token);
+
   const initialTask = task || null;
   const initialMode = task ? false : true;
   const [currentTask, setCurrentTask] = useState<TaskCard | null>(initialTask);
   const [isEditMode, setIsEditMode] = useState<boolean>(initialMode);
-  const token = localStorage.getItem('token');
-  const { categories } = useCategories(token);
+  
 
   const handleEditClick = () => {
     setIsEditMode(true); // Switch to edit mode
