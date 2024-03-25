@@ -26,7 +26,7 @@ const MainPage = () => {
     // and must be a useCallback wrapped version, I know what i'm doing and I'm lazy!
     // Will and only it begins to bite me!
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [allTasks]);
 
   useEffect(() => {
     if (!allTasks?.length || !selectedCategories?.length || !categories?.length)
