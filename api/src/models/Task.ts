@@ -27,7 +27,7 @@ const initialTaskModel = (sequelize: Sequelize) => {
         allowNull: false,
       },
       status: {
-        type: DataTypes.ENUM('to do', 'done', 'low'),
+        type: DataTypes.ENUM('to do', 'done'),
         allowNull: false,
       },
       user_id: {

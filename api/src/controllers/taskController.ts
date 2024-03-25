@@ -43,27 +43,6 @@ class TaskController {
     return res.json(tasks);
   }
 
-  //? do we need this one?
-  async getOneTask(req, res, next) {
-    try {
-      const { user } = req;
-      const { id } = req.params;
-      const task = await Task.findOne({
-        where: { id, user_id: user.id },
-      });
-
-      if (!task) {
-        return res.status(404).json({ error: 'Task not found' });
-      }
-
-      return res.json(task);
-    } catch (err) {
-      // next(StatusCodes.INTERNAL_SERVER_ERROR('Failed to fetch task.'));
-      console.error(err);
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
-    }
-  }
-
   async editTask(req, res, next) {
     const { user } = req;
     try {
