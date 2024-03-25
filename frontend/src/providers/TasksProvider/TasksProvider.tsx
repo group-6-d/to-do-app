@@ -55,10 +55,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const deleteTask = async (data: TaskCard) => {
     try {
       const token = localStorage.getItem('token');
-      taskApi
-        .deleteTask(data.id, token)
-        .then((res) => console.log('deleted!', res))
-        .catch((err) => console.error(err));
+      await taskApi.deleteTask(data.id, token);
 
       // TODO: what if `deleteTask()` throws errors?
       setAllTasks(allTasks.filter((task) => task.id !== data.id));
