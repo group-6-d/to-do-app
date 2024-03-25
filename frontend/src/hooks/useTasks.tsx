@@ -1,26 +1,23 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import * as tasksAPI from '../api/tasksApi';
 import { getFormattedDateForTask } from '../utils/utils';
 import type TaskCard from '../models/TaskCard';
 
-const useTasks = (token: string | null) => {
-  const [tasks, setTasks] = useState<TaskCard[] | null>(null);
+const useTasks = () => {
+  const [tasks, setTasks] = useState<TaskCard[]>([]);
 
   const fetchAllTasks = useCallback(async (token: string | null) => {
     if (!token) return;
     try {
-      const tasks = (await tasksAPI.fetchAll(token)) as TaskCard[];
+      const tasks = await tasksAPI.fetchAll(token);
       setTasks(tasks);
+      getFormattedDateForTask(tasks);
+      return tasks;
     } catch (error) {
       console.error(error);
     }
+    return [];
   }, []);
-
-  useEffect(() => {
-    fetchAllTasks(token);
-  }, [fetchAllTasks, token]);
-
-  getFormattedDateForTask(tasks);
 
   return { tasks, fetchAllTasks };
 };
