@@ -38,7 +38,9 @@ const TaskPopupNew: FC<TaskPopupProps> = ({
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     onAddTask(data);
-    reset(); // Reset the form fields after submission
+    // Reset the form fields after submission
+    //? => we close the form - so don't need it
+    reset();
   };
 
   return (

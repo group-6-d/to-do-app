@@ -81,7 +81,7 @@ const MainPage = () => {
     <div className='flex h-full'>
       <SideBar />
 
-      <div className='flex w-full flex-col pl-4 pt-4 md:flex-row md:justify-start'>
+      <div className='mr-4 flex w-full flex-col pl-4 pt-4 md:mr-0 md:flex-row md:justify-start'>
         <TaskList
           day='Today'
           date={getFormattedDate(today)}
