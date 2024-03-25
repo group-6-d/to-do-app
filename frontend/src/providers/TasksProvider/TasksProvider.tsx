@@ -85,6 +85,8 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  refreshTasks();
+
   const value = {
     allTasks,
     tasks,
