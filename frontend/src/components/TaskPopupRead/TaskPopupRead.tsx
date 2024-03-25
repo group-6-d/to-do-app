@@ -24,14 +24,14 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
   const priorityColor = getPriorityColor(task?.priority);
   const categories = useCategoriesContext();
 
-  const arrСategories = Object.values(categories).flat();
+  const arrCategories = Object.values(categories).flat();
 
   const closePopup = (event: React.MouseEvent) => {
     if ((event.target as HTMLElement).id === 'container') closeTaskPopup();
   };
 
   const getCategoryNameById = (categoryId: number) => {
-    const category = arrСategories?.find(
+    const category = arrCategories?.find(
       (cat: Category) => cat.id === categoryId,
     );
     return category ? category.name : 'Unknown Category';

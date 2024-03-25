@@ -36,6 +36,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setCurrentUser({
           name: res.user.first_name,
           email: res.user.email,
+          id: res.user.id,
         });
         navigate('/dashboard');
       })
@@ -54,6 +55,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
           setCurrentUser({
             name: res.user.first_name,
             email: res.user.email,
+            id: res.user.id,
           });
         })
         .catch((err) => {
@@ -76,6 +78,7 @@ const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         setCurrentUser({
           name: res.user.first_name,
           email: res.user.email,
+          id: res.user.id,
         });
         navigate('/profile');
       })

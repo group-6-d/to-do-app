@@ -20,26 +20,41 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     getTasks(tasks);
   }, [tasks]);
 
-  const editTask = (data: TaskCard) => {
-    const token = localStorage.getItem('token');
-    taskApi.editTask(data, token).catch((err) => {
-      console.log(err);
-    });
+  const editTask = async (data: TaskCard) => {
+    try {
+      const token = localStorage.getItem('token');
+      const editedTask = await taskApi.editTask(data, token);
+      setAllTasks((prevTasks) => {
+        const updatedTask = prevTasks.filter(
+          (task) => task.id !== editedTask.id,
+        );
+        return [...updatedTask, editedTask];
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const createTask = (data: TaskCard) => {
-    const newCard = {
-      id: data.id,
-      title: data.title,
-      description: data.description,
-      dueDate: data.dueDate,
-      priority: data.priority,
-      isDone: data.isDone,
-      status: data.status,
-      categoryId: data.category,
-    };
-    // todo: add this when logic is ready
-    // setAllTasks((prevList) => [...prevList, newCard]);
+  const createTask = async (data: TaskCard) => {
+    try {
+      const token = localStorage.getItem('token');
+      taskApi.createNewTask(data, token).then((res) => {
+        const newTask = {
+          id: res.id,
+          title: res.title,
+          description: res.description,
+          due_date: res.due_date,
+          status: res.status,
+          user_id: res.user_id,
+          category_id: res.category_id,
+          categoryName: res.categoryName,
+        };
+        const updTaskList = [...allTasks, newTask];
+        setAllTasks(updTaskList);
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const deleteTask = async (data: TaskCard) => {
