@@ -1,5 +1,6 @@
 type TaskCard = {
   id: number | null;
+  user_id: number | null;
   title: string;
   description?: string;
   due_date?: string;

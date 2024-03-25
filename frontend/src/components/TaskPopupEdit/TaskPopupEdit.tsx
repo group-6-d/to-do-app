@@ -21,7 +21,7 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
   setIsEditMode,
   setCurrentTask,
 }) => {
-  const { editTask } = useTasksBoard();
+  const { editTask, createTask } = useTasksBoard();
 
   const {
     register,
@@ -36,8 +36,11 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
   });
 
   const onSubmit = (data: TaskCard) => {
-    console.log(data);
-    editTask(data);
+    if (data.id) {
+      editTask(data);
+    } else {
+      createTask(data);
+    }
     setIsEditMode(false);
     setCurrentTask(data);
   };
@@ -58,7 +61,16 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
           <IoMdClose onClick={closeTaskPopup} className='icon' />
         </section>
         <form onSubmit={handleSubmit(onSubmit)} className=' flex flex-col'>
-          <input type='hidden' defaultValue={task?.id??undefined} {...register('id')} />
+          <input
+            type='hidden'
+            defaultValue={task?.id ?? undefined}
+            {...register('id')}
+          />
+          <input
+            type='hidden'
+            defaultValue={task?.user_id ?? undefined}
+            {...register('user_id')}
+          />
 
           <div className=' flex flex-col'>
             <label className='task_form_label'>Title</label>
@@ -87,115 +99,113 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
               </div>
             )}
           </div>
-          <div className=' grid md:grid-cols-2 my-10 items-end justify-end gap-y-2 md:mb-16 md:gap-y-8 md:w-[400px]'>
-              <label className='task_form_label'>Priority:</label>
-              <div className=' flex flex-col md:flex-row'>
-                <label>
-                  <div className=' mr-6 flex text-xl'>
-                    <input
-                      className=' mr-2 w-5'
-                      type='radio'
-                      value='High'
-                      {...register('priority')}
-                      defaultChecked={task?.priority?.toLowerCase() === 'high'}
-                    />
-                    High
-                  </div>
-                </label>
-                <label>
-                  <div className=' mr-6 flex text-xl'>
-                    <input
-                      className=' mr-2 w-5'
-                      type='radio'
-                      value='Medium'
-                      {...register('priority')}
-                      defaultChecked={
-                        task?.priority?.toLowerCase() === 'medium'
-                      }
-                    />
-                    Medium
-                  </div>
-                </label>
-                <label>
-                  <div className=' mr-6 flex text-xl'>
-                    <input
-                      className=' mr-2 w-5'
-                      type='radio'
-                      value='Low'
-                      {...register('priority')}
-                      defaultChecked={task?.priority?.toLowerCase() === 'low'}
-                    />
-                    Low
-                  </div>
-                </label>
-              </div>
-   
-             <label className='task_form_label' htmlFor='due_date'>
-                Due Date:
-              </label>
-              <input
-                className=' m-0 block h-10 w-44 rounded-lg border border-gray-200 p-2 text-lg'
-                type='date'
-                defaultValue={task?.due_date}
-                {...register('due_date', {
-                  required: {
-                    value: true,
-                    message: 'This field is required',
-                  },
-                })}
-              />
-              {errors?.due_date && (
-                <div className='md:text-md text-sm text-red-500'>
-                  {errors.due_date.message}
+          <div className=' my-10 grid items-end justify-end gap-y-2 md:mb-16 md:w-[400px] md:grid-cols-2 md:gap-y-8'>
+            <label className='task_form_label'>Priority:</label>
+            <div className=' flex flex-col md:flex-row'>
+              <label>
+                <div className=' mr-6 flex text-xl'>
+                  <input
+                    className=' mr-2 w-5'
+                    type='radio'
+                    value='high'
+                    {...register('priority')}
+                    defaultChecked={task?.priority === 'high'}
+                  />
+                  high
                 </div>
-              )}
-
-              <label className='task_form_label' htmlFor='category'>
-                Category
               </label>
-              <select
-                id='category'
-                className=' block h-10 w-44 rounded-lg border border-gray-200 px-2 text-xl'
-                defaultValue={task?.category_id}
-                {...register('category_id', {
-                  required: 'This field is required',
-                })}
-              >
-                {categories.map((category, index) => (
-                  <option key={index} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-              {errors.category && <p>{errors.category.message}</p>}
+              <label>
+                <div className=' mr-6 flex text-xl'>
+                  <input
+                    className=' mr-2 w-5'
+                    type='radio'
+                    value='medium'
+                    {...register('priority')}
+                    defaultChecked={task?.priority?.toLowerCase() === 'medium'}
+                  />
+                  medium
+                </div>
+              </label>
+              <label>
+                <div className=' mr-6 flex text-xl'>
+                  <input
+                    className=' mr-2 w-5'
+                    type='radio'
+                    value='low'
+                    {...register('priority')}
+                    defaultChecked={task?.priority?.toLowerCase() === 'low'}
+                  />
+                  low
+                </div>
+              </label>
+            </div>
 
-              <label className='task_form_label'>Status:</label>
-              <div className=' flex '>
-                <label>
-                  <div className=' mr-6 flex text-xl'>
-                    <input
-                      className=' mr-2 w-5'
-                      type='radio'
-                      value='to do'
-                      {...register('status')}
-                      defaultChecked={task?.status?.toLowerCase() === 'to do'}
-                    />
-                    to do
-                  </div>
-                </label>
-                <label>
-                  <div className=' mr-6 flex text-xl'>
-                    <input
-                      className=' mr-2 w-5'
-                      type='radio'
-                      value='done'
-                      {...register('status')}
-                      defaultChecked={task?.status?.toLowerCase() === 'done'}
-                    />
-                    done
-                  </div>
-                </label>
+            <label className='task_form_label' htmlFor='due_date'>
+              Due Date:
+            </label>
+            <input
+              className=' m-0 block h-10 w-44 rounded-lg border border-gray-200 p-2 text-lg'
+              type='date'
+              defaultValue={task?.due_date}
+              {...register('due_date', {
+                required: {
+                  value: true,
+                  message: 'This field is required',
+                },
+              })}
+            />
+            {errors?.due_date && (
+              <div className='md:text-md text-sm text-red-500'>
+                {errors.due_date.message}
               </div>
+            )}
+
+            <label className='task_form_label' htmlFor='category'>
+              Category
+            </label>
+            <select
+              id='category'
+              className=' block h-10 w-44 rounded-lg border border-gray-200 px-2 text-xl'
+              defaultValue={task?.category_id}
+              {...register('category_id', {
+                required: 'This field is required',
+              })}
+            >
+              {categories.map((category, index) => (
+                <option key={index} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            {errors.category && <p>{errors.category.message}</p>}
+
+            <label className='task_form_label'>Status:</label>
+            <div className=' flex '>
+              <label>
+                <div className=' mr-6 flex text-xl'>
+                  <input
+                    className=' mr-2 w-5'
+                    type='radio'
+                    value='to do'
+                    {...register('status')}
+                    defaultChecked={task?.status?.toLowerCase() === 'to do'}
+                  />
+                  to do
+                </div>
+              </label>
+              <label>
+                <div className=' mr-6 flex text-xl'>
+                  <input
+                    className=' mr-2 w-5'
+                    type='radio'
+                    value='done'
+                    {...register('status')}
+                    defaultChecked={task?.status?.toLowerCase() === 'done'}
+                  />
+                  done
+                </div>
+              </label>
+            </div>
           </div>
 
           <div className=' flex flex-col'>

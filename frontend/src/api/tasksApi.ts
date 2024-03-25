@@ -36,3 +36,14 @@ export const deleteTask = async (id: number, token: string) => {
 
   return response;
 };
+
+export const createNewTask = (data: TaskCard, token: string) => {
+  return fetch(`${BASE_URL}/v1/task`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ data }),
+  }).then(checkResponse);
+};

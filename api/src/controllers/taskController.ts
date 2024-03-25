@@ -16,7 +16,7 @@ class TaskController {
         priority,
         status,
         category_id,
-      } = req.body;
+      } = req.body.data;
       const task = await Task.create({
         user_id,
         title,

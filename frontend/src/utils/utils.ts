@@ -2,13 +2,13 @@ import TaskCard from '../models/TaskCard';
 
 export const getPriorityColor = (priority?: string) => {
   switch (priority) {
-    case 'High':
+    case 'high':
       return 'text-orange';
       break;
-    case 'Medium':
+    case 'medium':
       return 'text-yellow';
       break;
-    case 'Low':
+    case 'low':
       return 'text-purple';
       break;
     default:
