@@ -70,6 +70,24 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     getTasks(tasks);
   };
 
+  const markDone = async (data: TaskCard) => {
+    try {
+      const token = localStorage.getItem('token');
+      const editedTask = await taskApi.editTask(data, token);
+
+      setAllTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task.id === editedTask.id ? { ...task, status: 'done' } : task,
+        ),
+      );
+
+      console.log('should be marked DONE');
+      console.log('data', data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const value = {
     allTasks,
     tasks,
@@ -78,6 +96,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     deleteTask,
     editTask,
     refreshTasks,
+    markDone,
   };
 
   return (
