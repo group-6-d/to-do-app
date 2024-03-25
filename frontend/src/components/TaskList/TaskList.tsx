@@ -26,7 +26,7 @@ const TaskList: FC<TaskListProps> = ({ taskList, day, date }) => {
 
   return (
     <>
-      <ul className='min-w-[330px] md:overflow-hidden'>
+      <ul className='md:w-[390px] md:overflow-hidden'>
         <h4 className='mx-3 rounded-t-2xl bg-white p-4 font-semibold dark:bg-stone-800'>
           <span>{day}</span>
           <span className='text-stone-400'>&nbsp;&nbsp;{date}</span>
