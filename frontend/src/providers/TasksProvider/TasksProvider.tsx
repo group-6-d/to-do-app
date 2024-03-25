@@ -15,6 +15,12 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setAllTasks(updatedTasks);
   };
 
+  const refreshTasks = async () => {
+    const token = localStorage.getItem('token');
+    const tasks = await fetchAllTasks(token);
+    getTasks(tasks);
+  };
+
   const editTask = async (data: TaskCard) => {
     try {
       const token = localStorage.getItem('token');
@@ -28,6 +34,8 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     } catch (err) {
       console.error(err);
     }
+
+    refreshTasks();
   };
 
   const createTask = async (data: TaskCard) => {
@@ -50,6 +58,8 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     } catch (err) {
       console.error(err);
     }
+
+    refreshTasks();
   };
 
   const deleteTask = async (data: TaskCard) => {
@@ -62,12 +72,6 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const refreshTasks = async () => {
-    const token = localStorage.getItem('token');
-    const tasks = await fetchAllTasks(token);
-    getTasks(tasks);
   };
 
   const markDone = async (data: TaskCard) => {
@@ -84,8 +88,6 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
       console.error(err);
     }
   };
-
-  // refreshTasks();
 
   const value = {
     allTasks,
