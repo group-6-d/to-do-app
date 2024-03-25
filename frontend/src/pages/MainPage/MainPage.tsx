@@ -12,7 +12,7 @@ import type TaskCard from '../../models/TaskCard';
 
 const MainPage = () => {
   const { allTasks, refreshTasks } = useTasksBoard();
-  const { categories } = useCategoriesContext();
+  const { categories, refreshCategories } = useCategoriesContext();
   const { selectedCategories } = useContext(SelectedCategoriesContext);
   const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
   const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
@@ -21,6 +21,7 @@ const MainPage = () => {
 
   useEffect(() => {
     refreshTasks();
+    refreshCategories();
     // TODO: suppose to have a `refreshTasks` in this dep list
     // and must be a useCallback wrapped version, I know what i'm doing and I'm lazy!
     // Will and only it begins to bite me!
@@ -74,7 +75,7 @@ const MainPage = () => {
     };
 
     sortAndFilterTasks();
-  }, [filteredTasksByCategory]);
+  }, [filteredTasksByCategory, tomorrow, today]);
 
   return (
     <div className='flex h-full'>

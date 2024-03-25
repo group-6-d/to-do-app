@@ -9,8 +9,7 @@ import type TaskCard from '../../models/TaskCard';
 
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [allTasks, setAllTasks] = useState<TaskCard[]>([]);
-  const token = localStorage.getItem('token');
-  const { tasks, fetchAllTasks } = useTasks(token);
+  const { tasks, fetchAllTasks } = useTasks();
 
   const getTasks = (updatedTasks) => {
     setAllTasks(updatedTasks);
@@ -55,6 +54,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const deleteTask = async (data: TaskCard) => {
     try {
+      const token = localStorage.getItem('token');
       taskApi
         .deleteTask(data.id, token)
         .then((res) => console.log('deleted!', res))
@@ -68,6 +68,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const refreshTasks = async () => {
+    const token = localStorage.getItem('token');
     const tasks = await fetchAllTasks(token);
     getTasks(tasks);
   };
