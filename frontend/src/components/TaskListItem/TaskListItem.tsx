@@ -8,6 +8,7 @@ import { getPriorityColor } from '../../utils/utils';
 import { MdOutlineDone, MdDoneAll } from 'react-icons/md';
 import { TbPointFilled } from 'react-icons/tb';
 import { useCategoriesContext } from '../../context/CategoryContext';
+import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 
 interface TaskProps {
   task: TaskCard;
@@ -18,12 +19,26 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
   const { id, title, priority, status } = task;
   const priorityColor = getPriorityColor(priority);
   const categories = useCategoriesContext();
+  const { markDone } = useTasksBoard();
 
   const arrСategories = Object.values(categories).flat();
 
   const getCategoryNameById = (categoryId: number) => {
     const category = arrСategories?.find((cat) => cat.id === categoryId);
     return category ? category.name : 'Unknown Category';
+  };
+
+  const handleMarkDone = async (
+    e: React.MouseEvent<HTMLButtonElement>,
+    task,
+  ) => {
+    e.stopPropagation();
+    try {
+      const updatedTask = { ...task, status: 'done' };
+      await markDone(updatedTask);
+    } catch (error) {
+      console.error('Failed to mark task as done:', error);
+    }
   };
 
   return (
@@ -53,7 +68,10 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
         ) : (
           <>
             <h3 className='py-4 pr-4'>{title}</h3>
-            <button className='text-accent hover:bg-accent rounded-full bg-white p-3 hover:text-white dark:bg-stone-800 hover:dark:bg-stone-600'>
+            <button
+              onClick={(e) => handleMarkDone(e, task)}
+              className='text-accent hover:bg-accent rounded-full bg-white p-3 hover:text-white dark:bg-stone-800 hover:dark:bg-stone-600'
+            >
               <MdOutlineDone />
             </button>
           </>

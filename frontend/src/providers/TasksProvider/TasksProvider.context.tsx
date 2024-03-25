@@ -15,6 +15,7 @@ interface ITasksProvider {
   tasks: TaskCard[];
   getTasks: (tasks: TaskCard[]) => void;
   refreshTasks: () => void;
+  markDone: (data: TaskCard) => void;
 }
 
 const TasksContext = createContext<ITasksProvider>({
@@ -30,6 +31,7 @@ const TasksContext = createContext<ITasksProvider>({
   tasks: [],
   getTasks: () => null,
   refreshTasks: () => null,
+  markDone: () => null,
 });
 
 export default TasksContext;

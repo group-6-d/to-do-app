@@ -5,10 +5,10 @@ type TaskCard = {
   description?: string;
   due_date?: string;
   priority?: 'high' | 'middle' | 'low';
-  isDone?: boolean;
+  // isDone?: boolean;
   status?: string;
   category_id: number;
-  categoryName: string
+  categoryName: string;
 
   // todo: will be deleted
   category?: 'personal' | 'work' | 'shopping' | 'hobbies' | 'movies' | 'other';
