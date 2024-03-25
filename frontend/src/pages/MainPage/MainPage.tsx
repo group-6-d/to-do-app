@@ -12,7 +12,7 @@ import type TaskCard from '../../models/TaskCard';
 
 const MainPage = () => {
   const { allTasks, getTasks } = useTasksBoard();
-  const categories = useCategoriesContext();
+  const { categories } = useCategoriesContext();
   const { selectedCategories } = useContext(SelectedCategoriesContext);
   const [filteredTasksByCategory, setFilteredTasksByCategory] = useState([]);
   const [tasksToday, setTasksToday] = useState<TaskCard[]>([]);
@@ -21,32 +21,32 @@ const MainPage = () => {
 
   useEffect(() => {
     getTasks(allTasks);
-  }, [allTasks]);
+  }, [getTasks, allTasks]);
 
   useEffect(() => {
-    if (selectedCategories && categories) {
-      const filterTasksByCategory = (tasks, categories) => {
-        const categoriesMap = categories.reduce((acc, category) => {
-          acc[category.id] = category.name;
-          return acc;
-        }, {});
+    if (!allTasks?.length || !selectedCategories?.length || !categories?.length)
+      return;
+    const filterTasksByCategory = (tasks, categories) => {
+      const categoriesMap = categories.reduce((acc, category) => {
+        acc[category.id] = category.name;
+        return acc;
+      }, {});
 
-        return tasks.filter((task) => {
-          const categoryName = categoriesMap[task.category_id];
-          if (categoryName) {
-            task.categoryName = categoryName;
-            return true;
-          }
-          return false;
-        });
-      };
+      return tasks.filter((task) => {
+        const categoryName = categoriesMap[task.category_id];
+        if (categoryName) {
+          task.categoryName = categoryName;
+          return true;
+        }
+        return false;
+      });
+    };
 
-      const filteredTasksByCategory = filterTasksByCategory(
-        allTasks,
-        selectedCategories,
-      );
-      setFilteredTasksByCategory(filteredTasksByCategory);
-    }
+    const filteredTasksByCategory = filterTasksByCategory(
+      allTasks,
+      selectedCategories,
+    );
+    setFilteredTasksByCategory(filteredTasksByCategory);
   }, [allTasks, categories, selectedCategories]);
 
   const today = new Date().toISOString().split('T')[0];
