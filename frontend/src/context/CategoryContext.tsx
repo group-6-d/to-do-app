@@ -8,10 +8,12 @@ import type Category from '../models/Category';
 
 interface CategoriesContextType {
   categories: Category[];
+  refreshCategories: () => void;
 }
 
 const CategoriesContext = createContext<CategoriesContextType>({
   categories: [],
+  refreshCategories: () => null,
 });
 
 interface CategoriesProviderProps {
@@ -20,10 +22,14 @@ interface CategoriesProviderProps {
 
 export const CategoriesProvider = ({ children }: CategoriesProviderProps) => {
   const token = localStorage.getItem('token');
-  const { categories } = useCategories(token);
+  const { categories, fetchAllCategories } = useCategories(token);
 
+  const refreshCategories = () => {
+    const token = localStorage.getItem('token');
+    fetchAllCategories(token);
+  };
   return (
-    <CategoriesContext.Provider value={{ categories }}>
+    <CategoriesContext.Provider value={{ categories, refreshCategories }}>
       {children}
     </CategoriesContext.Provider>
   );
