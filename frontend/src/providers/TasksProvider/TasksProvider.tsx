@@ -1,7 +1,7 @@
 // TODO: For our safety we need to remove @ts-nocheck
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import { useState, FC, ReactNode, useEffect } from 'react';
+import { useState, FC, ReactNode } from 'react';
 import TasksProviderContext from './TasksProvider.context';
 import useTasks from '../../hooks/useTasks';
 import * as taskApi from '../../api/tasksApi';
@@ -10,15 +10,11 @@ import type TaskCard from '../../models/TaskCard';
 const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [allTasks, setAllTasks] = useState<TaskCard[]>([]);
   const token = localStorage.getItem('token');
-  const { tasks } = useTasks(token);
+  const { tasks, fetchAllTasks } = useTasks(token);
 
   const getTasks = (updatedTasks) => {
     setAllTasks(updatedTasks);
   };
-
-  useEffect(() => {
-    getTasks(tasks);
-  }, [tasks]);
 
   const editTask = async (data: TaskCard) => {
     try {
@@ -64,10 +60,16 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
         .then((res) => console.log('deleted!', res))
         .catch((err) => console.error(err));
 
+      // TODO: what if `deleteTask()` throws errors?
       setAllTasks(allTasks.filter((task) => task.id !== data.id));
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const refreshTasks = async () => {
+    const tasks = await fetchAllTasks(token);
+    getTasks(tasks);
   };
 
   const value = {
@@ -77,6 +79,7 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
     createTask,
     deleteTask,
     editTask,
+    refreshTasks,
   };
 
   return (

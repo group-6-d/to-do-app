@@ -6,10 +6,14 @@ interface ITasksProvider {
   taskListDate: TaskCard[];
   categoryListDate: Category[];
   getTasksList: () => void;
-  getCategoryList:() => void;
+  getCategoryList: () => void;
   createTask: (data: TaskCard) => void;
   deleteTask: (data: TaskCard) => void;
   editTask: (data: TaskCard) => void;
+  allTasks: TaskCard[];
+  tasks: TaskCard[];
+  getTasks: (tasks: TaskCard[]) => void;
+  refreshTasks: () => void;
 }
 
 const TasksContext = createContext<ITasksProvider>({
@@ -20,6 +24,10 @@ const TasksContext = createContext<ITasksProvider>({
   createTask: () => {},
   deleteTask: () => {},
   editTask: () => {},
+  allTasks: [],
+  tasks: [],
+  getTasks: () => null,
+  refreshTasks: () => null,
 });
 
 export default TasksContext;
