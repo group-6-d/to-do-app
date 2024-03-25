@@ -80,9 +80,6 @@ const TasksProvider: FC<{ children: ReactNode }> = ({ children }) => {
           task.id === editedTask.id ? { ...task, status: 'done' } : task,
         ),
       );
-
-      console.log('should be marked DONE');
-      console.log('data', data);
     } catch (err) {
       console.error(err);
     }

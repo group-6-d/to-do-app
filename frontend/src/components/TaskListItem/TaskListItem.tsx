@@ -36,7 +36,6 @@ const TaskListItem: FC<TaskProps> = ({ task, onClick }) => {
     try {
       const updatedTask = { ...task, status: 'done' };
       await markDone(updatedTask);
-      console.log('done');
     } catch (error) {
       console.error('Failed to mark task as done:', error);
     }
