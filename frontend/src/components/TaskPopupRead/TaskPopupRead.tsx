@@ -52,12 +52,12 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
     >
       <div className='h-screen/80 relative grid w-[300px] cursor-default content-start overflow-auto rounded-2xl bg-white p-5 md:w-[700px] md:p-10 dark:bg-stone-800'>
         <section className='mb-6 flex w-full justify-end md:mb-12'>
-          <ul className='grid grid-cols-4 gap-3 md:gap-6'>
-            {!task?.isDone && (
+          <ul className='grid grid-cols-3 gap-3 md:gap-6'>
+            {/* {task?.status !== 'done' && (
               <li>
                 <IoMdCheckmarkCircleOutline className='icon' />
               </li>
-            )}
+            )} */}
             <li>
               <AiOutlineDelete
                 className='icon'
@@ -99,13 +99,13 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
           <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
             Status
           </p>
-          {task?.status === 'to do' && (
-            <p className='text-coral font-medium uppercase md:text-xl'>to do</p>
-          )}
-          {task?.status === 'done' && (
+
+          {task?.status === 'done' ? (
             <p className='font-medium uppercase text-stone-500 md:text-xl'>
               done
             </p>
+          ) : (
+            <p className='text-coral font-medium uppercase md:text-xl'>to do</p>
           )}
         </div>
         <p className='text-[12px] uppercase text-stone-500 md:text-lg'>
