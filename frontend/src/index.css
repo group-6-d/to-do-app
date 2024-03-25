@@ -43,7 +43,7 @@
   }
 
   .icon {
-    @apply hover:text-accent cursor-pointer text-xl text-stone-600 hover:font-bold md:gap-6 md:text-2xl;
+    @apply text-accent  cursor-pointer text-xl font-extrabold hover:font-bold hover:text-stone-600 md:gap-6 md:text-2xl;
   }
 }
 

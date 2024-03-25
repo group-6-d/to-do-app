@@ -12,7 +12,7 @@ import useTasksBoard from '../../providers/TasksProvider/TasksProvider.hook';
 interface TaskPopupProps {
   task: TaskCard | null;
   closeTaskPopup: () => void;
-  onEditClick: () => void; // Add this line
+  onEditClick: () => void;
 }
 
 const TaskPopupRead: FC<TaskPopupProps> = ({
@@ -52,12 +52,7 @@ const TaskPopupRead: FC<TaskPopupProps> = ({
     >
       <div className='h-screen/80 relative grid w-[300px] cursor-default content-start overflow-auto rounded-2xl bg-white p-5 md:w-[700px] md:p-10 dark:bg-stone-800'>
         <section className='mb-6 flex w-full justify-end md:mb-12'>
-          <ul className='grid grid-cols-3 gap-3 md:gap-6'>
-            {/* {task?.status !== 'done' && (
-              <li>
-                <IoMdCheckmarkCircleOutline className='icon' />
-              </li>
-            )} */}
+          <ul className='fixed grid grid-cols-3 gap-3 rounded-sm bg-white md:gap-6 md:p-4'>
             <li>
               <AiOutlineDelete
                 className='icon'

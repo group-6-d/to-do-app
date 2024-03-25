@@ -58,7 +58,9 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
         onClick={(e) => e.stopPropagation()} // Prevents click inside from closing
       >
         <section className='mb-6 flex w-full justify-end md:mb-12'>
-          <IoMdClose onClick={closeTaskPopup} className='icon' />
+          <div className='fixed grid grid-cols-1 rounded-sm bg-white md:p-4'>
+            <IoMdClose onClick={closeTaskPopup} className='icon' />
+          </div>
         </section>
         <form onSubmit={handleSubmit(onSubmit)} className=' flex flex-col'>
           <input
@@ -86,8 +88,8 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
                   message: 'Minimum length is 1',
                 },
                 maxLength: {
-                  value: 40,
-                  message: 'Maximum length is 40',
+                  value: 250,
+                  message: 'Maximum length is 250',
                 },
               })}
               type='text'
@@ -215,8 +217,8 @@ const TaskPopupEdit: FC<TaskPopupEditProps> = ({
             <textarea
               {...register('description', {
                 maxLength: {
-                  value: 300,
-                  message: 'Maximum length is 300',
+                  value: 1000,
+                  message: 'Maximum length is 1000',
                 },
               })}
               defaultValue={task?.description}
