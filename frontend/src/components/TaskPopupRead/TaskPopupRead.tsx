@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IoMdClose, IoMdCheckmarkCircleOutline } from 'react-icons/io';
+import { IoMdClose } from 'react-icons/io';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import { TbPointFilled } from 'react-icons/tb';
 import type TaskCard from '../../models/TaskCard';
