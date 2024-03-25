@@ -8,6 +8,8 @@ import { StatusCodes } from 'http-status-codes';
 class TaskController {
   async createTask(req, res, next) {
     try {
+      const { user } = req;
+
       const {
         user_id,
         title,
@@ -34,16 +36,20 @@ class TaskController {
   }
 
   async getAllTask(req, res) {
-    const tasks = await Task.findAll();
+    const { user } = req;
+    const tasks = await Task.findAll({
+      where: { user_id: user.id },
+    });
     return res.json(tasks);
   }
 
   //? do we need this one?
   async getOneTask(req, res, next) {
     try {
+      const { user } = req;
       const { id } = req.params;
       const task = await Task.findOne({
-        where: { id },
+        where: { id, user_id: user.id },
       });
 
       if (!task) {
@@ -59,12 +65,13 @@ class TaskController {
   }
 
   async editTask(req, res, next) {
+    const { user } = req;
     try {
       const { id } = req.params;
       const { title, description, due_date, priority, status, category_id } =
         req.body.data;
       const task = await Task.findOne({
-        where: { id },
+        where: { id, user_id: user.id },
       });
 
       if (!task) {
@@ -90,9 +97,10 @@ class TaskController {
 
   async deleteTask(req, res, next) {
     try {
+      const { user } = req;
       const { id } = req.params;
       const task = await Task.findOne({
-        where: { id },
+        where: { id, user_id: user.id },
       });
       if (!task) {
         return res.status(404).json({ error: 'Task not found' });
