@@ -1,41 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom';
-import useUser from '../../providers/UserProvider/UserProvider.hook';
+import { Link } from 'react-router-dom';
+import HeaderStart from '../../components/HeaderStart/HeaderStart';
 
 const StartPage = () => {
-  const { isLoggedIn } = useUser();
-
-  const navigate = useNavigate();
-
-  const handleLogoNavigate = () => {
-    isLoggedIn ? navigate('/dashboard') : navigate('/login');
-  };
-
   return (
     <div className=' mx-auto flex h-screen max-w-[1520px] flex-col p-6'>
-      <header className=' mb-6 flex h-[10%] w-full items-center justify-between'>
-        <button
-          onClick={handleLogoNavigate}
-          className=' relative flex text-3xl font-medium md:text-5xl'
-        >
-          <p className='mr-4 md:mr-6'>T </p>
-          <p>DO</p>
-          <div
-            className=' bg-accent absolute left-4 top-[13px] h-4 w-4 rounded-full
-          md:left-6 md:top-[18px] md:h-6 md:w-6
-          '
-          ></div>
-        </button>
-        <Link to='/login'>
-          <span
-            className=' text-accent border-accent hover:bg-accent rounded-full border px-10 py-2 
-          text-xl transition duration-1000 ease-in-out hover:text-white
-          md:px-16  md:text-2xl
-          '
-          >
-            Login
-          </span>
-        </Link>
-      </header>
+      <HeaderStart />
       <main className=' flex h-full flex-col items-center justify-center md:pb-52'>
         <div className=' relative  mb-8 flex overflow-hidden md:mb-14'>
           <h1
