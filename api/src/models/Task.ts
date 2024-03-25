@@ -23,10 +23,12 @@ const initialTaskModel = (sequelize: Sequelize) => {
         type: DataTypes.DATE,
       },
       priority: {
-        type: DataTypes.TEXT,
+        type: DataTypes.ENUM('high', 'medium', 'low'),
+        allowNull: false,
       },
       status: {
-        type: DataTypes.TEXT,
+        type: DataTypes.ENUM('to do', 'done', 'low'),
+        allowNull: false,
       },
       user_id: {
         type: DataTypes.INTEGER,
