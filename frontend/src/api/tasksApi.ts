@@ -1,7 +1,8 @@
+import { API_URL } from '../utils/utils';
 import checkResponse from './checkResponse';
 import TaskCard from '../models/TaskCard';
 
-export const BASE_URL = 'http://localhost:5174';
+export const BASE_URL = API_URL;
 
 export const fetchAll = (token: string) => {
   const response = fetch(`${BASE_URL}/v1/task`, {
