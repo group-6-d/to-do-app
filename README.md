@@ -1,22 +1,22 @@
-# to-do-app. frontend and backend parts
-Final study project for the Beyond the endpoint module, Hyper Island
+# to-do-app. frontend and backend parts.
+Final study project for the Beyond the endpoint module, Hyper Island.
 
-***This is a service where you can create and manage your own tasks.***
+***This is a service where you can create and manage your tasks.***
 
 ## Tools and stack: 
 * HTML / CSS / React.js / TypeScript / NodeJS /  API / JWT / Sequelize / PG / PostgreSQL / Tailwind
   
 ## Here's what was done:
 * set up infrastructure and created Express server;
-* connected database, created API schemas and resource models;
+* connected database created API schemas and resource models;
 * implemented authentication and authorization on the server;
 * the backend was deployed on Render;
 * components made up in React;
 * create the logic and layout of registration, login, profile editing, and tasks pages;
 * asynchronous GET-, PATCH-, DELETE- and POST-requests to the API were implemented;
-* authorized and unauthorized states and task management in the profile have been worked out;;
+* authorized and unauthorized states and task management in the profile have been worked out.
 
-## Project links
+## Project links:
 ### Website: [Visit our website](https://to-do-app-git-main-g6d.vercel.app/)
 
 ## Project screenshots:
@@ -29,14 +29,14 @@ Final study project for the Beyond the endpoint module, Hyper Island
 ***Login page***
 ![](./)
 
-***Dash board page***
+***Dashboard page***
 ![](./)
 
 ***Account: Edit your account***
 ![](./)
 
 
-## Project Setup Instructions
+## Project Setup Instructions:
 To set up this project locally, follow the steps below:
 
 1. **Clone the Repository:**
