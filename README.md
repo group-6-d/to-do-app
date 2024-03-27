@@ -21,19 +21,25 @@ Final study project for the Beyond the endpoint module, Hyper Island.
 
 ## Project screenshots:
 ***Start page***
-![](./)
+![](./frontend/src/readmeImages/start-page.jpg)
 
 ***Registration page***
-![](./)
+![](./frontend/src/readmeImages/register.jpg)
 
 ***Login page***
-![](./)
+![](./frontend/src/readmeImages/login.jpg)
 
 ***Dashboard page***
-![](./)
+![](./frontend/src/readmeImages/dashboard.jpg)
 
-***Account: Edit your account***
-![](./)
+***Creating a task***
+![](./frontend/src/readmeImages/task-form.jpg)
+
+***Task popup***
+![](./frontend/src/readmeImages/task-read-popup.jpg)
+
+***User account***
+![](./frontend/src/readmeImages/profile.jpg)
 
 
 ## Project Setup Instructions:
