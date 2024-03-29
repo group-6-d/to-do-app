@@ -1,4 +1,5 @@
-# to-do-app. frontend and backend parts.
+# Todo app
+## frontend & backend
 Final study project for the Beyond the endpoint module, Hyper Island.
 
 ***This is a service where you can create and manage your tasks.***
