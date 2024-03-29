@@ -5,7 +5,8 @@ Final study project for the Beyond the endpoint module, Hyper Island.
 ***This is a service where you can create and manage your tasks.***
 
 ## Tools and stack: 
-* HTML / CSS / React.js / TypeScript / NodeJS /  API / JWT / Sequelize / PG / PostgreSQL / Tailwind
+* React.js / TypeScript / Tailwind
+* NodeJS /  API / JWT / Sequelize / PG / PostgreSQL
   
 ## Here's what was done:
 * set up infrastructure and created Express server;
