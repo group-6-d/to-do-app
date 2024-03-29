@@ -19,7 +19,7 @@ Final study project for the Beyond the endpoint module, Hyper Island.
 * authorized and unauthorized states and task management in the profile have been worked out.
 
 ## Project links:
-### Website: [Visit our website](https://to-do-app-git-main-g6d.vercel.app/)
+### Website: [Visit website](https://to-do-app-git-main-g6d.vercel.app/)
 
 ## Project screenshots:
 ***Start page***
